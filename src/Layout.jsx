@@ -4,11 +4,11 @@ import { Suspense } from 'react';
 
 export const Layout = () => {
   return (
-    <div>
+    <>
       <Header />
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-    </div>
+    </>
   );
 };

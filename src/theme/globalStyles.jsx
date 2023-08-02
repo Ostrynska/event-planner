@@ -1,21 +1,26 @@
 import { createGlobalStyle } from 'styled-components';
 import modernNormalize from 'modern-normalize';
-// import { theme } from './theme';
+
+import Poppins600 from './fonts/Poppins/Poppins-SemiBold.ttf';
+import Poppins500 from './fonts/Poppins/Poppins-Medium.ttf';
+import Poppins400 from './fonts/Poppins/Poppins-Regular.ttf';
+import Poppins300 from './fonts/Poppins/Poppins-Light.ttf';
+import Alata400 from './fonts/Alata/Alata-Regular.ttf';
 
 export const GlobalStyle = createGlobalStyle`
+@font-face {font-family: 'Poppins';
+  src: url(${Poppins300}), url(${Poppins400}), url(${Poppins500}), url(${Poppins600});
+    }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alata&family=DM+Mono:wght@500&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
-
-
+@font-face {
+  font-family: 'Alata'; src: url(${Alata400})
+  }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #FFFFFF;
-    color: #000000;
 }
+
 ${modernNormalize}
 
 #root {
@@ -58,10 +63,6 @@ img {
   height: auto;
 }
 
-code {
-  font-family: 'OpenSans', sans-serif;
-}
-
 a {
   text-decoration: none;
   color: inherit;
@@ -77,28 +78,21 @@ button, input {
   outline: inherit;
 }
 
-address {
-  all: initial;
-  }
-
   ${({ theme }) => `
     h2 {
       font-size: ${theme.typography.h2.fontSize};
       font-weight: ${theme.typography.h2.fontWeight};
       color: ${theme.colors.mainText};
-    }
+    },
     h3, h4, h5, h6 {
       font-size: ${theme.typography.title.fontSize};
       font-weight: ${theme.typography.title.fontWeight};
-    }
+    },
     body {
+      font-family: 
       font-size: ${theme.typography.body.fontSize};
       font-weight: ${theme.typography.body.fontWeight};
-    }
-    body {
-      font-size: ${theme.typography.body.fontSize};
-      font-weight: ${theme.typography.body.fontWeight};
-    }
+    },
     p {
       font-size: ${theme.typography.caption.fontSize};
       font-weight: ${theme.typography.caption.fontWeight};

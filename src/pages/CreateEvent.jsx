@@ -1,8 +1,11 @@
+import PageLayout from '../components/PageLayout/PageLayout';
+import CreateEventForm from '../components/CreateEventForm/CreateEventForm';
+
 function CreateEvent() {
   return (
-    <>
-      <div>CreateEvent</div>
-    </>
+    <PageLayout title="Create new event" showBackButton={true}>
+      <CreateEventForm />
+    </PageLayout>
   );
 }
 
