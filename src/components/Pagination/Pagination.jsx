@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useEventData } from '../../hooks/useEventData';
 
+import { PaginationWrapp } from './Pagination.styled';
+
 function Pagination() {
   const { data, setData } = useEventData();
   const [currentPage, setCurrentPage] = useState(0);
@@ -21,9 +23,7 @@ function Pagination() {
       setData(response.data);
       setDataLength(response.data.length);
 
-      // Отримуємо загальну кількість записів з заголовків відповіді
       const totalRecords = parseInt(response.headers['x-total-count']);
-      // Розраховуємо загальну кількість сторінок
       const pages = Math.ceil(totalRecords / pageLimit);
       setTotalPages(pages);
     } catch (err) {
@@ -44,13 +44,13 @@ function Pagination() {
   };
 
   return (
-    <div>
+    <PaginationWrapp>
       <ul>
         {currentPage > 0 && <li onClick={handlePrevPage}>Prev</li>}
         <li>{currentPage + 1}</li>
         {currentPage < totalPages - 1 && <li onClick={handleNextPage}>Next</li>}
       </ul>
-    </div>
+    </PaginationWrapp>
   );
 }
 
