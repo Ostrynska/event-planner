@@ -48,6 +48,44 @@ const SortByCategory = () => {
             : priorityMap[b.priority] - priorityMap[a.priority]
         );
       }
+      if (field === 'date') {
+        const currentDate = new Date();
+        const currentMonth = currentDate.getMonth() + 1; // +1, оскільки місяці відлічуються з 0 до 11
+        const currentDay = currentDate.getDate();
+
+        response.data.sort((a, b) => {
+          const aDate = new Date(a.date);
+          const bDate = new Date(b.date);
+
+          // Порівнюємо спочатку місяці
+          const compareMonths = aDate.getMonth() - bDate.getMonth();
+          if (compareMonths !== 0) {
+            return order === 'asc' ? compareMonths : -compareMonths;
+          }
+
+          // Якщо місяці однакові, порівнюємо дати
+          const compareDays = aDate.getDate() - bDate.getDate();
+
+          // Перевіряємо, чи дата рівна поточному місяцю та дню
+          const isCurrentMonthDay =
+            aDate.getMonth() + 1 === currentMonth &&
+            aDate.getDate() === currentDay;
+          const isCurrentMonthDayB =
+            bDate.getMonth() + 1 === currentMonth &&
+            bDate.getDate() === currentDay;
+
+          if (isCurrentMonthDay && !isCurrentMonthDayB) {
+            // Якщо дата a це поточний місяць і день, вона повинна бути на першому місці
+            return order === 'asc' ? -1 : 1;
+          } else if (!isCurrentMonthDay && isCurrentMonthDayB) {
+            // Якщо дата b це поточний місяць і день, вона повинна бути на першому місці
+            return order === 'asc' ? 1 : -1;
+          }
+
+          // Повертаємо порівняння дат
+          return order === 'asc' ? compareDays : -compareDays;
+        });
+      }
       setData(response.data);
     } catch (err) {
       console.log(err);
