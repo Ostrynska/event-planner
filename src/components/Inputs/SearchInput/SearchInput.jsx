@@ -38,7 +38,7 @@ function SearchInput() {
             onChange={handleChange}
             // value={state.search}
 
-            hasIcon={searchValue.length > 0}
+            hasicon={searchValue.length > 0 ? 'true' : 'false'}
             autoComplete="on"
             autoFocus
           />

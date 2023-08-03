@@ -11,7 +11,7 @@ import {
 } from './SelectLang.styled';
 
 function SelectLang() {
-  const [language, setLanguage] = useState(false);
+  const [language, setLanguage] = useState(0);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
 
   const { t, i18n } = useTranslation();
@@ -22,15 +22,14 @@ function SelectLang() {
   };
   return (
     <div>
-      <LanguageWrapp onClick={() => setLanguage(!language)}>
+      <LanguageWrapp
+        onClick={() => setLanguage(prevState => (prevState === 0 ? 1 : 0))}
+      >
         {selectedLanguage.toUpperCase()}
         <LanguageIcon size={24} />
       </LanguageWrapp>
 
-      <LanguageList
-        showLanguageBlock={language}
-        onClick={() => setLanguage(false)}
-      >
+      <LanguageList showlanguage={language} onClick={() => setLanguage(0)}>
         <LanguageItem>
           <Select onClick={() => changeLanguage('en')}>EN</Select>
         </LanguageItem>

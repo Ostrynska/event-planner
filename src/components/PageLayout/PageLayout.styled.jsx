@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
-import bgDesktop from '../../images/bgDesktop@1x.png';
+// import bgDesktop from '../../images/bgDesktop@1x.png';
 
 export const Section = styled.section`
   padding-top: 40px;
   padding-bottom: 42px;
-  background-image: url(${bgDesktop});
+  ${
+    '' /* background-image: url(${bgDesktop});
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+  }
   width: 100%;
   position: relative;
   z-index: -1;

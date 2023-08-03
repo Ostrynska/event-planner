@@ -53,7 +53,7 @@ export const LanguageList = styled.ul`
   display: none;
 
   ${p =>
-    p.showLanguageBlock &&
+    p.showlanguage &&
     css`
       position: absolute;
       top: 75px;
