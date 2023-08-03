@@ -10,7 +10,7 @@ import {
   EventCategory,
 } from './EventCard.styled';
 
-function EventCard({ event }) {
+function EventCard({ item }) {
   const isRetina = window.devicePixelRatio > 1;
 
   const {
@@ -23,7 +23,7 @@ function EventCard({ event }) {
     location,
     title,
     supportingText,
-  } = event;
+  } = item;
 
   return (
     <Card>

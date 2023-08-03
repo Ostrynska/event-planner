@@ -17,7 +17,7 @@ function Header() {
     <HeaderWrapp>
       <Container>
         <HeaderContent>
-          <HeaderLink to={'/'}>Event Planner</HeaderLink>
+          <HeaderLink href="/">Event Planner</HeaderLink>
           {isTablet ? (
             <HeaderFormEl>
               <SearchInput />

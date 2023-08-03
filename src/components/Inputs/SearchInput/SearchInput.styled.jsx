@@ -42,6 +42,12 @@ export const Input = styled(Field)`
 `;
 
 export const SearchIcon = styled(CiSearch)`
+  position: absolute;
+  left: 15px;
+  top: 34px;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    top: 13px;
+  }
   color: ${p => p.theme.colors.primary};
 `;
 

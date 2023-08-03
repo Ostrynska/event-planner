@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
-
 export const HeaderWrapp = styled.header`
   background-color: ${p => p.theme.colors.headerBg};
   border-bottom: 1px solid ${p => p.theme.colors.primary};
@@ -26,7 +24,7 @@ export const HeaderContent = styled.div`
   }
 `;
 
-export const HeaderLink = styled(Link)`
+export const HeaderLink = styled.a`
   font-family: ${p => p.theme.fontFamily.secondary};
   font-weight: 400;
   font-size: 24px;

@@ -21,7 +21,7 @@ function SelectLang() {
     i18n.changeLanguage(lng);
   };
   return (
-    <div>
+    <>
       <LanguageWrapp
         onClick={() => setLanguage(prevState => (prevState === 0 ? 1 : 0))}
       >
@@ -37,7 +37,7 @@ function SelectLang() {
           <Select onClick={() => changeLanguage('ua')}>UA</Select>
         </LanguageItem>
       </LanguageList>
-    </div>
+    </>
   );
 }
 

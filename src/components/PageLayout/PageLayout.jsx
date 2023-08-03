@@ -4,7 +4,7 @@ import { Container } from '../Container/Container';
 // import { Section, Title, TitleWrapp, BtnsWrapp } from './PageLayout.styled';
 
 import { BtnBack } from '../Buttons/index';
-import { SortByCategory, FilterByCategoty } from '../EventsActions/index';
+import { SortByCategory, FilterByCategoty } from '../FilterOptions/index';
 import { BtnPrimary } from '../Buttons/index';
 
 import { useTranslation } from 'react-i18next';
