@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-// import { TbAdjustmentsHorizontal } from 'react-icons/tb';
+import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 // import { IoIosArrowRoundDown, IoIosArrowRoundUp } from 'react-icons/io';
 
 import {} from './SortByCategory.styled';
@@ -14,7 +14,11 @@ export const options = [
 ];
 
 const SortByCategory = () => {
-  return <></>;
+  return (
+    <>
+      <TbAdjustmentsHorizontal size={24} />
+    </>
+  );
 };
 
 export default SortByCategory;

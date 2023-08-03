@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-// import { LuFilter } from 'react-icons/lu';
+import { LuFilter } from 'react-icons/lu';
 import {} from './FilterByCategory.styled';
 
 export const option = [
@@ -13,7 +13,11 @@ export const option = [
 ];
 
 const FilterByCaregory = () => {
-  return <></>;
+  return (
+    <>
+      <LuFilter size={24} />
+    </>
+  );
 };
 
 export default FilterByCaregory;
