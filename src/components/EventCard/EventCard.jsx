@@ -1,5 +1,3 @@
-import eventImg from '../../images/eventCard@1x.png';
-
 import {
   Card,
   EventCategoryList,
@@ -8,19 +6,35 @@ import {
   EventDes,
   EventImage,
   EventInf,
+  EventPriority,
+  EventCategory,
 } from './EventCard.styled';
 
-function EventCard() {
+function EventCard({ event }) {
+  const isRetina = window.devicePixelRatio > 1;
+
+  const {
+    image,
+    imageRetina,
+    category,
+    priority,
+    date,
+    time,
+    location,
+    title,
+    supportingText,
+  } = event;
+
   return (
     <Card>
       <EventImage>
-        <img src={eventImg} alt="event" />
+        <img src={isRetina ? imageRetina : image} alt="event" />
         <EventCategoryList>
           <EventCategoryItem>
-            <p>Art</p>
+            <EventCategory>{category}</EventCategory>
           </EventCategoryItem>
           <EventCategoryItem>
-            <p>High</p>
+            <EventPriority priority={priority}>{priority}</EventPriority>
           </EventCategoryItem>
         </EventCategoryList>
       </EventImage>
@@ -28,16 +42,13 @@ function EventCard() {
       <EventDes>
         <EventLocation>
           <p>
-            12.07 at <span>12:00</span>
+            {date} at <span>{time}</span>
           </p>
-          <p>Kyiv</p>
+          <p>{location}</p>
         </EventLocation>
         <EventInf>
-          <h3>Galery Opening</h3>
-          <p>
-            Discover an enchanting evening celebrating the world of art at our
-            exclusive gallery opening.
-          </p>
+          <h3>{title}</h3>
+          <p>{supportingText}</p>
         </EventInf>
 
         <button>Learn More</button>

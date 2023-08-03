@@ -1,12 +1,12 @@
-import { ButtonPtimary, IconAdd } from './Buttons.styled';
+import { ButtonPrimary, IconAdd } from './Buttons.styled';
 
 export const BtnPrimary = ({ text, icon = false, to = '' }) => {
   return icon === true ? (
-    <ButtonPtimary to={to}>
+    <ButtonPrimary>
       <IconAdd size={24} />
       {text}
-    </ButtonPtimary>
+    </ButtonPrimary>
   ) : (
-    <ButtonPtimary>{text}</ButtonPtimary>
+    <ButtonPrimary>{text}</ButtonPrimary>
   );
 };

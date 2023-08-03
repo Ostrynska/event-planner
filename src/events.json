@@ -1,6 +1,7 @@
 [
   {
-    "image": "",
+    "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image_1x_kpwknj.png",
+    "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image_2x_zeexw1.png",
     "category": "Art",
     "priority": "High",
     "date": "12.07",
@@ -10,7 +11,8 @@
     "supportingText": "Discover an enchanting evening celebrating the world of art at our exclusive gallery opening."
   },
   {
-    "image": "",
+    "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image2_1x_l8ohc7.png",
+    "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image2_2x_hwsgj5.png",
     "category": "Conference",
     "priority": "Medium",
     "date": "12.07",
@@ -20,7 +22,8 @@
     "supportingText": "Engage in a thought-provoking journey of knowledge and collaboration at our Innovation Summit."
   },
   {
-    "image": "",
+    "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image3_1x_zdbpgq.png",
+    "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050899/image3_2x_qdt2wr.png",
     "category": "Workshop",
     "priority": "High",
     "date": "12.07",
@@ -30,7 +33,8 @@
     "supportingText": "Ignite your creativity and nurture your storytelling skills in our immersive Creative Writing Workshop."
   },
   {
-    "image": "",
+    "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050900/image4_1x_re57h8.png",
+    "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050899/image4_2x_znupne.png",
     "category": "Party",
     "priority": "High",
     "date": "12.07",
@@ -40,7 +44,8 @@
     "supportingText": "Embrace the tropical vibes and escape to paradise at our Beach Luau Extravaganza."
   },
   {
-    "image": "",
+    "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image5_1x_xq5af5.png",
+    "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050899/image5_2x_buysdv.png",
     "category": "Business",
     "priority": "Medium",
     "date": "12.07",
@@ -50,17 +55,8 @@
     "supportingText": "Unlock the secrets of effective leadership at our transformative Success Leadership Conference."
   },
   {
-    "image": "",
-    "category": "Business",
-    "priority": "Medium",
-    "date": "12.07",
-    "time": "12:00",
-    "location": "Kyiv",
-    "title": "Leadership Conference",
-    "supportingText": "Unlock the secrets of effective leadership at our transformative Success Leadership Conference."
-  },
-  {
-    "image": "",
+    "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050899/image6_1x_ughwqy.png",
+    "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050899/image6_2x_d3p2xy.png",
     "category": "Workshop",
     "priority": "Low",
     "date": "12.07",
@@ -70,7 +66,8 @@
     "supportingText": "Witness the future of technology as innovative startups showcase their groundbreaking ideas."
   },
   {
-    "image": "",
+    "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050900/image7_1x_wpjxfj.png",
+    "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050900/image7_2x_thcouk.png",
     "category": "Music",
     "priority": "Low",
     "date": "12.07",
@@ -80,7 +77,8 @@
     "supportingText": "Experience the magic of live music amidst the serene beauty of nature at our Acoustic Garden Concert."
   },
   {
-    "image": "",
+    "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050900/image8_1x_dlwbtb.png",
+    "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050900/image8_2x_wnmuec.png",
     "category": "Sport",
     "priority": "Low",
     "date": "12.07",

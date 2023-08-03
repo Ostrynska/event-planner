@@ -89,7 +89,7 @@ button, input {
       font-weight: ${theme.typography.title.fontWeight};
     },
     body {
-      font-family: 
+      font-family: ${theme.fontFamily.primary};
       font-size: ${theme.typography.body.fontSize};
       font-weight: ${theme.typography.body.fontWeight};
     },

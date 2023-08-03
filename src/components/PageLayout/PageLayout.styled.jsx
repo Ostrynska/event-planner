@@ -32,11 +32,17 @@ export const Section = styled.section`
   }
 `;
 
-export const TitleWrapp = styled.h2`
+export const TitleWrapp = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 44px;
 `;
 
 export const Title = styled.h2`
-  margin-bottom: 44px;
-  ${p => p.show && `margin-bottom: 25px;`}
+  ${p => p.showtitle && `margin-bottom: 25px`}
+`;
+
+export const BtnsWrapp = styled.div`
+  display: flex;
 `;

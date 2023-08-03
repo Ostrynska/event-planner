@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 import { IoAdd } from 'react-icons/io5';
 
-export const ButtonPtimary = styled(Link)`
+export const ButtonPrimary = styled(Link)`
   width: 193px;
   height: 56px;
   padding: 16px 12px 16px 12px;

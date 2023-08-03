@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
-import './App.css';
+import { GlobalStyle } from './theme/theme';
 
 const MainPage = lazy(() => import('./pages/MainPage'));
 const CreateEvent = lazy(() => import('./pages/CreateEvent'));
@@ -18,6 +18,7 @@ function App() {
           <Route path="*" element={<p>Path not resolved</p>} />
         </Route>
       </Routes>
+      <GlobalStyle />
     </>
   );
 }

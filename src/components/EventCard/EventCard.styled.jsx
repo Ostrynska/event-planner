@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { theme } from '../../theme/theme';
 
+const priorityColors = {
+  High: p => p.theme.colors.error,
+  Medium: p => p.theme.colors.warning,
+  Low: p => p.theme.colors.success,
+};
+
 export const Card = styled.div`
   width: 302px;
   height: 480px;
@@ -26,13 +32,21 @@ export const EventCategoryItem = styled.li`
   border-radius: 8px;
   padding: 6px 12px;
   background-color: ${theme.colors.white};
+`;
 
-  p {
-    font-weight: ${theme.typography.body.fontWeight};
-    font-size: ${theme.typography.body.fontSize};
-    line-height: 1.43;
-    color: ${theme.colors.primary};
-  }
+export const EventPriority = styled.p`
+  font-weight: ${theme.typography.body.fontWeight};
+  font-size: ${theme.typography.body.fontSize};
+  line-height: 1.43;
+  color: ${theme.colors.primary};
+  color: ${props => priorityColors[props.priority]};
+`;
+
+export const EventCategory = styled.p`
+  font-weight: ${theme.typography.body.fontWeight};
+  font-size: ${theme.typography.body.fontSize};
+  line-height: 1.43;
+  color: ${theme.colors.primary};
 `;
 
 export const EventLocation = styled.div`
