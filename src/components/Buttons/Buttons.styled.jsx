@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../theme/theme';
 
 import { Link } from 'react-router-dom';
 
@@ -11,8 +10,8 @@ export const ButtonPrimary = styled(Link)`
   height: 56px;
   padding: 16px 12px 16px 12px;
   border-radius: 8px;
-  color: ${theme.button.default.color};
-  background-color: ${theme.button.default.backgroundColor};
+  color: ${p => p.theme.button.default.color};
+  background-color: ${p => p.theme.button.default.backgroundColor};
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
@@ -21,9 +20,9 @@ export const ButtonPrimary = styled(Link)`
 `;
 
 export const ButtonBack = styled.button`
-  color: ${theme.button.back.color};
-  font-size: ${theme.button.back.fontSize};
-  font-weight: ${theme.button.back.fontWeight};
+  color: ${p => p.theme.button.back.color};
+  font-size: ${p => p.theme.button.back.fontSize};
+  font-weight: ${p => p.theme.button.back.fontWeight};
   line-height: 1.5;
   margin-bottom: 17px;
   display: flex;
@@ -31,11 +30,11 @@ export const ButtonBack = styled.button`
 `;
 
 export const Icon = styled(BiArrowBack)`
-  color: ${theme.colors.primary};
+  color: ${p => p.theme.colors.primary};
   margin-right: 8px;
 `;
 
 export const IconAdd = styled(IoAdd)`
-  color: ${theme.colors.white};
+  color: ${p => p.theme.colors.white};
   margin-right: 16px;
 `;

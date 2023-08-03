@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { theme } from '../../theme/theme';
 
 import { IoIosArrowDown } from 'react-icons/io';
 
@@ -13,7 +12,7 @@ export const LanguageWrapp = styled.button`
   border-radius: 8px;
   padding: 12px;
   border: none;
-  box-shadow: 2px 4px 9px 0px ${theme.colors.shadow};
+  box-shadow: 2px 4px 9px 0px ${p => p.theme.colors.shadow};
 
   font-size: 16px;
   font-weight: 500;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../theme/theme';
 
 const priorityColors = {
   High: p => p.theme.colors.error,
@@ -11,7 +10,7 @@ export const Card = styled.div`
   width: 302px;
   height: 480px;
   border-radius: 12px;
-  box-shadow: 2px 4px 9px 0px ${theme.colors.shadow};
+  box-shadow: 2px 4px 9px 0px ${p => p.theme.colors.shadow};
 `;
 
 export const EventImage = styled.div`
@@ -31,22 +30,22 @@ export const EventCategoryItem = styled.li`
   height: 32px;
   border-radius: 8px;
   padding: 6px 12px;
-  background-color: ${theme.colors.white};
+  background-color: ${p => p.theme.colors.white};
 `;
 
 export const EventPriority = styled.p`
-  font-weight: ${theme.typography.body.fontWeight};
-  font-size: ${theme.typography.body.fontSize};
+  font-weight: ${p => p.theme.typography.body.fontWeight};
+  font-size: ${p => p.theme.typography.body.fontSize};
   line-height: 1.43;
-  color: ${theme.colors.primary};
-  color: ${props => priorityColors[props.priority]};
+  color: ${p => p.theme.colors.primary};
+  color: ${p => priorityColors[p.priority]};
 `;
 
 export const EventCategory = styled.p`
-  font-weight: ${theme.typography.body.fontWeight};
-  font-size: ${theme.typography.body.fontSize};
+  font-weight: ${p => p.theme.typography.body.fontWeight};
+  font-size: ${p => p.theme.typography.body.fontSize};
   line-height: 1.43;
-  color: ${theme.colors.primary};
+  color: ${p => p.theme.colors.primary};
 `;
 
 export const EventLocation = styled.div`
@@ -59,9 +58,9 @@ export const EventLocation = styled.div`
   background: rgba(255, 255, 255, 0.8);
 
   p {
-    color: ${theme.colors.primary};
-    font-weight: ${theme.typography.caption.fontWeight};
-    font-size: ${theme.typography.caption.fontSize};
+    color: ${p => p.theme.colors.primary};
+    font-weight: ${p => p.theme.typography.caption.fontWeight};
+    font-size: ${p => p.theme.typography.caption.fontSize};
   }
 `;
 
@@ -76,16 +75,16 @@ export const EventInf = styled.div`
   padding: 16px;
   h3 {
     margin-bottom: 17px;
-    color: ${theme.colors.titleText};
-    font-weight: ${theme.typography.title.fontWeight};
-    font-size: ${theme.typography.title.fontSize};
+    color: ${p => p.theme.colors.titleText};
+    font-weight: ${p => p.theme.typography.title.fontWeight};
+    font-size: ${p => p.theme.typography.title.fontSize};
     line-height: 1.5;
   }
   p {
     ${'' /* padding: 8px 0 16px 0; */}
-    color: ${theme.colors.captionText};
-    font-weight: ${theme.typography.caption.fontWeight};
-    font-size: ${theme.typography.caption.fontSize};
+    color: ${p => p.theme.colors.captionText};
+    font-weight: ${p => p.theme.typography.caption.fontWeight};
+    font-size: ${p => p.theme.typography.caption.fontSize};
     line-height: 1.4;
   }
 `;
