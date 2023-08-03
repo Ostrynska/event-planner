@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useEventData } from '../../hooks/useEventData';
 
-import { PaginationWrapp } from './Pagination.styled';
+import { PaginationWrapp, PaginationList } from './Pagination.styled';
 
 function Pagination() {
   const { data, setData } = useEventData();
@@ -45,11 +45,11 @@ function Pagination() {
 
   return (
     <PaginationWrapp>
-      <ul>
+      <PaginationList>
         {currentPage > 0 && <li onClick={handlePrevPage}>Prev</li>}
         <li>{currentPage + 1}</li>
         {currentPage < totalPages - 1 && <li onClick={handleNextPage}>Next</li>}
-      </ul>
+      </PaginationList>
     </PaginationWrapp>
   );
 }
