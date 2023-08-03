@@ -19,12 +19,14 @@ function PageLayout({
   const { t } = useTranslation();
   return (
     <main>
-      <Section $show={showBackButton ? 'true' : 'false'}>
+      <section $show={showBackButton ? 'true' : 'false'}>
         <Container>
           {showBackButton && <BtnBack onClick={() => window.history.back()} />}
           {isHomePage ? (
             <TitleWrapp>
-              <Title>{title}</Title>
+              <Title showtitle={showBackButton ? 'true' : 'false'}>
+                {title}
+              </Title>
               <BtnsWrapp>
                 <SortByCategory />
                 <FilterByCategoty />
@@ -36,11 +38,11 @@ function PageLayout({
               </BtnsWrapp>
             </TitleWrapp>
           ) : (
-            <Title showtitle={showBackButton ? 'true' : 'false'}>{title}</Title>
+            <Title>{title}</Title>
           )}
           {children}
         </Container>
-      </Section>
+      </section>
     </main>
   );
 }

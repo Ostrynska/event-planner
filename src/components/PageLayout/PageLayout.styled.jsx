@@ -12,7 +12,7 @@ export const Section = styled.section`
   }
   width: 100%;
   position: relative;
-  z-index: -1;
+  ${'' /* z-index: -1; */}
 
   @media screen and (min-width: 768px) {
     padding-top: 38px;
