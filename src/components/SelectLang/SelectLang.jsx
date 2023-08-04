@@ -27,16 +27,15 @@ function SelectLang() {
       >
         {selectedLanguage.toUpperCase()}
         <LanguageIcon size={24} />
+        <LanguageList $showlanguage={language} onClick={() => setLanguage(0)}>
+          <LanguageItem>
+            <Select onClick={() => changeLanguage('en')}>EN</Select>
+          </LanguageItem>
+          <LanguageItem>
+            <Select onClick={() => changeLanguage('ua')}>UA</Select>
+          </LanguageItem>
+        </LanguageList>
       </LanguageWrapp>
-
-      <LanguageList $showlanguage={language} onClick={() => setLanguage(0)}>
-        <LanguageItem>
-          <Select onClick={() => changeLanguage('en')}>EN</Select>
-        </LanguageItem>
-        <LanguageItem>
-          <Select onClick={() => changeLanguage('ua')}>UA</Select>
-        </LanguageItem>
-      </LanguageList>
     </>
   );
 }

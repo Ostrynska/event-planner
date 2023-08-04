@@ -4,11 +4,11 @@ import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 import { HiArrowSmallUp, HiArrowDown } from 'react-icons/hi2';
 
 export const IconUp = styled(HiArrowSmallUp)`
-  color: #3f3f3f;
+  color: #aca7c3;
 `;
 
 export const IconDown = styled(HiArrowDown)`
-  color: #3f3f3f;
+  color: #aca7c3;
 `;
 
 export const SortIcon = styled(TbAdjustmentsHorizontal)`

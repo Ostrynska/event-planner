@@ -18,6 +18,16 @@ export const LanguageWrapp = styled.button`
   font-weight: 500;
   line-height: 1;
   align-items: center;
+
+  &:hover,
+  &:focus {
+    p {
+      color: ${p => p.theme.colors.primary};
+    }
+    svg {
+      color: ${p => p.theme.colors.primary};
+    }
+  }
 `;
 
 export const Select = styled.button``;
@@ -34,8 +44,8 @@ export const LanguageList = styled.ul`
     p.$showlanguage &&
     css`
       position: absolute;
-      top: 78px;
-      right: 178px;
+      top: 54px;
+      left: 0;
 
       display: flex;
       width: 69px;
@@ -49,13 +59,6 @@ export const LanguageList = styled.ul`
       gap: 8px;
       padding: 16px 12px;
       z-index: 10;
-      @media screen and (min-width: ${p => p.theme.screens.tablet}) {
-        right: 198px;
-      }
-
-      @media screen and (min-width: ${p => p.theme.screens.desktop}) {
-        right: 218px;
-      }
     `}
 `;
 
@@ -67,8 +70,10 @@ export const LanguageItem = styled.li`
   line-height: 1.25;
   padding-bottom: 4px;
   border-bottom: 1px solid #aca7c3;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${p => p.theme.colors.primary};
     border-bottom-color: ${p => p.theme.colors.primary};
   }
