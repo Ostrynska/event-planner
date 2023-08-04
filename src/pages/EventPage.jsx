@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PageLayout from '../components/PageLayout/PageLayout';
@@ -42,7 +43,7 @@ function EventPage() {
   } = event;
 
   return (
-    <PageLayout title="Gallery Opening" showBackButton={true}>
+    <PageLayout showBackButton={true}>
       <div>
         <div key={id}>
           <h2>{title}</h2>
@@ -63,7 +64,9 @@ function EventPage() {
         </div>
         <ul>
           <li>
-            <button>Edit</button>
+            <Link to={`/edit/${id}`}>
+              <button>Edit</button>
+            </Link>
           </li>
           <li>
             <button type="submit" onClick={() => handleDeleteEvent(id)}>

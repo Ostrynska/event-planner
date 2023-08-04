@@ -11,11 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Title, BtnsWrapp, Section, TitleWrapp } from './PageLayout.styled';
 
-function PageLayout({
-  children,
-  title = 'Default page title',
-  showBackButton = false,
-}) {
+function PageLayout({ children, title, showBackButton = false }) {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const { t } = useTranslation();
@@ -26,9 +22,14 @@ function PageLayout({
           {showBackButton && <BtnBack onClick={() => window.history.back()} />}
           {isHomePage ? (
             <TitleWrapp>
-              <Title $showtitle={showBackButton ? 'true' : 'false'}>
-                {title}
-              </Title>
+              {title === '' ? (
+                <Title style={{ display: 'none' }}></Title>
+              ) : (
+                <Title $showtitle={showBackButton ? 'true' : 'false'}>
+                  {title}
+                </Title>
+              )}
+
               <BtnsWrapp>
                 <FilterByCategoty />
                 <SortByCategory />
