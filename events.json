@@ -98,99 +98,39 @@
     },
     {
       "id": "40b0ef19-e244-4e0e-9292-37b75f00b726",
-      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image_1x_kpwknj.png",
-      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image_2x_zeexw1.png",
+      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691136055/image_1x_ttquhk.jpg",
+      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691136055/image_2x_nauhui.jpg",
       "category": "Art",
       "priority": "High",
-      "date": "12.01",
+      "date": "04.08",
       "time": "12:00",
       "location": "Kyiv",
-      "title": "Gallery Opening",
-      "supportingText": "Discover an enchanting evening celebrating the world of art at our exclusive gallery opening."
+      "title": "Master class",
+      "supportingText": "Today, ethnic motifs are gaining great popularity in the decor of household items, as well as in clothing and interior design."
     },
     {
-      "id": "a1ea9563-b5ca-432a-aee6-b89b37b21f8b",
-      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image2_1x_l8ohc7.png",
-      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image2_2x_hwsgj5.png",
+      "id": "40b0ef19-e244-4e0e-9292-37b75f00g888",
+      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691136055/image2_1x_quxo7u.jpg",
+      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691136055/image2_2x_zszmfu.jpg",
       "category": "Conference",
       "priority": "Medium",
-      "date": "12.09",
+      "date": "30.09",
       "time": "12:00",
       "location": "Kyiv",
-      "title": "Innovation Summit",
-      "supportingText": "Engage in a thought-provoking journey of knowledge and collaboration at our Innovation Summit."
+      "title": "Be Wine Show",
+      "supportingText": "This year's Show will be held under the slogan 'Recovery'. Our task now is to preserve what we have and prepare the ground for the future so that the cycle of life continues."
     },
     {
       "id": "5c979a7f-1c5b-4716-8d8b-68c5934ebd90",
-      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image3_1x_zdbpgq.png",
-      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050899/image3_2x_qdt2wr.png",
-      "category": "Workshop",
+      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691136055/image3_1x_vqfwam.jpg",
+      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691136055/image3_2x_oxg8ey.jpg",
+      "category": "Art",
       "priority": "High",
-      "date": "12.10",
-      "time": "12:00",
+      "date": "11.08",
+      "time": "18:00",
       "location": "Kyiv",
-      "title": "Empower Your Creativity",
-      "supportingText": "Ignite your creativity and nurture your storytelling skills in our immersive Creative Writing Workshop."
-    },
-    {
-      "id": "956473b4-8fda-46f1-8bfc-5dbb8f49b050",
-      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050900/image4_1x_re57h8.png",
-      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050899/image4_2x_znupne.png",
-      "category": "Party",
-      "priority": "High",
-      "date": "12.07",
-      "time": "12:00",
-      "location": "Kyiv",
-      "title": "Summer Soiree",
-      "supportingText": "Embrace the tropical vibes and escape to paradise at our Beach Luau Extravaganza."
-    },
-    {
-      "id": "899ee4c5-3b7e-47a5-9065-3c87539508ea",
-      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050898/image5_1x_xq5af5.png",
-      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050899/image5_2x_buysdv.png",
-      "category": "Business",
-      "priority": "Medium",
-      "date": "08.08",
-      "time": "12:00",
-      "location": "Kyiv",
-      "title": "Leadership Conference",
-      "supportingText": "Unlock the secrets of effective leadership at our transformative Success Leadership Conference."
-    },
-    {
-      "id": "fc4c0efb-c01a-4b0d-9b2a-144084ad4b1b",
-      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050899/image6_1x_ughwqy.png",
-      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050899/image6_2x_d3p2xy.png",
-      "category": "Workshop",
-      "priority": "Low",
-      "date": "12.07",
-      "time": "12:00",
-      "location": "Kyiv",
-      "title": "Tech Startup Showcase",
-      "supportingText": "Witness the future of technology as innovative startups showcase their groundbreaking ideas."
-    },
-    {
-      "id": "a573e96b-8c03-4c4c-9a32-8ee948a163e9",
-      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050900/image7_1x_wpjxfj.png",
-      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050900/image7_2x_thcouk.png",
-      "category": "Music",
-      "priority": "Low",
-      "date": "12.07",
-      "time": "12:00",
-      "location": "Kyiv",
-      "title": "Acoustic Garden Concert",
-      "supportingText": "Experience the magic of live music amidst the serene beauty of nature at our Acoustic Garden Concert."
-    },
-    {
-      "id": "bc9e5e7c-7d49-40a9-b9ea-41d0b2b4e940",
-      "image": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050900/image8_1x_dlwbtb.png",
-      "imageRetina": "https://res.cloudinary.com/dcjlswtup/image/upload/v1691050900/image8_2x_wnmuec.png",
-      "category": "Sport",
-      "priority": "Low",
-      "date": "12.07",
-      "time": "12:00",
-      "location": "Kyiv",
-      "title": "Extreme Adventure Race",
-      "supportingText": "Calling all thrill-seekers! Embark on an adrenaline-pumping journey at our Extreme Adventure Race."
+      "title": "Performance Kitsyunya",
+      "supportingText": "Performance by Kitsyunya (Wild Theater), Kyiv Academic Theater of Drama and Comedy on the left bank of the Dnipro River."
     }
   ]
 }

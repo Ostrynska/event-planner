@@ -11,6 +11,10 @@ import {
   CardMoreBtn,
   EventPriority,
   EventCategory,
+  EventText,
+  EventTitle,
+  EventSupText,
+  CardBtnWrapp,
 } from './EventCard.styled';
 
 function EventCard({ item }) {
@@ -43,16 +47,21 @@ function EventCard({ item }) {
         </EventCategoryList>
       </EventImageWrapp>
 
-      <EventDes>
-        <EventDate>
-          {date} at <span>{time}</span>
-        </EventDate>
-        <EventLocation>{location}</EventLocation>
-      </EventDes>
       <EventInf>
-        <h3>{title}</h3>
-        <p>{supportingText}</p>
-        <CardMoreBtn to={`/event/${id}`}>More info</CardMoreBtn>
+        <EventDes>
+          <EventDate>
+            {date} at {time}
+          </EventDate>
+          <EventLocation>{location}</EventLocation>
+        </EventDes>
+
+        <EventText>
+          <EventTitle>{title}</EventTitle>
+          <EventSupText>{supportingText}</EventSupText>
+          <CardBtnWrapp>
+            <CardMoreBtn to={`/event/${id}`}>More info</CardMoreBtn>
+          </CardBtnWrapp>
+        </EventText>
       </EventInf>
     </Card>
   );
