@@ -36,6 +36,7 @@ export const EventImage = styled.img`
   width: 100%;
   height: 336px;
   border-radius: 12px 12px 0 0;
+  object-fit: cover;
 `;
 
 export const EventCategoryList = styled.ul`
