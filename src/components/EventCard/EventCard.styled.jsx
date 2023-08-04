@@ -17,6 +17,7 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     width: 332px;
   }
@@ -126,19 +127,4 @@ export const CardBtnWrapp = styled.div`
     display: flex;
     padding: 8px 16px 16px;
   }
-`;
-export const CardMoreBtn = styled(Link)`
-  width: 114px;
-  margin-left: auto;
-  display: block;
-  padding: 10px 24px;
-  background-color: ${p => p.theme.colors.primary};
-  color: ${p => p.theme.colors.white};
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
-  width: 114px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 250ms ease-in-out;
 `;

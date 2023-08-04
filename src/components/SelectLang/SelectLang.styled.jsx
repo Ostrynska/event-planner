@@ -18,30 +18,9 @@ export const LanguageWrapp = styled.button`
   font-weight: 500;
   line-height: 1;
   align-items: center;
-
-  /* font-weight: 300;
-  font-size: 14px;
-  line-height: 1;
-  color: #888888; */
 `;
 
-export const Select = styled.button`
-  ${
-    '' /* position: relative;
-  width: 69px;
-  height: 48px;
-  border-radius: 8px;
-  padding: 12px;
-  border: none;
-  box-shadow: 2px 4px 9px 0px ${theme.colors.shadow};
-
-  font-size: ${theme.typography.fontFamily};
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1;
-  color: #888888; */
-  }
-`;
+export const Select = styled.button``;
 
 export const LanguageIcon = styled(IoIosArrowDown)`
   color: #3f3f3f;
@@ -52,10 +31,12 @@ export const LanguageList = styled.ul`
   display: none;
 
   ${p =>
-    p.showlanguage &&
+    p.$showlanguage &&
     css`
       position: absolute;
-      top: 75px;
+      top: 78px;
+      right: 178px;
+
       display: flex;
       width: 69px;
       height: 88px;
@@ -68,6 +49,13 @@ export const LanguageList = styled.ul`
       gap: 8px;
       padding: 16px 12px;
       z-index: 10;
+      @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+        right: 198px;
+      }
+
+      @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+        right: 218px;
+      }
     `}
 `;
 

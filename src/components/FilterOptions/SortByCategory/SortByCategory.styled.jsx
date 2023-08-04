@@ -32,7 +32,7 @@ export const SortBtn = styled.button`
 
   color: #3f3f3f;
   background-color: white;
-  z-index: 9;
+  z-index: 1;
 
   svg {
     color: ${p => (p.$showsortoptions ? p.theme.colors.primary : '#3f3f3f')};
@@ -101,6 +101,9 @@ export const SortItem = styled.li`
   width: 100%;
   padding-top: 8px;
 
+  display: flex;
+  justify-content: space-between;
+
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
@@ -109,6 +112,7 @@ export const SortItem = styled.li`
 
   transition: color 250ms ease-in-out;
   padding: 8px 24px;
+  cursor: pointer;
 
   &:hover,
   &:focus {

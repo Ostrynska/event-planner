@@ -29,7 +29,7 @@ function SelectLang() {
         <LanguageIcon size={24} />
       </LanguageWrapp>
 
-      <LanguageList showlanguage={language} onClick={() => setLanguage(0)}>
+      <LanguageList $showlanguage={language} onClick={() => setLanguage(0)}>
         <LanguageItem>
           <Select onClick={() => changeLanguage('en')}>EN</Select>
         </LanguageItem>

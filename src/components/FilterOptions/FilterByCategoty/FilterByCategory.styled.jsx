@@ -160,6 +160,7 @@ export const CategoryItem = styled.li`
 
   transition: color 250ms ease-in-out;
   padding: 8px 24px;
+  cursor: pointer;
 
   &:hover,
   &:focus {

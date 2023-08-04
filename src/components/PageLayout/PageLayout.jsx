@@ -26,7 +26,7 @@ function PageLayout({
           {showBackButton && <BtnBack onClick={() => window.history.back()} />}
           {isHomePage ? (
             <TitleWrapp>
-              <Title showtitle={showBackButton ? 'true' : 'false'}>
+              <Title $showtitle={showBackButton ? 'true' : 'false'}>
                 {title}
               </Title>
               <BtnsWrapp>

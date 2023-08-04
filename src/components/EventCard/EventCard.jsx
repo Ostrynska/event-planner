@@ -8,7 +8,6 @@ import {
   EventImage,
   EventInf,
   EventDate,
-  CardMoreBtn,
   EventPriority,
   EventCategory,
   EventText,
@@ -16,6 +15,8 @@ import {
   EventSupText,
   CardBtnWrapp,
 } from './EventCard.styled';
+
+import { BtnCard } from '../Buttons/index';
 
 function EventCard({ item }) {
   const isRetina = window.devicePixelRatio > 1;
@@ -59,7 +60,7 @@ function EventCard({ item }) {
           <EventTitle>{title}</EventTitle>
           <EventSupText>{supportingText}</EventSupText>
           <CardBtnWrapp>
-            <CardMoreBtn to={`/event/${id}`}>More info</CardMoreBtn>
+            <BtnCard to={`/event/${id}`} text="More info" />
           </CardBtnWrapp>
         </EventText>
       </EventInf>

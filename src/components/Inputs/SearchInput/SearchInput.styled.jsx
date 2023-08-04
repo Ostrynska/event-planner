@@ -21,6 +21,7 @@ export const Input = styled(Field)`
   font-size: 14px;
   line-height: 1;
   color: ${p => p.theme.colors.primary};
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &::placeholder {
     font-weight: 300;
     color: #888888;
@@ -37,26 +38,46 @@ export const Input = styled(Field)`
   @media screen and (min-width: ${p => p.theme.screens.desktop}) {
     width: 410px;
   }
+
+  &:hover,
+  &:focus {
+    border: 0.1px solid #888888aa;
+  }
 `;
 
 export const SearchIcon = styled(CiSearch)`
   position: absolute;
   left: 15px;
   top: 34px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     top: 13px;
   }
   color: ${p => p.theme.colors.primary};
+  &:hover,
+  &:focus {
+    color: #6243ff;
+  }
 `;
 
 export const ScrubIcon = styled(RxCross2)`
   color: ${p => p.theme.colors.primary};
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: #6243ff;
+  }
 `;
 
 export const SearchBtn = styled.button`
   position: absolute;
   left: 15px;
   top: 34px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: #6243ff;
+  }
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     top: 13px;
   }
@@ -67,6 +88,11 @@ export const ScrubSearchBtn = styled.button`
   top: 39px;
 
   right: 13px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: #6243ff;
+  }
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     top: 17px;
   }

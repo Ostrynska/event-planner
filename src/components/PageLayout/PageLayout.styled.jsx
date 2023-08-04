@@ -12,10 +12,20 @@ export const Section = styled.section`
   }
   width: 100%;
   position: relative;
+  ${p =>
+    p.show &&
+    `
+      padding-top: 42px;
+  `}
 
   @media screen and (min-width: 768px) {
     padding-top: 38px;
     padding-bottom: 125px;
+    ${p =>
+      p.show &&
+      `
+      padding-top: 41px;
+  `}
   }
 
   @media screen and (min-width: 1440px) {

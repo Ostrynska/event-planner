@@ -11,7 +11,8 @@ export const ButtonPrimary = styled(Link)`
   padding: 16px;
   border-radius: 8px;
   background-color: ${p => p.theme.button.default.backgroundColor};
-  transition: all 0.5s linear;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     width: 193px;
     padding: 16px 12px 16px 12px;
@@ -29,6 +30,10 @@ export const ButtonPrimary = styled(Link)`
       align-items: center;
     }
   }
+  &:hover,
+  &:focus {
+    background-color: #6243ff;
+  }
 `;
 
 export const ButtonBack = styled.button`
@@ -39,7 +44,19 @@ export const ButtonBack = styled.button`
   margin-bottom: 17px;
   display: flex;
   align-items: center;
-  transition: all 0.5s linear, color 250ms ease-in-out;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: #6243ff;
+    svg {
+      transform: translateX(-20%);
+    }
+  }
+
+  svg {
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: #6243ff;
+  }
 `;
 
 export const Icon = styled(BiArrowBack)`
@@ -50,4 +67,16 @@ export const Icon = styled(BiArrowBack)`
 export const IconAdd = styled(IoAdd)`
   color: ${p => p.theme.colors.white};
   margin-right: 16px;
+`;
+
+export const ButtonCard = styled(ButtonPrimary)`
+  width: 114px;
+  height: 40px;
+  margin-left: auto;
+  display: block;
+  padding: 10px 24px;
+
+  font-size: 14px;
+  line-height: 1.4;
+  color: ${p => p.theme.button.default.color};
 `;
