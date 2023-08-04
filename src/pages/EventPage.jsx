@@ -64,9 +64,7 @@ function EventPage() {
         </div>
         <ul>
           <li>
-            <Link to={`/edit/${id}`}>
-              <button>Edit</button>
-            </Link>
+            <Link to={`/edit/${id}`}>Edit</Link>
           </li>
           <li>
             <button type="submit" onClick={() => handleDeleteEvent(id)}>
