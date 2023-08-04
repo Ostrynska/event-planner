@@ -1,13 +1,10 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useHistory } from 'react-router';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PageLayout from '../components/PageLayout/PageLayout';
-import { useEventData } from '../hooks/useEventData';
 
 function EventPage() {
   const { id } = useParams();
-  const { data, setData } = useEventData();
   const [event, setEvent] = useState('');
   const navigate = useNavigate();
 
@@ -27,7 +24,6 @@ function EventPage() {
   const handleDeleteEvent = async () => {
     try {
       await axios.delete(`http://localhost:8800/events/${id}`);
-      // Перенаправляємо користувача на головну сторінку після видалення
       navigate('/');
     } catch (error) {
       console.error(error);
@@ -70,7 +66,7 @@ function EventPage() {
             <button>Edit</button>
           </li>
           <li>
-            <button type="submit" onClick={() => handleDeleteEvent(event.id)}>
+            <button type="submit" onClick={() => handleDeleteEvent(id)}>
               Delete event
             </button>
           </li>
