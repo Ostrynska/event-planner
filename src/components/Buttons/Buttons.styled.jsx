@@ -6,17 +6,28 @@ import { BiArrowBack } from 'react-icons/bi';
 import { IoAdd } from 'react-icons/io5';
 
 export const ButtonPrimary = styled(Link)`
-  width: 193px;
+  width: 56px;
   height: 56px;
-  padding: 16px 12px 16px 12px;
+  padding: 16px;
   border-radius: 8px;
-  color: ${p => p.theme.button.default.color};
   background-color: ${p => p.theme.button.default.backgroundColor};
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.5;
-  display: flex;
-  align-items: center;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 193px;
+    padding: 16px 12px 16px 12px;
+    display: flex;
+  }
+  p {
+    display: none;
+    @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+      display: flex;
+      color: ${p => p.theme.button.default.color};
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+    }
+  }
 `;
 
 export const ButtonBack = styled.button`

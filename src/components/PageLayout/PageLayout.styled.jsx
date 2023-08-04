@@ -39,7 +39,11 @@ export const TitleWrapp = styled.div`
 `;
 
 export const Title = styled.h2`
-  ${p => p.showtitle && `margin-bottom: 25px`}
+  display: none;
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    display: inline-flex;
+    ${p => p.showtitle && `margin-bottom: 25px`}
+  }
 `;
 
 export const BtnsWrapp = styled.div`
