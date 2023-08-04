@@ -34,8 +34,12 @@ export const Section = styled.section`
 export const TitleWrapp = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+
   margin-bottom: 44px;
+  @media (min-width: ${p => p.theme.screens.desktop}) {
+    justify-content: space-between;
+  }
 `;
 
 export const Title = styled.h2`

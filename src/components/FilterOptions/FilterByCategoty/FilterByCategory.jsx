@@ -3,9 +3,12 @@ import { useState } from 'react';
 import {
   CategoryWrapp,
   CategoryBtn,
-  CategoryIcon,
+  CategoryOptions,
+  CategorySelected,
+  CategorySelectedMob,
   CategoryList,
   CategoryItem,
+  CategoryIcon,
 } from './FilterByCategory.styled';
 import axios from 'axios';
 import { useEventData } from '../../../hooks/useEventData';
@@ -47,22 +50,21 @@ function FilterByCaregory() {
     }
   };
 
-  const toggleCategoryList = () => {
-    if (showCategory) {
-      setPrevRadius('8px');
-    }
-    setShowCategory(prevState => !prevState);
-  };
-
   return (
     <CategoryWrapp>
-      <CategoryBtn onClick={toggleCategoryList} showcategory={true}>
-        {selectedCategory}
+      <CategoryBtn
+        onClick={() => setShowCategory(!showCategory)}
+        $showcategory={showCategory}
+      >
+        <CategorySelected>{selectedCategory}</CategorySelected>
         <CategoryIcon size={24} />
+        <CategoryOptions $showcategory={showCategory}>
+          <CategorySelectedMob>Category</CategorySelectedMob>
+        </CategoryOptions>
       </CategoryBtn>
-      <CategoryList showcategory={showCategory} value={sortValue}>
-        {categoryList.map((item, index) => (
-          <CategoryItem key={index} onClick={() => handleCategoryClick(item)}>
+      <CategoryList $showcategory={showCategory} value={sortValue}>
+        {categoryList.map(item => (
+          <CategoryItem key={item.id} onClick={() => handleCategoryClick(item)}>
             {item}
           </CategoryItem>
         ))}

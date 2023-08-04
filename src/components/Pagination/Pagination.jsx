@@ -44,13 +44,21 @@ function Pagination() {
   };
 
   return (
-    <PaginationWrapp>
-      <PaginationList>
-        {currentPage > 0 && <li onClick={handlePrevPage}>Prev</li>}
-        <li>{currentPage + 1}</li>
-        {currentPage < totalPages - 1 && <li onClick={handleNextPage}>Next</li>}
-      </PaginationList>
-    </PaginationWrapp>
+    <>
+      {totalPages === 1 ? (
+        <></>
+      ) : (
+        <PaginationWrapp>
+          <PaginationList>
+            {currentPage > 0 && <li onClick={handlePrevPage}>Prev</li>}
+            <li>{currentPage + 1}</li>
+            {currentPage < totalPages - 1 && (
+              <li onClick={handleNextPage}>Next</li>
+            )}
+          </PaginationList>
+        </PaginationWrapp>
+      )}
+    </>
   );
 }
 

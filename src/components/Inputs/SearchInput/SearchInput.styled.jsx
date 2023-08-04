@@ -7,7 +7,6 @@ import { RxCross2 } from 'react-icons/rx';
 
 export const FormWrapp = styled(Form)`
   position: relative;
-  width: 100%;
 `;
 
 export const Input = styled(Field)`
@@ -27,8 +26,7 @@ export const Input = styled(Field)`
     color: #888888;
   }
   @media screen and (min-width: ${p => p.theme.screens.mobile}) {
-    width: 100%;
-    min-width: 272px;
+    width: 272px;
     margin-top: 24px;
   }
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {

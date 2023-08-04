@@ -3,7 +3,13 @@ import styled from 'styled-components';
 export const HeaderWrapp = styled.header`
   background-color: ${p => p.theme.colors.headerBg};
   border-bottom: 1px solid ${p => p.theme.colors.primary};
-  padding: 24px;
+  padding: 24px 0;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    padding: 26px 0 18px;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    padding: 22px 0;
+  }
 `;
 
 export const HeaderContent = styled.div`
@@ -15,12 +21,6 @@ export const HeaderContent = styled.div`
 
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     max-height: 92px;
-  }
-  ${
-    '' /* 
-  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
-    min-height: 92px;
-  } */
   }
 `;
 

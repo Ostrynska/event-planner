@@ -11,6 +11,7 @@ export const ButtonPrimary = styled(Link)`
   padding: 16px;
   border-radius: 8px;
   background-color: ${p => p.theme.button.default.backgroundColor};
+  transition: all 0.5s linear;
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     width: 193px;
     padding: 16px 12px 16px 12px;
@@ -38,6 +39,7 @@ export const ButtonBack = styled.button`
   margin-bottom: 17px;
   display: flex;
   align-items: center;
+  transition: all 0.5s linear, color 250ms ease-in-out;
 `;
 
 export const Icon = styled(BiArrowBack)`

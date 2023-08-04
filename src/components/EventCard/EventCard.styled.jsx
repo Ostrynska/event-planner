@@ -9,7 +9,7 @@ const priorityColors = {
 };
 
 export const Card = styled.div`
-  width: 302px;
+  width: 271px;
   max-height: 480px;
   border-radius: 12px;
   box-shadow: 2px 4px 9px 0px ${p => p.theme.colors.shadow};
@@ -17,6 +17,12 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 332px;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    width: 302px;
+  }
 `;
 
 export const EventImageWrapp = styled.div`
@@ -25,6 +31,8 @@ export const EventImageWrapp = styled.div`
 
 export const EventImage = styled.img`
   position: relative;
+
+  width: 100%;
   height: 336px;
   border-radius: 12px 12px 0 0;
 `;

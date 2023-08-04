@@ -9,15 +9,18 @@ import {
   SortIcon,
   IconUp,
   IconDown,
+  SortOptions,
+  OptionSelectedMob,
+  SortTitle,
 } from './SortByCategory.styled';
 
 export const sortOptions = [
-  { text: 'Priority (asc)', type: 'priority', order: 'asc' },
-  { text: 'Priority (desc)', type: 'priority', order: 'desc' },
-  { text: 'Date (asc)', type: 'date', order: 'asc' },
-  { text: 'Date (desc)', type: 'date', order: 'desc' },
-  { text: 'Title (asc)', type: 'title', order: 'asc' },
-  { text: 'Title (desc)', type: 'title', order: 'desc' },
+  { text: 'Priority', type: 'priority', order: 'asc' },
+  { text: 'Priority', type: 'priority', order: 'desc' },
+  { text: 'Date', type: 'date', order: 'asc' },
+  { text: 'Date', type: 'date', order: 'desc' },
+  { text: 'Title', type: 'title', order: 'asc' },
+  { text: 'Title', type: 'title', order: 'desc' },
 ];
 
 const SortByCategory = () => {
@@ -61,36 +64,34 @@ const SortByCategory = () => {
     }
   };
 
-  const toggleCategoryList = () => {
-    setShowOptions(prevState => !prevState);
-  };
-
   return (
-    <>
-      <SortWrapp>
-        <SortBtn onClick={toggleCategoryList} showsortoptions={true}>
-          Sort by
-          <SortIcon size={24} />
-        </SortBtn>
-        <SortList showsortoptions={showOptions}>
-          {sortOptions.map((item, index) => (
-            <>
-              <SortItem
-                key={`${item.type}-${item.order}`}
-                onClick={() => handleCategoryClick(item.type, item.order)}
-              >
-                {item.text}
-                {sortField === item.type && sortOrder === item.order ? (
-                  <IconDown />
-                ) : (
-                  <IconUp />
-                )}
-              </SortItem>
-            </>
-          ))}
-        </SortList>
-      </SortWrapp>
-    </>
+    <SortWrapp>
+      <SortBtn
+        onClick={() => setShowOptions(!showOptions)}
+        $showsortoptions={showOptions}
+      >
+        <SortTitle>Sort by</SortTitle>
+        <SortIcon size={24} />
+        <SortOptions $showsortoptions={showOptions}>
+          <OptionSelectedMob>Category</OptionSelectedMob>
+        </SortOptions>
+      </SortBtn>
+      <SortList $showsortoptions={showOptions}>
+        {sortOptions.map(item => (
+          <>
+            <SortItem
+              key={`${item.type}-${item.order}`}
+              onClick={() =>
+                handleCategoryClick(item.type, item.order, item.date)
+              }
+            >
+              {item.text}
+              {sortOrder === item.order ? <IconUp /> : <IconDown />}
+            </SortItem>
+          </>
+        ))}
+      </SortList>
+    </SortWrapp>
   );
 };
 

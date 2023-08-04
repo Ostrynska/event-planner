@@ -30,8 +30,8 @@ function PageLayout({
                 {title}
               </Title>
               <BtnsWrapp>
-                <SortByCategory />
                 <FilterByCategoty />
+                <SortByCategory />
                 <BtnPrimary
                   icon={true}
                   text={t('main-add-event-btn')}
