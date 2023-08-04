@@ -30,11 +30,11 @@ export const HeaderLink = styled.a`
   font-size: 24px;
   line-height: 1.4;
   color: ${p => p.theme.colors.primary};
-  transition-property: transform;
-  transition-duration: 500ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover {
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
     transform: scale(1.06);
+    color: #6243ff;
   }
 `;
 
