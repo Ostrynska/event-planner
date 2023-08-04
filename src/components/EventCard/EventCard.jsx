@@ -1,11 +1,14 @@
 import {
   Card,
+  EventImageWrapp,
   EventCategoryList,
   EventCategoryItem,
   EventLocation,
   EventDes,
   EventImage,
   EventInf,
+  EventDate,
+  CardMoreBtn,
   EventPriority,
   EventCategory,
 } from './EventCard.styled';
@@ -14,6 +17,7 @@ function EventCard({ item }) {
   const isRetina = window.devicePixelRatio > 1;
 
   const {
+    id,
     image,
     imageRetina,
     category,
@@ -27,8 +31,8 @@ function EventCard({ item }) {
 
   return (
     <Card>
-      <EventImage>
-        <img src={isRetina ? imageRetina : image} alt="event" />
+      <EventImageWrapp>
+        <EventImage src={isRetina ? imageRetina : image} alt={category} />
         <EventCategoryList>
           <EventCategoryItem>
             <EventCategory>{category}</EventCategory>
@@ -37,22 +41,19 @@ function EventCard({ item }) {
             <EventPriority priority={priority}>{priority}</EventPriority>
           </EventCategoryItem>
         </EventCategoryList>
-      </EventImage>
+      </EventImageWrapp>
 
       <EventDes>
-        <EventLocation>
-          <p>
-            {date} at <span>{time}</span>
-          </p>
-          <p>{location}</p>
-        </EventLocation>
-        <EventInf>
-          <h3>{title}</h3>
-          <p>{supportingText}</p>
-        </EventInf>
-
-        <button>Learn More</button>
+        <EventDate>
+          {date} at <span>{time}</span>
+        </EventDate>
+        <EventLocation>{location}</EventLocation>
       </EventDes>
+      <EventInf>
+        <h3>{title}</h3>
+        <p>{supportingText}</p>
+        <CardMoreBtn to={`/event/${id}`}>More info</CardMoreBtn>
+      </EventInf>
     </Card>
   );
 }

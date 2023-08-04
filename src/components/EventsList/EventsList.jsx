@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import EventCard from '../EventCard/EventCard';
 
@@ -19,17 +19,14 @@ function EventsList() {
       .then(response => setData(response.data))
       .catch(err => console.log(err));
   };
-  console.log('data', data);
+
   return (
     <EventsListWrapp>
-      {data.map((item, index) => (
-        <li key={index}>
+      {data.map(item => (
+        <li key={item.id}>
           <EventCard item={item} />
         </li>
       ))}
-      {/* {events.map((event, index) => ( */}
-      {/* <li key={index}><EventCard event={event} /></li> */}
-      {/* ))} */}
     </EventsListWrapp>
   );
 }
