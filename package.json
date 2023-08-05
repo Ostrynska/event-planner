@@ -48,8 +48,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "json-server": "^0.17.3",
-    "netlify-cli": "^15.10.0"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
