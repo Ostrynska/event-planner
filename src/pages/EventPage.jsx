@@ -1,5 +1,5 @@
 import EventDetails from '../components/EventDetails/EventDetails';
-import PageLayout from '../components/PageLayout/PageLayout';
+import PageLayout from '../components/Layout/PageLayout/PageLayout';
 
 function EventPage() {
   return (

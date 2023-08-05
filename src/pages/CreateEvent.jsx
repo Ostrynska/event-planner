@@ -1,4 +1,4 @@
-import PageLayout from '../components/PageLayout/PageLayout';
+import PageLayout from '../components/Layout/PageLayout/PageLayout';
 import CreateEventForm from '../components/CreateEventForm/CreateEventForm';
 
 function CreateEvent() {

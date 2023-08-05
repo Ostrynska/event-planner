@@ -1,4 +1,4 @@
 import SortByCategory from './SortByCategory/SortByCategory';
-import FilterByCategoty from './FilterByCategoty/FilterByCategory';
+import FilterByCategory from './FilterByCategoty/FilterByCategory';
 
-export { SortByCategory, FilterByCategoty };
+export { SortByCategory, FilterByCategory };

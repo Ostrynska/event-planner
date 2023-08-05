@@ -1,17 +1,12 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Container } from '../Container/Container';
-// import { Section, Title, TitleWrapp, BtnsWrapp } from './PageLayout.styled';
-
-import { BtnBack } from '../Buttons/index';
-import { SortByCategory, FilterByCategoty } from '../FilterOptions/index';
-import { BtnPrimary } from '../Buttons/index';
-
 import { useTranslation } from 'react-i18next';
+
+import { Container } from '../../Container/Container';
+import { BtnBack } from '../../Buttons/index';
 
 import { Title, BtnsWrapp, Section, TitleWrapp } from './PageLayout.styled';
 
-function PageLayout({ children, title, showBackButton = false }) {
+function PageLayout({ children, title, showBackButton = false, content }) {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const { t } = useTranslation();
@@ -30,20 +25,12 @@ function PageLayout({ children, title, showBackButton = false }) {
                 </Title>
               )}
 
-              <BtnsWrapp>
-                <FilterByCategoty />
-                <SortByCategory />
-                <BtnPrimary
-                  icon={true}
-                  text={t('main-add-event-btn')}
-                  to="/create-event"
-                />
-              </BtnsWrapp>
+              <BtnsWrapp>{children}</BtnsWrapp>
             </TitleWrapp>
           ) : (
             <Title>{title}</Title>
           )}
-          {children}
+          {content}
         </Container>
       </Section>
     </main>
