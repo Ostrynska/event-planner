@@ -1,34 +1,35 @@
-import React, { useEffect } from 'react';
-import axios from 'axios';
-import EventCard from '../EventCard/EventCard';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
-import { useEventData } from '../../hooks/useEventData';
+import * as API from '../../services/api';
+
+import EventCard from '../EventCard/EventCard';
 
 import { EventsListWrapp } from './EventsList.styled';
 
 function EventsList() {
-  const { data, setData } = useEventData();
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const loadEventData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8800/events`);
-        setData(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     loadEventData();
-  }, [setData]);
+  }, []);
 
+  const loadEventData = async () => {
+    try {
+      const results = await API.getEvents();
+      setEvents(results);
+    } catch (error) {
+      toast.error('Something went wrong. Please try again');
+    }
+  };
   return (
     <EventsListWrapp>
-      {data.map((item, index) => (
-        <li key={item.id}>
-          <EventCard item={data[data.length - index - 1]} />
-        </li>
-      ))}
+      {events &&
+        events.map((item, index) => (
+          <li key={item.id}>
+            <EventCard item={events[events.length - index - 1]} />
+          </li>
+        ))}
     </EventsListWrapp>
   );
 }

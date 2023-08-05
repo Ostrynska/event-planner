@@ -2,6 +2,8 @@ import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 import { GlobalStyle } from './theme/theme';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Loader from './components/Loader/Loader';
 
@@ -23,6 +25,12 @@ function App() {
         </Route>
       </Routes>
       <GlobalStyle />
+      <ToastContainer
+        autoClose={3000}
+        limit={1}
+        position={'top-right'}
+        theme={'colored'}
+      />
     </Suspense>
   );
 }

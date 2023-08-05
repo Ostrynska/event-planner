@@ -24,7 +24,10 @@ function SelectLang() {
   return (
     <>
       <LanguageWrapp
-        onClick={() => setLanguage(prevState => (prevState === 0 ? 1 : 0))}
+        onClick={e => {
+          e.stopPropagation();
+          setLanguage(prevState => (prevState === 0 ? 1 : 0));
+        }}
       >
         {selectedLanguage.toUpperCase()}
         {language === 0 ? (
@@ -32,8 +35,13 @@ function SelectLang() {
         ) : (
           <LanguageIconUp size={24} />
         )}
-        {/* <LanguageIcon /> */}
-        <LanguageList $showlanguage={language} onClick={() => setLanguage(0)}>
+        <LanguageList
+          $showlanguage={language}
+          onClick={e => {
+            e.stopPropagation();
+            setLanguage(0);
+          }}
+        >
           <LanguageItem>
             <Select onClick={() => changeLanguage('en')}>EN</Select>
           </LanguageItem>
