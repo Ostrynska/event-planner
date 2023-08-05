@@ -80,3 +80,31 @@ export const ButtonCard = styled(ButtonPrimary)`
   line-height: 1.4;
   color: ${p => p.theme.button.default.color};
 `;
+
+export const ButtonCardDetails = styled.button`
+  width: ${p => (p.$solid ? '108px' : '55px')};
+  height: 32px;
+  padding: 8px 16px;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: ${p =>
+    p.$solid ? p.theme.button.default.color : p.theme.colors.primary};
+  background-color: ${p =>
+    p.$solid ? p.theme.button.default.backgroundColor : 'transparent'};
+  border: ${p =>
+    p.$solid ? 'none' : '1px solid ' + p.theme.button.default.backgroundColor};
+
+  ${p =>
+    !p.$solid &&
+    `
+    &:hover,
+    &:focus {
+      color: #6243ff;
+      font-weight: 600;
+      background-color: transparent;
+      border-color: #6243ff;
+    }
+  `}
+`;

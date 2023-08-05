@@ -47,7 +47,13 @@ export const LanguageIconUp = styled(IoIosArrowUp)`
 export const LanguageList = styled.ul`
   opacity: 0;
   position: absolute;
-  bottom: 52px;
+  bottom: -93px;
+  background: white;
+  box-shadow: 2px 4px 9px rgba(165.57, 140.85, 174.25, 0.28);
+  border-radius: 8px;
+  padding: 16px 12px;
+  width: 69px;
+  height: 88px;
 
   ${p =>
     p.$showlanguage &&
@@ -56,17 +62,18 @@ export const LanguageList = styled.ul`
       top: 54px;
       left: 0;
       display: flex;
-      width: 69px;
-      height: 88px;
-      background: white;
-      box-shadow: 2px 4px 9px rgba(165.57, 140.85, 174.25, 0.28);
-      border-radius: 8px;
       flex-direction: column;
       gap: 8px;
-      padding: 16px 12px;
       z-index: 10;
       opacity: 1;
       transform: translateY(0);
+      transition: all 0.5s linear, opacity 0.5s ease-in-out;
+    `}
+  ${p =>
+    !p.$showlanguage &&
+    css`
+      opacity: 0;
+      transform: translateY(-60px);
       transition: all 0.5s linear, opacity 0.5s ease-in-out;
     `}
 `;
