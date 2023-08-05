@@ -69,11 +69,12 @@ export const ScrubIcon = styled(RxCross2)`
   }
 `;
 
-export const SearchBtn = styled.button`
+export const SearchBtn = styled.div`
   position: absolute;
   left: 15px;
   top: 34px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
   &:hover,
   &:focus {
     color: #6243ff;
@@ -83,12 +84,13 @@ export const SearchBtn = styled.button`
   }
 `;
 
-export const ScrubSearchBtn = styled.button`
+export const ScrubSearchBtn = styled.div`
   position: absolute;
   top: 39px;
 
   right: 13px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
   &:hover,
   &:focus {
     color: #6243ff;

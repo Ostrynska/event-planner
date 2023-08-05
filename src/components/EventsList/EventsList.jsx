@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 import * as API from '../../services/api';
-
 import EventCard from '../EventCard/EventCard';
+
+import { useEventData } from '../../hooks/useEventData';
 
 import { EventsListWrapp } from './EventsList.styled';
 
 function EventsList() {
-  const [events, setEvents] = useState([]);
+  const { data, setData } = useEventData();
 
   useEffect(() => {
+    const loadEventData = async () => {
+      try {
+        const results = await API.getEvents();
+        setData(results);
+      } catch (error) {
+        toast.error('Something went wrong. Please try again');
+      }
+    };
     loadEventData();
-  }, []);
+  }, [setData]);
 
-  const loadEventData = async () => {
-    try {
-      const results = await API.getEvents();
-      setEvents(results);
-    } catch (error) {
-      toast.error('Something went wrong. Please try again');
-    }
-  };
   return (
     <EventsListWrapp>
-      {events &&
-        events.map((item, index) => (
-          <li key={item.id}>
-            <EventCard item={events[events.length - index - 1]} />
-          </li>
-        ))}
+      {data.map((item, index) => (
+        <li key={item.id}>
+          <EventCard item={data[data.length - index - 1]} />
+        </li>
+      ))}
     </EventsListWrapp>
   );
 }

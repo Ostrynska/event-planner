@@ -12,38 +12,50 @@ export const getEvents = async () => {
   }
 };
 
-export const getFilteredEvents = async category => {
+export const getDetails = async id => {
   try {
-    const url = category && `/?category=${category}`;
-    console.log(url);
-    if (!url) {
-      return [];
-    }
-
-    const { data } = await axios.get(url);
-    console.log(data);
+    const { data } = await axios.get(`/${id}`);
     return data;
   } catch (error) {
     toast.error('Something went wrong. Please try again');
   }
 };
 
-// // Search
-// export const getSearch = async query => {
-//   try {
-//     const { data } = await axios.get(`search/movie?query=${query}`);
-//     return data;
-//   } catch (error) {
-//     toast.error('Something went wrong, please try again');
-//   }
-// };
-
-// Details
-export const getDetails = async id => {
+export const searchEvents = async id => {
   try {
-    const { data } = await axios.get(`/movie/${id}`);
+    const { data } = await axios.delete(`/${id}`);
     return data;
   } catch (error) {
-    // toast.error('Something went wrong, please try again');
+    toast.error('Something went wrong. Please try again');
+  }
+};
+
+export const deleteEvent = async id => {
+  try {
+    const { data } = await axios.delete(`/${id}`);
+    return data;
+  } catch (error) {
+    toast.error('Something went wrong. Please try again');
+  }
+};
+
+export const getSortEvents = async (sortField, order) => {
+  try {
+    const { data } = await axios.get(`/?_sort=${sortField}&_order=${order}`);
+    return data;
+  } catch (error) {
+    toast.error('Something went wrong. Please try again');
+  }
+};
+
+export const getFilterEvents = async (filterValue, category) => {
+  try {
+    const { data } = await axios.get(
+      `/?filter=${filterValue}&category=${category}`
+    );
+    console.log(data);
+    return data;
+  } catch (error) {
+    toast.error('Something went wrong. Please try again');
   }
 };

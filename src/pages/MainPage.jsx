@@ -1,5 +1,5 @@
 import EventsList from '../components/EventsList/EventsList';
-import PageLayout from '../components/PageLayout/PageLayout';
+import PageLayout from '../components/Layout/PageLayout/PageLayout';
 
 import { useTranslation } from 'react-i18next';
 // import Pagination from '../components/Pagination/Pagination';

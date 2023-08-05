@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+
+import * as API from '../../../services/api';
 import { Formik } from 'formik';
 
 import { useEventData } from '../../../hooks/useEventData';
@@ -10,7 +13,6 @@ import {
   ScrubIcon,
   FormWrapp,
 } from './SearchInput.styled';
-import axios from 'axios';
 
 function SearchInput() {
   const { setData } = useEventData();
@@ -20,11 +22,11 @@ function SearchInput() {
   useEffect(() => {
     const loadEventData = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/events');
-        setData(response.data);
-        setOriginalData(response.data);
+        const results = await API.getEvents();
+        setData(results);
+        setOriginalData(results);
       } catch (err) {
-        console.log(err);
+        toast.error('Something went wrong. Please try again');
       }
     };
     loadEventData();
@@ -32,7 +34,6 @@ function SearchInput() {
 
   const handleReset = () => {
     setValue('');
-    setData(originalData);
   };
 
   const handleSearch = e => {
@@ -43,11 +44,16 @@ function SearchInput() {
       setData(originalData);
     } else {
       const filteredData = originalData.filter(
-        event =>
-          event.title.toLowerCase().includes(searchValue) ||
-          event.supportingText.toLowerCase().includes(searchValue)
+        e =>
+          e.title.toLowerCase().includes(searchValue) ||
+          e.supportingText.toLowerCase().includes(searchValue)
       );
-      setData(filteredData);
+      if (filteredData.length === 0 && searchValue.length > 2) {
+        toast.warning('No results for your request. Please try again');
+        setData(originalData);
+      } else {
+        setData(filteredData);
+      }
     }
   };
 
