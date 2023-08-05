@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Formik } from 'formik';
-import { Form, Field } from 'formik';
 
 import { useEventData } from '../../../hooks/useEventData';
 
 import {
   Input,
-  SearchBtn,
   SearchIcon,
   ScrubSearchBtn,
   ScrubIcon,
@@ -15,26 +13,24 @@ import {
 import axios from 'axios';
 
 function SearchInput() {
-  const { data, setData } = useEventData();
+  const { setData } = useEventData();
   const [value, setValue] = useState('');
   const [originalData, setOriginalData] = useState([]);
 
   useEffect(() => {
+    const loadEventData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8800/events');
+        setData(response.data);
+        setOriginalData(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     loadEventData();
-  }, []);
-
-  const loadEventData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8800/events');
-      setData(response.data);
-      setOriginalData(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  }, [setData, setOriginalData]);
 
   const handleReset = () => {
-    loadEventData();
     setValue('');
   };
 

@@ -23,18 +23,11 @@ const categoryList = [
   'Sport',
 ];
 
-const priorityMap = {
-  high: 1,
-  medium: 2,
-  low: 3,
-};
-
 function FilterByCaregory() {
   const { data, setData } = useEventData();
   const [showCategory, setShowCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('Category');
   const [sortValue, setSortValue] = useState('');
-  const [prevRadius, setPrevRadius] = useState('8px');
 
   const handleCategoryClick = async category => {
     setSelectedCategory(category);

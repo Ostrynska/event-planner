@@ -10,15 +10,17 @@ function EventsList() {
   const { data, setData } = useEventData();
 
   useEffect(() => {
-    loadEventData();
-  }, []);
+    const loadEventData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8800/events`);
+        setData(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-  const loadEventData = async () => {
-    return await axios
-      .get('http://localhost:8800/events')
-      .then(response => setData(response.data))
-      .catch(err => console.log(err));
-  };
+    loadEventData();
+  }, [setData]);
 
   return (
     <EventsListWrapp>
