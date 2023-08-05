@@ -24,7 +24,7 @@ const categoryList = [
 ];
 
 function FilterByCaregory() {
-  const { data, setData } = useEventData();
+  const { setData } = useEventData();
   const [showCategory, setShowCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('Category');
   const [sortValue, setSortValue] = useState('');
