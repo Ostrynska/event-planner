@@ -12,6 +12,16 @@ export const getEvents = async () => {
   }
 };
 
+export const postEvent = async eventData => {
+  try {
+    const { data } = await axios.post('/', eventData);
+    return data;
+  } catch (error) {
+    toast.error('Something went wrong. Please try again');
+    throw error;
+  }
+};
+
 export const getDetails = async id => {
   try {
     const { data } = await axios.get(`/${id}`);

@@ -1,8 +1,21 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
+import { nanoid } from 'nanoid';
+import * as API from '../../services/api';
 import { EventFormWrapp } from './CreateEventForm.styled';
 
 function CreateEventForm() {
+  const handleSubmit = async values => {
+    try {
+      const uniqueId = nanoid();
+      const eventData = { ...values, id: uniqueId, image: '' };
+
+      const response = await API.postEvent(eventData);
+      console.log('Event created:', response);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+  };
+
   return (
     <EventFormWrapp>
       <Formik
@@ -15,39 +28,26 @@ function CreateEventForm() {
           category: '',
           priority: '',
         }}
-        onSubmit={values => {
-          // Handle form submission
-          console.log(values);
-        }}
+        onSubmit={handleSubmit}
       >
         <Form>
-          {/* Input field with label for Title */}
           <label htmlFor="title">Title:</label>
           <Field type="text" id="title" name="title" />
-
-          {/* Error message for Title */}
           <ErrorMessage name="title" component="div" />
 
-          {/* Textarea field with label for Description */}
           <label htmlFor="description">Description:</label>
           <Field as="textarea" id="description" name="description" />
-
-          {/* Error message for Description */}
           <ErrorMessage name="description" component="div" />
 
-          {/* Input field with label for Select Date */}
           <label htmlFor="date">Select Date:</label>
           <Field type="date" id="date" name="date" />
 
-          {/* Input field with label for Select Time */}
           <label htmlFor="time">Select Time:</label>
           <Field type="time" id="time" name="time" />
 
-          {/* Input field with label for Location */}
           <label htmlFor="location">Location:</label>
           <Field type="text" id="location" name="location" />
 
-          {/* Datalist for Category */}
           <label htmlFor="category">Category:</label>
           <Field as="select" id="category" name="category">
             <option value="art">Art</option>
@@ -59,7 +59,6 @@ function CreateEventForm() {
             <option value="party">Party</option>
           </Field>
 
-          {/* Datalist for Priority */}
           <label htmlFor="priority">Priority:</label>
           <Field list="priorityOptions" id="priority" name="priority" />
           <datalist id="priorityOptions">
@@ -68,7 +67,6 @@ function CreateEventForm() {
             <option value="Low" />
           </datalist>
 
-          {/* Submit button */}
           <button type="submit">Submit</button>
         </Form>
       </Formik>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 import * as API from '../services/api';
-import PageLayout from '../components/Layout/PageLayout/PageLayout';
+// import PageLayout from '../components/Layout/PageLayout/PageLayout';
 
 function EventPage() {
   const { id } = useParams();
@@ -44,41 +44,41 @@ function EventPage() {
   } = event;
 
   return (
-    <PageLayout
-      showBackButton={true}
-      title="Event indormation"
-      renderButtons={false}
-    >
-      <div>
-        <div key={id}>
-          <h2>{title}</h2>
-          <div>
-            <img src={image} alt={title} />
-          </div>
-          <div>
-            <p>{supportingText}</p>
-            <ul>
-              <li>{category}</li>
-              <li>{priority}</li>
-              <li>{location}</li>
-              <li>
-                {date} at {time}
-              </li>
-            </ul>
-          </div>
+    // <PageLayout
+    //   showBackButton={true}
+    //   title="Event indormation"
+    //   renderButtons={false}
+    // >
+    <div>
+      <div key={id}>
+        <h2>{title}</h2>
+        <div>
+          <img src={image} alt={title} />
         </div>
-        <ul>
-          <li>
-            <Link to={`/edit/${id}`}>Edit</Link>
-          </li>
-          <li>
-            <button type="submit" onClick={() => handleDeleteEvent(id)}>
-              Delete event
-            </button>
-          </li>
-        </ul>
+        <div>
+          <p>{supportingText}</p>
+          <ul>
+            <li>{category}</li>
+            <li>{priority}</li>
+            <li>{location}</li>
+            <li>
+              {date} at {time}
+            </li>
+          </ul>
+        </div>
       </div>
-    </PageLayout>
+      <ul>
+        <li>
+          <Link to={`/edit/${id}`}>Edit</Link>
+        </li>
+        <li>
+          <button type="submit" onClick={() => handleDeleteEvent(id)}>
+            Delete event
+          </button>
+        </li>
+      </ul>
+    </div>
+    // </PageLayout>
   );
 }
 

@@ -13,16 +13,20 @@ function MainPage() {
   return (
     <PageLayout
       title={t('main-title')}
-      renderButtons={true}
-      content={<EventsList />}
+      children={
+        <>
+          <FilterByCategory />
+          <SortByOptions />
+          <BtnPrimary
+            icon={true}
+            text={t('main-add-event-btn')}
+            to="/create-event"
+          />
+        </>
+      }
+      showBackButton={false}
     >
-      <FilterByCategory />
-      <SortByOptions />
-      <BtnPrimary
-        icon={true}
-        text={t('main-add-event-btn')}
-        to="/create-event"
-      />
+      <EventsList />
       {/* <Pagination /> */}
     </PageLayout>
   );
