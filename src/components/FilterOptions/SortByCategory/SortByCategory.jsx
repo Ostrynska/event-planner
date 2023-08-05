@@ -78,17 +78,15 @@ const SortByCategory = () => {
       </SortBtn>
       <SortList $showsortoptions={showOptions}>
         {sortOptions.map(item => (
-          <>
-            <SortItem
-              key={`${item.type}-${item.order}`}
-              onClick={() =>
-                handleCategoryClick(item.type, item.order, item.date)
-              }
-            >
-              {item.text}
-              {sortOrder === item.order ? <IconUp /> : <IconDown />}
-            </SortItem>
-          </>
+          <SortItem
+            key={`${item.type}-${item.order}`}
+            onClick={() =>
+              handleCategoryClick(item.type, item.order, item.date)
+            }
+          >
+            {item.text}
+            {sortOrder === item.order ? <IconUp /> : <IconDown />}
+          </SortItem>
         ))}
       </SortList>
     </SortWrapp>

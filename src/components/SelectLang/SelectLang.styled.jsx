@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
-export const LanguageWrapp = styled.button`
+export const LanguageWrapp = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
@@ -18,6 +18,7 @@ export const LanguageWrapp = styled.button`
   font-weight: 500;
   line-height: 1;
   align-items: center;
+  cursor: pointer;
 
   &:hover,
   &:focus {

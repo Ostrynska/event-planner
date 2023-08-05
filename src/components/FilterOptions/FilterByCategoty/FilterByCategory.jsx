@@ -63,8 +63,8 @@ function FilterByCaregory() {
         </CategoryOptions>
       </CategoryBtn>
       <CategoryList $showcategory={showCategory} value={sortValue}>
-        {categoryList.map(item => (
-          <CategoryItem key={item.id} onClick={() => handleCategoryClick(item)}>
+        {categoryList.map((item, index) => (
+          <CategoryItem key={index} onClick={() => handleCategoryClick(item)}>
             {item}
           </CategoryItem>
         ))}
