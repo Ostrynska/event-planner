@@ -45,7 +45,11 @@ function EventPage() {
   } = event;
 
   return (
-    <PageLayout showBackButton={true}>
+    <PageLayout
+      showBackButton={true}
+      title="Event indormation"
+      renderButtons={false}
+    >
       <div>
         <div key={id}>
           <h2>{title}</h2>

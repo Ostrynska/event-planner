@@ -28,7 +28,7 @@ export const Section = styled.section`
   `}
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280px) {
     min-height: 85vh;
     padding-top: 65px;
     padding-bottom: 75px;

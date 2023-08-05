@@ -16,7 +16,7 @@ import {
   SortOptions,
   OptionSelectedMob,
   SortTitle,
-} from './SortByCategory.styled';
+} from './SortByOptions.styled';
 
 const SortByOptions = () => {
   const { setData } = useEventData();
