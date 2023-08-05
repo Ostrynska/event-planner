@@ -24,9 +24,9 @@ function EventsList() {
 
   return (
     <EventsListWrapp>
-      {data.map(item => (
+      {data.map((item, index) => (
         <li key={item.id}>
-          <EventCard item={item} />
+          <EventCard item={data[data.length - index - 1]} />
         </li>
       ))}
     </EventsListWrapp>
