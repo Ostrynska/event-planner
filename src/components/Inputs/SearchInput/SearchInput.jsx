@@ -32,6 +32,7 @@ function SearchInput() {
 
   const handleReset = () => {
     setValue('');
+    setData(originalData);
   };
 
   const handleSearch = e => {

@@ -1,7 +1,9 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 import { GlobalStyle } from './theme/theme';
+
+import Loader from './components/Loader/Loader';
 
 const MainPage = lazy(() => import('./pages/MainPage'));
 const CreateEvent = lazy(() => import('./pages/CreateEvent'));
@@ -10,7 +12,7 @@ const EditEventPage = lazy(() => import('./pages/EditEventPage'));
 
 function App() {
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
@@ -21,7 +23,7 @@ function App() {
         </Route>
       </Routes>
       <GlobalStyle />
-    </>
+    </Suspense>
   );
 }
 
