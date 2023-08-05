@@ -24,10 +24,11 @@ export const sortOptions = [
 ];
 
 const SortByCategory = () => {
-  const { data, setData } = useEventData();
+  const { setData } = useEventData();
   const [showOptions, setShowOptions] = useState(false);
-  const [sortField, setSortField] = useState(''); // Критерій сортування (пріорітет, дата, заголовок)
-  const [sortOrder, setSortOrder] = useState('asc'); // Напрям сортування (asc - зростання, desc - спадання)
+  // eslint-disable-next-line
+  const [sortField, setSortField] = useState('');
+  const [sortOrder, setSortOrder] = useState('asc');
 
   const priorityMap = {
     High: 3,
@@ -35,30 +36,43 @@ const SortByCategory = () => {
     Low: 1,
   };
 
-  const handleCategoryClick = async (field, order) => {
-    setSortField(field);
+  const sortFunction = (a, b) => {
+    var dateA = new Date(a.date).getTime();
+    var dateB = new Date(b.date).getTime();
+    return dateA - dateB;
+  };
+
+  const handleCategoryClick = async (sortField, order) => {
+    setSortField(sortField);
     setSortOrder(order);
     setShowOptions(false);
 
     try {
       const response = await axios.get(
-        `http://localhost:8800/events?_sort=${field}&_order=${order}`
+        `http://localhost:8800/events?_sort=${sortField}&_order=${order}`
       );
-      if (field === 'priority') {
-        response.data.sort((a, b) =>
+      let sortedData = [...response.data];
+
+      if (sortField === 'priority') {
+        sortedData = sortedData.sort((a, b) =>
           order === 'asc'
             ? priorityMap[a.priority] - priorityMap[b.priority]
             : priorityMap[b.priority] - priorityMap[a.priority]
         );
+      } else if (sortField === 'date') {
+        sortedData = sortedData.sort(sortFunction);
+        if (order === 'desc') {
+          sortedData.reverse();
+        }
+      } else if (sortField === 'title') {
+        sortedData = sortedData.sort((a, b) =>
+          order === 'asc'
+            ? a.title.localeCompare(b.title)
+            : b.title.localeCompare(a.title)
+        );
       }
-      if (field === 'date') {
-        const sortedData = data
-          .map(item => {
-            return { ...item, date: new Date(item.date) };
-          })
-          .sort((a, b) => b.date - a.date);
-      }
-      setData(response.data);
+
+      setData(sortedData);
     } catch (err) {
       console.log(err);
     }

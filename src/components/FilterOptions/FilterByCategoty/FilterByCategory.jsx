@@ -27,6 +27,7 @@ function FilterByCaregory() {
   const { setData } = useEventData();
   const [showCategory, setShowCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('Category');
+  // eslint-disable-next-line
   const [sortValue, setSortValue] = useState('');
 
   const handleCategoryClick = async category => {

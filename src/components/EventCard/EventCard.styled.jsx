@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
-
-const priorityColors = {
+export const priorityColors = {
   High: p => p.theme.colors.error,
   Medium: p => p.theme.colors.warning,
   Low: p => p.theme.colors.success,

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 import { HiArrowSmallUp, HiArrowDown } from 'react-icons/hi2';
@@ -159,7 +159,7 @@ export const SortOptions = styled.p`
   }
 `;
 
-export const OptionSelectedMob = styled.p`
+export const OptionSelectedMob = styled.span`
   color: ${p => p.theme.colors.priamry};
   font-size: ${p => p.theme.fontSizes[4]}px;
   font-weight: ${p => p.theme.fontWeights.medium};
