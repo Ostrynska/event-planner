@@ -12,17 +12,16 @@ function EventPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const loadEvent = async () => {
+      try {
+        const response = await API.getDetails(id);
+        setEvent(response);
+      } catch (error) {
+        toast.error('Something went wrong. Please try again');
+      }
+    };
     loadEvent();
   }, [id]);
-
-  const loadEvent = async () => {
-    try {
-      const response = await API.getDetails(id);
-      setEvent(response);
-    } catch (error) {
-      toast.error('Something went wrong. Please try again');
-    }
-  };
 
   const handleDeleteEvent = async () => {
     try {

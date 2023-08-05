@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 import { Container } from '../../Container/Container';
 import { BtnBack } from '../../Buttons/index';
@@ -9,7 +9,7 @@ import { Title, BtnsWrapp, Section, TitleWrapp } from './PageLayout.styled';
 function PageLayout({ children, title, showBackButton = false, content }) {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   return (
     <main>
       <Section $show={showBackButton ? 'true' : 'false'}>
