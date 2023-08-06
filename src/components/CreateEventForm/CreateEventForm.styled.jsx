@@ -1,8 +1,10 @@
-import styled from 'styled-components';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import styled,  from 'styled-components';
+import {  Field, ErrorMessage } from 'formik';
+import DatePicker from 'react-datepicker';
 
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
+
 
 export const EventFormWrapp = styled.div`
   width: 1280px;
@@ -95,7 +97,6 @@ export const Title = styled.label`
 `;
 
 export const Input = styled(Field)`
-  ${'' /* display: ${p => (p.$showcategory ? 'none' : 'block')}; */}
   padding: 16px 12px;
   border-radius: 8px;
   border: 1px solid ${p => (p.error ? p.theme.colors.error : '#aca7c3')};
@@ -112,6 +113,11 @@ export const Input = styled(Field)`
   }
 `;
 
+export const InputSelect = styled(Input)`
+  position: relative;
+  display: ${p => (p.$showcategory ? 'none' : 'flex')};
+`;
+
 export const InputTextArea = styled(Input)`
   resize: none;
   width: 372px;
@@ -121,6 +127,10 @@ export const InputTextArea = styled(Input)`
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
+  }
+  &:hover,
+  &:focus {
+    border: 1px solid #7b61ff;
   }
 `;
 export const Error = styled(ErrorMessage)`
@@ -134,7 +144,7 @@ export const Error = styled(ErrorMessage)`
   line-height: 1.33;
 `;
 
-export const ScrubIcon = styled(IoIosArrowDown)`
+export const ScrubIcon = styled(RxCross2)`
   color: ${p => (p.error ? p.theme.colors.error : p.theme.colors.primary)};
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
@@ -159,8 +169,28 @@ export const ScrubInputBtn = styled.div`
   }
 `;
 
-export const CategoryIcon = styled(IoIosArrowUp)`
+export const CloseIcon = styled(IoIosArrowUp)`
+  left: 330px;
+  position: absolute;
   color: #7b61ff;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: #6243ff;
+  }
+`;
+
+export const OpenIcon = styled(IoIosArrowDown)`
+  position: absolute;
+  left: 336px;
+  top: 40px;
+  color: #7b61ff;
+  display: ${p => (p.$showcategory ? 'none' : 'flex')};
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: #6243ff;
+  }
 `;
 
 export const CategoryWrapp = styled.div`
@@ -168,7 +198,7 @@ export const CategoryWrapp = styled.div`
 `;
 
 export const CategoryBtn = styled.button`
-  top: -82px;
+  ${'' /* top: -24px; */}
   position: absolute;
   display: flex;
   align-items: center;
@@ -178,17 +208,15 @@ export const CategoryBtn = styled.button`
   border-radius: 8px;
   border: 1px solid #aca7c3;
   background: #fff;
+  height: 56px;
+  opacity: ${p => (p.$showcategory ? 0 : 1)};
+  transform: translateY(-26px);
+  transition: all 0.5s linear, opacity 0.5s ease-in-out;
+  z-index: 20;
 
   svg {
     color: ${p => p.$showcategory && p.theme.colors.primary};
-    transform: ${p =>
-      p.$showcategory ? 'translateX(199px)' : 'translateX(0)'};
-    transition: all 0.5s linear;
-    z-index: 11;
-
-    @media (min-width: ${p => p.theme.screens.tablet}) {
-      transform: translate(0);
-    }
+    ${'' /* z-index: 11; */}
   }
 
   &:hover,
@@ -211,51 +239,6 @@ export const CategoryBtn = styled.button`
   }
 `;
 
-// export const CategoryOptions = styled.p`
-//   position: absolute;
-//   ${'' /* display: flex; */}
-//   padding: 0px 16px;
-//   ${'' /* flex-direction: column; */}
-//   ${'' /* align-items: flex-start; */}
-//   border-radius: 8px;
-//   background: #fff;
-//   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
-
-//   height: 100%;
-//   top: 0;
-//   left: 0;
-
-//   display: block;
-//   text-align: start;
-
-//   ${'' /* padding: ${p => p.theme.space[8]}px 21px; */}
-
-//   color: ${p => (p.$showcategory ? p.theme.colors.primary : '#3f3f3f')};
-//   background-color: ${p => p.theme.colors.white};
-//   border-bottom: 1px solid ${p => p.theme.colors.sortListItemColor};
-//   border-top-left-radius: ${p => p.theme.radii.button};
-//   border-top-right-radius: ${p => p.theme.radii.button};
-//   box-shadow: ${p => p.theme.shadows.button};
-
-//   opacity: ${p => (p.$showcategory ? 1 : 0)};
-//   transform: ${p => (p.$showcategory ? 'translateX(0)' : 'translateX(-72px)')};
-//   transition: all 0.5s linear;
-//   z-index: 10;
-//   &:hover,
-//   &:focus {
-//     color: ${p => p.theme.colors.primary};
-//   }
-
-//   @media (min-width: ${p => p.theme.screens.tablet}) {
-//     width: 143px;
-//     transform: translate(0);
-//     transition: all 0.5s linear;
-//   }
-//   @media (min-width: ${p => p.theme.screens.desktop}) {
-//     width: 372px;
-//   }
-// `;
-
 export const CategorySelected = styled.p`
   color: #7b61ff;
   font-size: 16px;
@@ -267,23 +250,10 @@ export const CategorySelected = styled.p`
   transition: all 0.5s linear;
 `;
 
-// export const CategorySelectedMob = styled.span`
-//   color: ${p => p.theme.colors.priamry};
-//   font-size: ${p => p.theme.fontSizes[4]}px;
-//   font-weight: ${p => p.theme.fontWeights.medium};
-//   line-height: ${p => p.theme.lineHeights.normal};
-
-//   @media (min-width: ${p => p.theme.screens.tablet}) {
-//     display: none;
-//   }
-// `;
-
 export const CategoryList = styled.ul`
   position: absolute;
 
-  ${'' /* width: 158px; */}
-  ${'' /* top: 56px; */}
-  top: -18px;
+  top: 40px;
   left: 0;
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
@@ -292,10 +262,10 @@ export const CategoryList = styled.ul`
   background-color: ${p => p.theme.colors.white};
   box-shadow: ${p => p.theme.shadows.button};
 
-  opacity: ${p => (p.$showcategory ? 1 : 0)};
-  transform: ${p => (p.$showcategory ? 'translateY(0)' : 'translateY(5%)')};
-  transition: all 0.5s linear;
   z-index: 10;
+  opacity: ${p => (p.$showcategory ? 1 : 0)};
+  transform: translateY(${p => (p.$showcategory ? '0' : '20px')});
+  transition: opacity 0.2s linear, transform 0.5s linear;
 
   @media (min-width: ${p => p.theme.screens.tablet}) {
     ${'' /* width: 143px; */}
@@ -320,7 +290,7 @@ export const CategoryItem = styled.li`
   line-height: normal;
   border-top: 1px solid #aca7c3;
 
-  transition: color 250ms ease-in-out;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 
   &:first-child {
