@@ -1,5 +1,5 @@
 import Container from '../Container/Container';
-import SearchInput from '../Inputs/SearchInput/SearchInput';
+import SearchInput from '../SearchInput/SearchInput';
 
 import SelectLang from '../SelectLang/SelectLang';
 import useMediaQuery from '../../hooks/useMediaQuery';

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-import * as API from '../../../services/api';
+import * as API from '../../services/api';
 import { Formik } from 'formik';
 
-import { useEventData } from '../../../hooks/useEventData';
+import { useEventData } from '../../hooks/useEventData';
 
 import {
   Input,

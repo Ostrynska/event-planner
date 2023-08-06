@@ -29,7 +29,7 @@ function App() {
         autoClose={3000}
         limit={1}
         position={'top-right'}
-        theme={'colored'}
+        theme={'light'}
       />
     </Suspense>
   );
