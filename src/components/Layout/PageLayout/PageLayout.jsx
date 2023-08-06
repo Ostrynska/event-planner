@@ -1,20 +1,39 @@
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 // import { useTranslation } from 'react-i18next';
-
+import { useState } from 'react';
 import { Container } from '../../Container/Container';
 import { BtnBack } from '../../Buttons/index';
 
-import { Title, BtnsWrapp, Section, TitleWrapp } from './PageLayout.styled';
+import {
+  Title,
+  TitleHome,
+  BtnsWrapp,
+  Section,
+  TitleWrapp,
+} from './PageLayout.styled';
 
 function PageLayout({ children, title, showBackButton = false, content }) {
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const [showBtn, setShowBtn] = useState(false);
+  // const location = useLocation();
+  // const isHomePage = location.pathname === '/';
   // const { t } = useTranslation();
   return (
     <main>
-      <Section $show={showBackButton ? 'true' : 'false'}>
+      <Section $show={showBtn}>
         <Container>
-          {showBackButton && <BtnBack onClick={() => window.history.back()} />}
+          {showBackButton ? (
+            <>
+              <BtnBack onClick={() => window.history.back()} />
+              <Title>{title}</Title>
+            </>
+          ) : (
+            <TitleWrapp>
+              <TitleHome>{title}</TitleHome>
+              <BtnsWrapp>{children}</BtnsWrapp>
+            </TitleWrapp>
+          )}
+          {content}
+          {/* {showBackButton && <BtnBack onClick={() => window.history.back()} />}
           {isHomePage ? (
             <TitleWrapp>
               {title === '' ? (
@@ -30,7 +49,7 @@ function PageLayout({ children, title, showBackButton = false, content }) {
           ) : (
             <Title>{title}</Title>
           )}
-          {content}
+          {content} */}
         </Container>
       </Section>
     </main>

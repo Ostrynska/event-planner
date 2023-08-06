@@ -25,8 +25,8 @@ function MainPage() {
         </>
       }
       showBackButton={false}
+      content={<EventsList />}
     >
-      <EventsList />
       {/* <Pagination /> */}
     </PageLayout>
   );

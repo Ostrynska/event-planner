@@ -3,8 +3,8 @@ import styled from 'styled-components';
 // import bgDesktop from '../../images/bgDesktop@1x.png';
 
 export const Section = styled.section`
-  padding-top: 40px;
-  padding-bottom: 42px;
+  padding-top: 44px;
+  padding-bottom: 136px;
   ${
     '' /* background-image: url(${bgDesktop});
   background-repeat: no-repeat;
@@ -13,30 +13,33 @@ export const Section = styled.section`
   width: 100%;
   position: relative;
   ${p =>
-    p.show &&
+    p.$show &&
     `
       padding-top: 42px;
+      padding-bottom: 0;
   `}
 
-  @media screen and (min-width: 768px) {
-    padding-top: 38px;
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    padding-top: 40px;
     padding-bottom: 125px;
     ${p =>
-      p.show &&
+      p.$show &&
       `
       padding-top: 41px;
+      padding-bottom: 0;
   `}
   }
 
-  @media screen and (min-width: 1280px) {
-    min-height: 85vh;
-    padding-top: 65px;
-    padding-bottom: 75px;
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    ${'' /* min-height: 85vh; */}
+    padding-top: 60px;
+    padding-bottom: 77px;
 
     ${p =>
-      p.show &&
+      p.$show &&
       `
       padding-top: 18px;
+      padding-bottom: 0;
   `}
   }
 `;
@@ -52,12 +55,15 @@ export const TitleWrapp = styled.div`
   }
 `;
 
-export const Title = styled.h2`
+export const TitleHome = styled.h2`
   display: none;
   @media screen and (min-width: ${p => p.theme.screens.desktop}) {
     display: inline-flex;
-    ${p => p.showtitle && `margin-bottom: 25px`}
   }
+`;
+
+export const Title = styled.h2`
+  margin-bottom: 25px;
 `;
 
 export const BtnsWrapp = styled.div`
