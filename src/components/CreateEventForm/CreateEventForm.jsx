@@ -15,7 +15,6 @@ import categoryList from '../../data/categories';
 import priorityList from '../../data/priorityList';
 
 import {
-  CustomDatePickerContainer,
   InputSelect,
   EventFormWrapp,
   GridContainer,

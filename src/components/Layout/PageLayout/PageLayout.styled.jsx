@@ -1,17 +1,16 @@
 import styled from 'styled-components';
 
-// import bgDesktop from '../../images/bgDesktop@1x.png';
+import bgImage from '../../../images/background.svg';
 
 export const Section = styled.section`
   padding-top: 44px;
   padding-bottom: 136px;
-  ${
-    '' /* background-image: url(${bgDesktop});
+  background-image: url(${bgImage});
   background-repeat: no-repeat;
-  background-size: cover; */
-  }
-  width: 100%;
+  background-size: cover;
+  background-position: center center;
   position: relative;
+  height: 100%;
   ${p =>
     p.$show &&
     `
@@ -31,7 +30,7 @@ export const Section = styled.section`
   }
 
   @media screen and (min-width: ${p => p.theme.screens.desktop}) {
-    ${'' /* min-height: 85vh; */}
+    ${'' /* height: 100vh; */}
     padding-top: 60px;
     padding-bottom: 77px;
 

@@ -1,10 +1,9 @@
-import styled,  from 'styled-components';
-import {  Field, ErrorMessage } from 'formik';
+import styled from 'styled-components';
+import { Field, ErrorMessage } from 'formik';
 import DatePicker from 'react-datepicker';
 
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
-
 
 export const EventFormWrapp = styled.div`
   width: 1280px;

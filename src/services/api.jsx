@@ -12,6 +12,15 @@ export const getEvents = async () => {
   }
 };
 
+export const getEventsPage = async (start, end) => {
+  try {
+    const { data } = await axios.get(`/?_start=${start}&_end=${end}`);
+    return data;
+  } catch (error) {
+    toast.error('Something went wrong. Please try again');
+  }
+};
+
 export const postEvent = async eventData => {
   try {
     const { data } = await axios.post('/', eventData);

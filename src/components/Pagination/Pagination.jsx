@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useEventData } from '../../hooks/useEventData';
+import { toast } from 'react-toastify';
+
+import * as API from '../../services/api';
 
 import { PaginationWrapp, PaginationList } from './Pagination.styled';
 
 function Pagination() {
   const { data, setData } = useEventData();
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageLimit] = useState(8);
+  const [pageLimit] = useState(6);
   const [dataLength, setDataLength] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     loadEventData(currentPage * pageLimit, (currentPage + 1) * pageLimit);
-  }, [currentPage]);
+  }, []);
 
   const loadEventData = async (start, end) => {
     try {
-      const response = await axios.get(
-        `http://localhost:8800/events?_start=${start}&_end=${end}`
-      );
-      setData(response.data);
-      setDataLength(response.data.length);
+      const results = await API.getEventsPage(start, end);
+      console.log(results);
+      setData(results);
+      setDataLength(results.length);
 
-      const totalRecords = parseInt(response.headers['x-total-count']);
+      const totalRecords = parseInt(results.headers['x-total-count']);
       const pages = Math.ceil(totalRecords / pageLimit);
       setTotalPages(pages);
     } catch (err) {
