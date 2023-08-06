@@ -9,11 +9,12 @@ import {
   EventInf,
   EventDate,
   EventPriority,
-  EventCategory,
+  EventItemText,
   EventText,
   EventTitle,
   EventSupText,
   CardBtnWrapp,
+  EventCategoryWrapp,
 } from './EventCard.styled';
 
 import { BtnCard } from '../Buttons/index';
@@ -38,14 +39,16 @@ function EventCard({ item }) {
     <Card>
       <EventImageWrapp>
         <EventImage src={isRetina ? imageRetina : image} alt={category} />
-        <EventCategoryList>
-          <EventCategoryItem>
-            <EventCategory>{category}</EventCategory>
-          </EventCategoryItem>
-          <EventCategoryItem>
-            <EventPriority priority={priority}>{priority}</EventPriority>
-          </EventCategoryItem>
-        </EventCategoryList>
+        <EventCategoryWrapp>
+          <EventCategoryList>
+            <EventCategoryItem>
+              <EventItemText>{category}</EventItemText>
+            </EventCategoryItem>
+            <EventCategoryItem>
+              <EventPriority priority={priority}>{priority}</EventPriority>
+            </EventCategoryItem>
+          </EventCategoryList>
+        </EventCategoryWrapp>
       </EventImageWrapp>
 
       <EventInf>

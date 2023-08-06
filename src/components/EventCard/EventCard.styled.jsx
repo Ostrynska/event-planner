@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const priorityColors = {
-  High: p => p.theme.colors.error,
-  Medium: p => p.theme.colors.warning,
-  Low: p => p.theme.colors.success,
-};
-
 export const Card = styled.div`
   width: 271px;
   max-height: 480px;
@@ -37,11 +31,15 @@ export const EventImage = styled.img`
   object-fit: cover;
 `;
 
-export const EventCategoryList = styled.ul`
+export const EventCategoryWrapp = styled.div`
   position: absolute;
   top: 10px;
   left: 13px;
+`;
+
+export const EventCategoryList = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 `;
 
@@ -50,17 +48,17 @@ export const EventCategoryItem = styled.li`
   border-radius: 8px;
   padding: 6px 12px;
   background-color: ${p => p.theme.colors.white};
+  box-shadow: 4px 5px 9px 0px rgba(166, 141, 174, 0.28);
 `;
 
 export const EventPriority = styled.p`
   font-weight: ${p => p.theme.typography.body.fontWeight};
   font-size: ${p => p.theme.typography.body.fontSize};
   line-height: 1.43;
-  color: ${p => p.theme.colors.primary};
-  color: ${p => priorityColors[p.priority]};
+  color: ${p => p.priority && p.theme.priorityColors[p.priority]};
 `;
 
-export const EventCategory = styled.p`
+export const EventItemText = styled.p`
   font-weight: ${p => p.theme.typography.body.fontWeight};
   font-size: ${p => p.theme.typography.body.fontSize};
   line-height: 1.43;

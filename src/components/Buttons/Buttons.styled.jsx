@@ -82,29 +82,52 @@ export const ButtonCard = styled(ButtonPrimary)`
 `;
 
 export const ButtonCardDetails = styled.button`
-  width: ${p => (p.$solid ? '108px' : '55px')};
+  width: 108px;
   height: 32px;
   padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 
   font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
-  color: ${p =>
-    p.$solid ? p.theme.button.default.color : p.theme.colors.primary};
-  background-color: ${p =>
-    p.$solid ? p.theme.button.default.backgroundColor : 'transparent'};
-  border: ${p =>
-    p.$solid ? 'none' : '1px solid ' + p.theme.button.default.backgroundColor};
+  color: ${p => p.theme.button.default.color};
+  background-color: ${p => p.theme.button.default.backgroundColor};
+  border: none;
+  text-align: center;
 
-  ${p =>
-    !p.$solid &&
-    `
-    &:hover,
-    &:focus {
-      color: #6243ff;
-      font-weight: 600;
-      background-color: transparent;
-      border-color: #6243ff;
-    }
-  `}
+  &:hover,
+  &:focus {
+    background-color: #6243ff;
+  }
+`;
+
+export const ButtonCardDetailsBorder = styled.div`
+  width: 108px;
+  height: 32px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: ${p => p.theme.colors.primary};
+  background-color: transparent;
+  border: 1px solid ${p => p.theme.button.default.backgroundColor};
+  text-align: center;
+
+  &:hover,
+  &:focus {
+    color: #6243ff;
+    font-weight: 600;
+    background-color: transparent;
+    border-color: #6243ff;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 55px;
+  }
 `;

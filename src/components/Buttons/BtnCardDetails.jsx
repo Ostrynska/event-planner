@@ -1,13 +1,14 @@
-import { ButtonCardDetails } from './Buttons.styled';
+import { ButtonCardDetails, ButtonCardDetailsBorder } from './Buttons.styled';
+import { Link } from 'react-router-dom';
 
-export const BtnCardDetails = ({ text, to = '', solid = true }) => {
-  return solid === true ? (
-    <ButtonCardDetails to={to} type="submit" $solid>
-      {text}
-    </ButtonCardDetails>
-  ) : (
-    <ButtonCardDetails to={to} type="button" $border>
-      {text}
-    </ButtonCardDetails>
+export const BtnCardDetails = ({ text }) => {
+  return <ButtonCardDetails type="submit">{text}</ButtonCardDetails>;
+};
+
+export const BtnCardDetailsBorder = ({ text, to = '' }) => {
+  return (
+    <Link to={to}>
+      <ButtonCardDetailsBorder>{text}</ButtonCardDetailsBorder>
+    </Link>
   );
 };

@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import * as API from '../../services/api';
 
 import {
+  Title,
   CardDetailsContent,
   CardDetailsWrapp,
   CardDetailsImage,
@@ -13,7 +14,14 @@ import {
   CardDetailsBtnsList,
 } from './EventDetails.styled';
 
-import { BtnCardDetails } from '../Buttons/index';
+import {
+  EventCategoryList,
+  EventCategoryItem,
+  EventPriority,
+  EventItemText,
+} from '../EventCard/EventCard.styled';
+
+import { BtnCardDetails, BtnCardDetailsBorder } from '../Buttons/index';
 
 function EventDetails() {
   const { id } = useParams();
@@ -53,66 +61,42 @@ function EventDetails() {
   } = event;
 
   return (
-    // <CardDetailsWrapp key={id}>
-    //   <h2>{title}</h2>
-    //   <CardDetailsContent>
-    //     <CardDetailsImage>
-    //       <img src={image} alt={title} />
-    //     </CardDetailsImage>
-    //     <CardDetailsInf>
-    //       <CardDetailsText>{supportingText}</CardDetailsText>
-    //       <ul>
-    //         <li>{category}</li>
-    //         <li>{priority}</li>
-    //         <li>{location}</li>
-    //         <li>
-    //           {date} at {time}
-    //         </li>
-    //       </ul>
-    //       <CardDetailsBtnsList>
-    //         <li>
-    //           <BtnCardDetails solid={false} text="Edit" to={`/edit/${id}`} />
-    //         </li>
-    //         <li>
-    //           <BtnCardDetails
-    //             text="Delete event"
-    //             solid={true}
-    //             onClick={() => handleDeleteEvent(id)}
-    //           />
-    //         </li>
-    //       </CardDetailsBtnsList>
-    //     </CardDetailsInf>
-    //   </CardDetailsContent>
-    // </CardDetailsWrapp>
-    <div>
-      <div key={id}>
-        <h2>{title}</h2>
-        <div>
+    <CardDetailsWrapp>
+      <Title>{title}</Title>
+      <CardDetailsContent>
+        <CardDetailsImage>
           <img src={image} alt={title} />
-        </div>
-        <div>
-          <p>{supportingText}</p>
-          <ul>
-            <li>{category}</li>
-            <li>{priority}</li>
-            <li>{location}</li>
+        </CardDetailsImage>
+        <CardDetailsInf>
+          <CardDetailsText>{supportingText}</CardDetailsText>
+          <EventCategoryList>
+            <EventCategoryItem>
+              <EventItemText>{category}</EventItemText>
+            </EventCategoryItem>
+            <EventCategoryItem>
+              <EventPriority priority={priority}>{priority}</EventPriority>
+            </EventCategoryItem>
+            <EventCategoryItem>
+              <EventItemText>{location}</EventItemText>
+            </EventCategoryItem>
+            <EventCategoryItem>
+              <EventItemText>
+                {date} at {time}
+              </EventItemText>
+            </EventCategoryItem>
+          </EventCategoryList>
+
+          <CardDetailsBtnsList>
             <li>
-              {date} at {time}
+              <BtnCardDetailsBorder text="Edit" to={`/edit/${id}`} />
             </li>
-          </ul>
-        </div>
-      </div>
-      <ul>
-        <li>
-          <Link to={`/edit/${id}`}>Edit</Link>
-        </li>
-        <li>
-          <button type="submit" onClick={() => handleDeleteEvent(id)}>
-            Delete event
-          </button>
-        </li>
-      </ul>
-    </div>
+            <li onClick={() => handleDeleteEvent(id)}>
+              <BtnCardDetails text="Delete event" />
+            </li>
+          </CardDetailsBtnsList>
+        </CardDetailsInf>
+      </CardDetailsContent>
+    </CardDetailsWrapp>
   );
 }
 
