@@ -9,6 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { BtnPrimary } from '../Buttons/index';
 
 import {
+  CloseIconSelect,
   BtnWrapp,
   InputSelect,
   EventFormWrapp,
@@ -59,6 +60,8 @@ function CreateEventForm() {
   const [timeValue, setTimeValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
 
+  const [showDate, setShowDate] = useState(false);
+  const [showTime, setShowTime] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
   const [showPriority, setShowPriority] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -87,18 +90,18 @@ function CreateEventForm() {
       const eventData = {
         id: uniqueId,
         image: defaultImage,
-        title: titleValue,
-        supportingText: descriptionValue,
-        date: dateValue ? dateValue.toISOString() : '',
-        time: timeValue,
-        location: locationValue,
-        category: selectedCategory,
-        priority: selectedPriority,
+        title: titleValue || 'Event Title',
+        supportingText: descriptionValue || 'Event Description',
+        date: dateValue ? dateValue.toISOString() : '01.01.',
+        time: timeValue || '00:00 am',
+        location: locationValue || 'Kyiv',
+        category: selectedCategory || 'Work',
+        priority: selectedPriority || 'High',
       };
 
       await API.postEvent(eventData);
       console.log(eventData);
-      toast.success('Event created');
+      // toast.success('Event created');
       navigate('/');
     } catch (error) {
       toast.error('Something went wrong. Please try again');
@@ -113,6 +116,16 @@ function CreateEventForm() {
   const handlePriorityClick = async priority => {
     setSelectedPriority(priority);
     setShowPriority(false);
+  };
+
+  const handleDateClick = async date => {
+    // setSelectedPriority(priority);
+    setShowDate(false);
+  };
+
+  const handleTimeClick = async time => {
+    // setSelectedPriority(priority);
+    setShowTime(false);
   };
 
   function ErrorMessage({ error }) {
@@ -150,6 +163,7 @@ function CreateEventForm() {
             </ScrubInputBtn>
           )}
         </GridItem1>
+
         <GridItem2>
           <Title htmlFor="description">Description</Title>
           <InputTextArea
@@ -159,10 +173,22 @@ function CreateEventForm() {
             value={descriptionValue}
             onChange={e => setDescriptionValue(e.target.value)}
           />
+          {descriptionValue && (
+            <ScrubInputBtn onClick={() => setDescriptionValue('')}>
+              <ScrubIcon size={16} />
+            </ScrubInputBtn>
+          )}
         </GridItem2>
+
         <GridItem3>
           <Title htmlFor="date">Select date</Title>
-          <Input type="text" id="date" name="date" />
+          <Input
+            type="text"
+            id="date"
+            name="date"
+            onClick={() => setShowDate(!showDate)}
+          />
+          {showDate ? <OpenIcon size={20} /> : <CloseIcon size={20} />}
           <DataWrapp>
             <DatePicker
               selected={dateValue}
@@ -170,6 +196,7 @@ function CreateEventForm() {
             />
           </DataWrapp>
         </GridItem3>
+
         <GridItem4>
           <Title htmlFor="time">Select time</Title>
           <Input
@@ -178,8 +205,11 @@ function CreateEventForm() {
             name="time"
             selected={timeValue}
             onChange={e => setTimeValue(e.target.value)}
+            onClick={() => setShowTime(!showTime)}
           />
+          {showTime ? <OpenIcon size={20} /> : <CloseIcon size={20} />}
         </GridItem4>
+
         <GridItem5>
           <Title htmlFor="location">Location</Title>
           <Input
@@ -206,38 +236,38 @@ function CreateEventForm() {
             </ScrubInputBtn>
           )}
         </GridItem5>
+
         <GridItem6>
           <Title htmlFor="category">Category</Title>
-          <div>
-            <InputSelect
-              type="text"
-              id="category"
-              name="category"
-              onClick={() => setShowCategory(!showCategory)}
-              value={selectedCategory}
-              onChange={() => {}}
-              autoComplete="off"
-            />
-            {showCategory && (
-              <CategoryWrapp>
-                <CategoryBtn onClick={() => setShowCategory(!showCategory)}>
-                  <CategorySelected>Select Category</CategorySelected>
-                  {showCategory && <CloseIcon size={20} />}
-                </CategoryBtn>
-                <CategoryList $showcategory={showCategory}>
-                  {categoryList.map((item, index) => (
-                    <CategoryItem
-                      key={index}
-                      onClick={() => handleCategoryClick(item)}
-                    >
-                      {item}
-                    </CategoryItem>
-                  ))}
-                </CategoryList>
-              </CategoryWrapp>
-            )}
-            <OpenIcon size={20} $showcategory={showCategory} />
-          </div>
+          <InputSelect
+            type="text"
+            id="category"
+            name="category"
+            onClick={() => setShowCategory(!showCategory)}
+            value={selectedCategory}
+            $showcategory={showCategory}
+            onChange={() => {}}
+            autoComplete="off"
+          />
+          {showCategory && (
+            <CategoryWrapp>
+              <CategoryBtn onClick={() => setShowCategory(!showCategory)}>
+                <CategorySelected>Select Category</CategorySelected>
+                {showCategory && <CloseIconSelect size={20} />}
+              </CategoryBtn>
+              <CategoryList $showcategory={showCategory}>
+                {categoryList.map((item, index) => (
+                  <CategoryItem
+                    key={index}
+                    onClick={() => handleCategoryClick(item)}
+                  >
+                    {item}
+                  </CategoryItem>
+                ))}
+              </CategoryList>
+            </CategoryWrapp>
+          )}
+          <OpenIcon size={20} $showcategory={showCategory} />
         </GridItem6>
 
         <GridItem7>
@@ -256,12 +286,13 @@ function CreateEventForm() {
             onClick={() => setShowPriority(!showPriority)}
             value={selectedPriority}
             onChange={() => {}}
+            $showpriority={showPriority}
           />
           {showPriority && (
             <PriorityWrapp>
               <PriorityBtn onClick={() => setShowPriority(!showPriority)}>
                 <PrioritySelected>Select Priority</PrioritySelected>
-                <CloseIcon size={20} />
+                <CloseIconSelect size={20} />
               </PriorityBtn>
               <PriorityList $showpriority={showPriority}>
                 {priorityList.map((item, index) => (

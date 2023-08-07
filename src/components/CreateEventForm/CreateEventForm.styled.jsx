@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { Field, ErrorMessage } from 'formik';
 
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
@@ -288,7 +287,8 @@ export const ScrubInputBtn = styled.div`
 `;
 
 export const CloseIcon = styled(IoIosArrowUp)`
-  left: 330px;
+  left: 204px;
+  top: 43px;
   position: absolute;
   color: #7b61ff;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -296,11 +296,28 @@ export const CloseIcon = styled(IoIosArrowUp)`
   &:focus {
     color: #6243ff;
   }
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    left: 271px;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    left: 339px;
+  }
+`;
+
+export const CloseIconSelect = styled(CloseIcon)`
+  top: 18px;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    left: 271px;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    left: 339px;
+  }
 `;
 
 export const OpenIcon = styled(IoIosArrowDown)`
   position: absolute;
-  left: 206px;
+  left: 209px;
   top: 44px;
   color: #7b61ff;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -329,7 +346,8 @@ export const CategoryWrapp = styled.div`
 `;
 
 export const CategoryBtn = styled.button`
-  ${'' /* top: -24px; */}
+  top: 3px;
+  width: 240px;
   position: absolute;
   display: flex;
   align-items: center;
@@ -361,8 +379,7 @@ export const CategoryBtn = styled.button`
   }
 
   @media (min-width: ${p => p.theme.screens.tablet}) {
-    ${'' /* width: 143px; */}
-    ${'' /* justify-content: space-around; */}
+    width: 308px;
   }
 
   @media (min-width: ${p => p.theme.screens.desktop}) {
@@ -383,7 +400,7 @@ export const CategorySelected = styled.p`
 
 export const CategoryList = styled.ul`
   position: absolute;
-
+  width: 240px;
   top: 40px;
   left: 0;
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
@@ -399,15 +416,12 @@ export const CategoryList = styled.ul`
   transition: opacity 0.2s linear, transform 0.5s linear;
 
   @media (min-width: ${p => p.theme.screens.tablet}) {
-    ${'' /* width: 143px; */}
-    ${'' /* top: 56px; */}
-    ${'' /* left: 0; */}
-
-    transform: translate(0);
+    width: 308px;
   }
 
   @media (min-width: ${p => p.theme.screens.desktop}) {
     width: 372px;
+    top: 40px;
   }
 `;
 
@@ -440,7 +454,8 @@ export const PriorityWrapp = styled.div`
 `;
 
 export const PriorityBtn = styled.button`
-  ${'' /* top: -24px; */}
+  top: 3px;
+  width: 240px;
   position: absolute;
   display: flex;
   align-items: center;
@@ -472,8 +487,7 @@ export const PriorityBtn = styled.button`
   }
 
   @media (min-width: ${p => p.theme.screens.tablet}) {
-    ${'' /* width: 143px; */}
-    ${'' /* justify-content: space-around; */}
+    width: 308px;
   }
 
   @media (min-width: ${p => p.theme.screens.desktop}) {
@@ -493,7 +507,7 @@ export const PrioritySelected = styled.p`
 
 export const PriorityList = styled.ul`
   position: absolute;
-
+  width: 240px;
   top: 26px;
   left: 0;
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
@@ -509,11 +523,7 @@ export const PriorityList = styled.ul`
   transition: opacity 0.2s linear, transform 0.5s linear;
 
   @media (min-width: ${p => p.theme.screens.tablet}) {
-    ${'' /* width: 143px; */}
-    ${'' /* top: 56px; */}
-    ${'' /* left: 0; */}
-
-    transform: translate(0);
+    width: 308px;
   }
 
   @media (min-width: ${p => p.theme.screens.desktop}) {
