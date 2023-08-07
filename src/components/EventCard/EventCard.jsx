@@ -54,7 +54,7 @@ function EventCard({ item }) {
       <EventInf>
         <EventDes>
           <EventDate>
-            {date} at {time.replace(' am', '')}
+            {date} at {time}
           </EventDate>
           <EventLocation>{location}</EventLocation>
         </EventDes>
