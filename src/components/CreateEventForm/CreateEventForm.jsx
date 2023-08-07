@@ -5,11 +5,15 @@ import { nanoid } from 'nanoid';
 import * as API from '../../services/api';
 // import { useEventData } from '../../hooks/useEventData';
 import { toast } from 'react-toastify';
+import DatePicker from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 import {
   validateTitle,
   validateLocation,
 } from '../../validation/inputFormValidation';
+import { BtnPrimary } from '../Buttons/index';
 
 import categoryList from '../../data/categories';
 import priorityList from '../../data/priorityList';
@@ -34,13 +38,16 @@ import {
   ScrubIcon,
   CategoryWrapp,
   CategoryBtn,
-  CategoryOptions,
   CategorySelected,
   CloseIcon,
   OpenIcon,
   CategoryList,
   CategoryItem,
-  CategoryIcon,
+  PriorityWrapp,
+  PriorityItem,
+  PriorityBtn,
+  PrioritySelected,
+  PriorityList,
 } from './CreateEventForm.styled';
 
 function CreateEventForm() {
@@ -134,10 +141,16 @@ function CreateEventForm() {
               <GridItem2 style={{ height: '80px' }}>
                 <Title htmlFor="date">Select date</Title>
                 <Input type="text" id="date" name="date" />
-                <div>
-                  <button>Exit</button>
-                  <button>Choose date</button>
-                </div>
+                <DatePicker
+                  selected={startDate}
+                  onChange={date => setStartDate(date)}
+                >
+                  <div>
+                    <button>Exit</button>
+                    <button>Choose date</button>
+                  </div>
+                </DatePicker>
+                <OpenIcon size={20} />
               </GridItem2>
 
               <GridItem3>
@@ -155,11 +168,7 @@ function CreateEventForm() {
                   <CategoryWrapp>
                     <CategoryBtn onClick={() => setShowCategory(!showCategory)}>
                       <CategorySelected>Select Category</CategorySelected>
-                      {showCategory ? (
-                        <CloseIcon size={20} />
-                      ) : (
-                        <OpenIcon size={20} />
-                      )}
+                      {showCategory && <CloseIcon size={20} />}
                     </CategoryBtn>
                     <CategoryList $showcategory={showCategory}>
                       {categoryList.map((item, index) => (
@@ -173,6 +182,7 @@ function CreateEventForm() {
                     </CategoryList>
                   </CategoryWrapp>
                 )}
+                <OpenIcon size={20} $showcategory={showCategory} />
               </GridItem3>
 
               <GridItem4>
@@ -192,26 +202,18 @@ function CreateEventForm() {
                 )}
               </GridItem4>
 
-              <GridItem5 style={{ height: '80px' }}>
+              <GridItem5>
                 <Title htmlFor="time">Select time</Title>
                 <Input type="text" id="time" name="time" />
+                <OpenIcon size={20} />
               </GridItem5>
-              <GridItem6 style={{ height: '80px' }}>
-                <Title htmlFor="picture">Add picture</Title>
-                <Input type="text" id="picture" name="picture" />
-                {/* {errors.picture || touched.picture ? (
-                  <ScrubInputBtn
-                  // onClick={() => {
-                  //   handleChange('picture')('');
-                  // }}
-                  >
-                    <ScrubIcon
-                      error={touched.picture && errors.picture}
-                      size={16}
-                    />
-                  </ScrubInputBtn>
-                ) : null} */}
-                <Error name="picture" component="div" />
+
+              <GridItem6>
+                <Title htmlFor="picture" disabled>
+                  Add picture
+                </Title>
+                <Input type="text" id="picture" name="picture" disabled />
+                <OpenIcon size={20} disabled />
               </GridItem6>
 
               <GridItem7>
@@ -241,41 +243,46 @@ function CreateEventForm() {
                 <Error name="location" component="div" />
               </GridItem7>
 
-              <GridItem8 style={{ height: '80px' }}>
+              <GridItem8>
                 <Title htmlFor="priority">Priority</Title>
-                <Input
-                  as="select"
+                <InputSelect
+                  type="text"
                   id="priority"
                   name="priority"
                   onClick={() => setShowPriority(!showPriority)}
-                  $showpropity={showPriority}
+                  $showpriority={showPriority}
                   value={selectedPriority}
-                >
-                  {showPriority && (
-                    <CategoryWrapp>
-                      <CategoryBtn
-                        onClick={() => setShowPriority(!showPriority)}
-                      >
-                        <CategorySelected>Select Priority</CategorySelected>
-                        <CloseIcon size={24} />
-                      </CategoryBtn>
-                      <CategoryList $showcategory={showPriority}>
-                        {priorityList.map((item, index) => (
-                          <CategoryItem
-                            key={index}
-                            onClick={() => handlePriorityClick(item)}
-                          >
-                            {item}
-                          </CategoryItem>
-                        ))}
-                      </CategoryList>
-                    </CategoryWrapp>
-                  )}
-                  <OpenIcon size={24} />
-                </Input>
+                />
+                {showPriority && (
+                  <PriorityWrapp>
+                    <PriorityBtn onClick={() => setShowPriority(!showPriority)}>
+                      <PrioritySelected>Select Priority</PrioritySelected>
+                      <CloseIcon size={20} />
+                    </PriorityBtn>
+                    <PriorityList $showpriority={showPriority}>
+                      {priorityList.map((item, index) => (
+                        <PriorityItem
+                          key={index}
+                          onClick={() => handlePriorityClick(item)}
+                        >
+                          {item}
+                        </PriorityItem>
+                      ))}
+                    </PriorityList>
+                  </PriorityWrapp>
+                )}
+                <OpenIcon size={20} $showpriority={showPriority} />
               </GridItem8>
             </GridContainer>
-            <button type="submit">Submit</button>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                marginTop: '60px',
+              }}
+            >
+              <BtnPrimary text="Add event" to="/" icon={false} />
+            </div>
           </Form>
         )}
       </Formik>

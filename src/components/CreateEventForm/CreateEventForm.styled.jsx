@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Field, ErrorMessage } from 'formik';
-import DatePicker from 'react-datepicker';
 
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
@@ -27,11 +26,12 @@ export const GridItem1 = styled.li`
   display: flex;
   flex-direction: column;
   width: 372px;
-  height: 100px;
+  height: 80px;
   grid-area: 1 / 1 / 2 / 2;
 `;
 
 export const GridItem2 = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 372px;
@@ -52,11 +52,13 @@ export const GridItem4 = styled.li`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 202px;
+  height: 180px;
   grid-area: 2 / 1 / 4 / 2;
 `;
 
 export const GridItem5 = styled.li`
+  position: relative;
+  height: 80px;
   display: flex;
   flex-direction: column;
   width: 372px;
@@ -64,6 +66,8 @@ export const GridItem5 = styled.li`
 `;
 
 export const GridItem6 = styled.li`
+  position: relative;
+  height: 80px;
   display: flex;
   flex-direction: column;
   width: 372px;
@@ -75,11 +79,13 @@ export const GridItem7 = styled.li`
   display: flex;
   flex-direction: column;
   width: 372px;
-  height: 100px;
+  height: 80px;
   grid-area: 3 / 2 / 4 / 3;
 `;
 
 export const GridItem8 = styled.li`
+  position: relative;
+  height: 80px;
   display: flex;
   flex-direction: column;
   width: 372px;
@@ -93,6 +99,13 @@ export const Title = styled.label`
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.4px;
+  ${p =>
+    p.disabled &&
+    `
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #aca7c3;
+  `}
 `;
 
 export const Input = styled(Field)`
@@ -110,11 +123,18 @@ export const Input = styled(Field)`
   &:focus {
     border: 1px solid #7b61ff;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid #aca7c3;
+    pointer-events: none;
+    color: #aca7c3;
+  }
 `;
 
 export const InputSelect = styled(Input)`
   position: relative;
-  display: ${p => (p.$showcategory ? 'none' : 'flex')};
+  display: ${p => (p.$showcategory || p.$showpriority ? 'none' : 'flex')};
 `;
 
 export const InputTextArea = styled(Input)`
@@ -182,14 +202,21 @@ export const CloseIcon = styled(IoIosArrowUp)`
 export const OpenIcon = styled(IoIosArrowDown)`
   position: absolute;
   left: 336px;
-  top: 40px;
+  top: 44px;
   color: #7b61ff;
-  display: ${p => (p.$showcategory ? 'none' : 'flex')};
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: ${p => (p.$showcategory ? 'none' : 'flex')};
   &:hover,
   &:focus {
     color: #6243ff;
   }
+  ${p =>
+    p.disabled &&
+    `
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #aca7c3;
+  `}
 `;
 
 export const CategoryWrapp = styled.div`
@@ -215,11 +242,11 @@ export const CategoryBtn = styled.button`
 
   svg {
     color: ${p => p.$showcategory && p.theme.colors.primary};
-    ${'' /* z-index: 11; */}
   }
 
   &:hover,
   &:focus {
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     p {
       color: ${p => p.theme.colors.primary};
     }
@@ -280,6 +307,116 @@ export const CategoryList = styled.ul`
 `;
 
 export const CategoryItem = styled.li`
+  width: 100%;
+  padding: 16px 0px;
+
+  color: #3f3f3f;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  border-top: 1px solid #aca7c3;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.primary};
+    border-bottom-color: ${p => p.theme.colors.primary};
+  }
+`;
+
+export const PriorityWrapp = styled.div`
+  position: relative;
+`;
+
+export const PriorityBtn = styled.button`
+  ${'' /* top: -24px; */}
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 12px;
+  border-radius: 8px;
+  border: 1px solid #aca7c3;
+  background: #fff;
+  height: 56px;
+  opacity: ${p => (p.$showpriority ? 0 : 1)};
+  transform: translateY(-33px);
+  transition: all 0.5s linear, opacity 0.5s ease-in-out;
+  z-index: 20;
+
+  svg {
+    color: ${p => p.$showpriority && p.theme.colors.primary};
+  }
+
+  &:hover,
+  &:focus {
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    p {
+      color: ${p => p.theme.colors.primary};
+    }
+    svg {
+      color: ${p => p.theme.colors.primary};
+    }
+  }
+
+  @media (min-width: ${p => p.theme.screens.tablet}) {
+    ${'' /* width: 143px; */}
+    ${'' /* justify-content: space-around; */}
+  }
+
+  @media (min-width: ${p => p.theme.screens.desktop}) {
+    width: 372px;
+  }
+`;
+export const PrioritySelected = styled.p`
+  color: #7b61ff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.4px;
+
+  z-index: 11;
+  transition: all 0.5s linear;
+`;
+
+export const PriorityList = styled.ul`
+  position: absolute;
+
+  top: 26px;
+  left: 0;
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
+
+  padding: 0px 16px;
+  border-radius: 8px;
+  background-color: ${p => p.theme.colors.white};
+  box-shadow: ${p => p.theme.shadows.button};
+
+  z-index: 10;
+  opacity: ${p => (p.$showpriority ? 1 : 0)};
+  transform: translateY(${p => (p.$showpriority ? '0' : '20px')});
+  transition: opacity 0.2s linear, transform 0.5s linear;
+
+  @media (min-width: ${p => p.theme.screens.tablet}) {
+    ${'' /* width: 143px; */}
+    ${'' /* top: 56px; */}
+    ${'' /* left: 0; */}
+
+    transform: translate(0);
+  }
+
+  @media (min-width: ${p => p.theme.screens.desktop}) {
+    width: 372px;
+  }
+`;
+
+export const PriorityItem = styled.li`
   width: 100%;
   padding: 16px 0px;
 

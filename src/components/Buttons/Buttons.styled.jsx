@@ -17,6 +17,7 @@ export const ButtonPrimary = styled(Link)`
     width: 193px;
     padding: 16px 12px 16px 12px;
     display: flex;
+    justify-content: center;
   }
   p {
     display: none;
@@ -26,7 +27,6 @@ export const ButtonPrimary = styled(Link)`
       font-size: 16px;
       font-weight: 500;
       line-height: 1.5;
-      display: flex;
       align-items: center;
     }
   }
@@ -34,6 +34,16 @@ export const ButtonPrimary = styled(Link)`
   &:focus {
     background-color: #6243ff;
   }
+`;
+
+export const ButtonPrimaryText = styled.p`
+  display: flex;
+  color: ${p => p.theme.button.default.color};
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
 `;
 
 export const ButtonBack = styled.button`
