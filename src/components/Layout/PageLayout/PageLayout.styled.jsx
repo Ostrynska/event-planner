@@ -30,7 +30,7 @@ export const Section = styled.section`
   }
 
   @media screen and (min-width: ${p => p.theme.screens.desktop}) {
-    ${'' /* height: 100vh; */}
+    min-height: 100vh;
     padding-top: 60px;
     padding-bottom: 77px;
 
