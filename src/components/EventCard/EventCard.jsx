@@ -1,3 +1,6 @@
+import { useTranslation } from 'react-i18next';
+
+import { BtnCard } from '../Buttons/index';
 import {
   Card,
   EventImageWrapp,
@@ -17,11 +20,8 @@ import {
   EventCategoryWrapp,
 } from './EventCard.styled';
 
-import { BtnCard } from '../Buttons/index';
-
 function EventCard({ item }) {
-  const isRetina = window.devicePixelRatio > 1;
-
+  const { t } = useTranslation();
   const {
     id,
     image,
@@ -33,7 +33,12 @@ function EventCard({ item }) {
     title,
     supportingText,
   } = item;
-
+  const translatedCategory = t(category);
+  const translatedPriority = t(priority);
+  const translatedDate = t(date);
+  const translatedTime = t(time);
+  const translatedTitle = t(title);
+  const translatedSupportingText = t(supportingText);
   return (
     <Card>
       <EventImageWrapp>
@@ -41,10 +46,12 @@ function EventCard({ item }) {
         <EventCategoryWrapp>
           <EventCategoryList>
             <EventCategoryItem>
-              <EventItemText>{category}</EventItemText>
+              <EventItemText>{translatedCategory}</EventItemText>
             </EventCategoryItem>
             <EventCategoryItem>
-              <EventPriority priority={priority}>{priority}</EventPriority>
+              <EventPriority priority={priority}>
+                {translatedPriority}
+              </EventPriority>
             </EventCategoryItem>
           </EventCategoryList>
         </EventCategoryWrapp>
@@ -53,14 +60,14 @@ function EventCard({ item }) {
       <EventInf>
         <EventDes>
           <EventDate>
-            {date} at {time}
+            {translatedDate} at {translatedTime}
           </EventDate>
           <EventLocation>{location}</EventLocation>
         </EventDes>
 
         <EventText>
-          <EventTitle>{title}</EventTitle>
-          <EventSupText>{supportingText}</EventSupText>
+          <EventTitle>{translatedTitle}</EventTitle>
+          <EventSupText>{translatedSupportingText}</EventSupText>
           <CardBtnWrapp>
             <BtnCard to={`/event/${id}`} text="More info" />
           </CardBtnWrapp>

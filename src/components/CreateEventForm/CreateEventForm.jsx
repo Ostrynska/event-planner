@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import * as API from '../../services/api';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -43,8 +44,6 @@ import {
   DataWrapp,
 } from './CreateEventForm.styled';
 
-import defaultImage from '../../images/defaultImage.png';
-
 import categoryList from '../../data/categories';
 import priorityList from '../../data/priorityList';
 
@@ -71,6 +70,7 @@ function CreateEventForm() {
   const [locationError, setLocationError] = useState(null);
 
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = async () => {
     const titleValidationResult = validateTitle(titleValue);
@@ -140,7 +140,7 @@ function CreateEventForm() {
     <EventFormWrapp>
       <GridContainer>
         <GridItem1>
-          <Title htmlFor="title">Title</Title>
+          <Title htmlFor="title">{t('form-title')}</Title>
           <Input
             type="text"
             id="title"
@@ -166,7 +166,7 @@ function CreateEventForm() {
         </GridItem1>
 
         <GridItem2>
-          <Title htmlFor="description">Description</Title>
+          <Title htmlFor="description">{t('form-des')}</Title>
           <InputTextArea
             as="textarea"
             id="description"
@@ -182,14 +182,14 @@ function CreateEventForm() {
         </GridItem2>
 
         <GridItem3>
-          <Title htmlFor="date">Select date</Title>
+          <Title htmlFor="date">{t('form-date')}</Title>
           <Input
             type="text"
             id="date"
             name="date"
             onClick={() => setShowDate(!showDate)}
           />
-          {showDate ? <OpenIcon size={20} /> : <CloseIcon size={20} />}
+          {showDate ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
           <DataWrapp>
             <DatePicker
               selected={dateValue}
@@ -199,7 +199,7 @@ function CreateEventForm() {
         </GridItem3>
 
         <GridItem4>
-          <Title htmlFor="time">Select time</Title>
+          <Title htmlFor="time">{t('form-time')}</Title>
           <Input
             type="text"
             id="time"
@@ -208,11 +208,11 @@ function CreateEventForm() {
             onChange={e => setTimeValue(e.target.value)}
             onClick={() => setShowTime(!showTime)}
           />
-          {showTime ? <OpenIcon size={20} /> : <CloseIcon size={20} />}
+          {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
         </GridItem4>
 
         <GridItem5>
-          <Title htmlFor="location">Location</Title>
+          <Title htmlFor="location">{t('form-loc')}</Title>
           <Input
             type="text"
             id="location"
@@ -239,7 +239,7 @@ function CreateEventForm() {
         </GridItem5>
 
         <GridItem6>
-          <Title htmlFor="category">Category</Title>
+          <Title htmlFor="category">{t('form-categ')}</Title>
           <InputSelect
             type="text"
             id="category"
@@ -253,7 +253,7 @@ function CreateEventForm() {
           {showCategory && (
             <CategoryWrapp>
               <CategoryBtn onClick={() => setShowCategory(!showCategory)}>
-                <CategorySelected>Select Category</CategorySelected>
+                <CategorySelected>{t('form-select-categ')}</CategorySelected>
                 {showCategory && <CloseIconSelect size={20} />}
               </CategoryBtn>
               <CategoryList $showcategory={showCategory}>
@@ -273,13 +273,13 @@ function CreateEventForm() {
 
         <GridItem7>
           <Title htmlFor="picture" disabled>
-            Add picture
+            {t('form-pic')}
           </Title>
           <Input type="text" id="picture" name="picture" disabled />
         </GridItem7>
 
         <GridItem8>
-          <Title htmlFor="priority">Priority</Title>
+          <Title htmlFor="priority">{t('form-priority')}</Title>
           <InputSelect
             type="text"
             id="priority"
@@ -292,7 +292,7 @@ function CreateEventForm() {
           {showPriority && (
             <PriorityWrapp>
               <PriorityBtn onClick={() => setShowPriority(!showPriority)}>
-                <PrioritySelected>Select Priority</PrioritySelected>
+                <PrioritySelected>{t('form-select-prior')}</PrioritySelected>
                 <CloseIconSelect size={20} />
               </PriorityBtn>
               <PriorityList $showpriority={showPriority}>
@@ -311,7 +311,7 @@ function CreateEventForm() {
         </GridItem8>
       </GridContainer>
       <BtnWrapp onClick={handleSubmit}>
-        <BtnPrimary text="Add event" icon={false} />
+        <BtnPrimary text={t('btn-form')} icon={false} />
       </BtnWrapp>
     </EventFormWrapp>
   );

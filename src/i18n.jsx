@@ -7,8 +7,9 @@ i18n
   .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
+  .use(postProcessor)
   .init({
-    fallbackLng: 'en',
+    fallbackLng: ['en', 'ua'],
     debug: false,
     detection: {
       order: ['queryString', 'cookie'],

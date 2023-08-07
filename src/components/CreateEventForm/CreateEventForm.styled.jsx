@@ -221,11 +221,6 @@ export const Input = styled.input`
     pointer-events: none;
     color: #aca7c3;
   }
-  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
-  }
-
-  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
-  }
 `;
 
 export const InputSelect = styled(Input)`
@@ -299,7 +294,7 @@ export const CloseIcon = styled(IoIosArrowUp)`
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     left: 271px;
   }
-  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
     left: 339px;
   }
 `;
@@ -309,7 +304,6 @@ export const CloseIconSelect = styled(CloseIcon)`
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     left: 271px;
   }
-
   @media screen and (min-width: ${p => p.theme.screens.desktop}) {
     left: 339px;
   }
