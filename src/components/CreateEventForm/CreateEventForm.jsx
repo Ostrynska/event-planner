@@ -119,15 +119,15 @@ function CreateEventForm() {
     setShowPriority(false);
   };
 
-  const handleDateClick = async date => {
-    // setSelectedPriority(priority);
-    setShowDate(false);
-  };
+  // const handleDateClick = async date => {
+  //   // setSelectedPriority(priority);
+  //   setShowDate(false);
+  // };
 
-  const handleTimeClick = async time => {
-    // setSelectedPriority(priority);
-    setShowTime(false);
-  };
+  // const handleTimeClick = async time => {
+  //   // setSelectedPriority(priority);
+  //   setShowTime(false);
+  // };
 
   function ErrorMessage({ error }) {
     if (!error) {
