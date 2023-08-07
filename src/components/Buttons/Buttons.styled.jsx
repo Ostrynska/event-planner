@@ -36,7 +36,7 @@ export const ButtonPrimary = styled(Link)`
   }
 `;
 
-export const ButtonPrimaryFull = styled(Link)`
+export const ButtonPrimaryFull = styled.button`
   width: 240px;
   padding: 16px 12px;
   border-radius: 8px;

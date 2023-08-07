@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Formik, Form } from 'formik';
 import { nanoid } from 'nanoid';
 import * as API from '../../services/api';
-// import { useEventData } from '../../hooks/useEventData';
 import { toast } from 'react-toastify';
 import DatePicker from 'react-datepicker';
-
 import 'react-datepicker/dist/react-datepicker.css';
 
-import {
-  validateTitle,
-  validateLocation,
-} from '../../validation/inputFormValidation';
 import { BtnPrimary } from '../Buttons/index';
-
-import categoryList from '../../data/categories';
-import priorityList from '../../data/priorityList';
 
 import {
   BtnWrapp,
@@ -49,40 +39,70 @@ import {
   PriorityBtn,
   PrioritySelected,
   PriorityList,
+  DataWrapp,
 } from './CreateEventForm.styled';
 
+import defaultImage from '../../images/defaultImage.png';
+
+import categoryList from '../../data/categories';
+import priorityList from '../../data/priorityList';
+
+import {
+  validateTitle,
+  validateLocation,
+} from '../../validation/inputFormValidation';
+
 function CreateEventForm() {
-  // const { setData } = useEventData();
-  const [descriptionTouched, setDescriptionTouched] = useState(false);
+  const [titleValue, setTitleValue] = useState('');
   const [descriptionValue, setDescriptionValue] = useState('');
+  const [dateValue, setDateValue] = useState(null);
+  const [timeValue, setTimeValue] = useState('');
+  const [locationValue, setLocationValue] = useState('');
+
   const [showCategory, setShowCategory] = useState(false);
   const [showPriority, setShowPriority] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedPriority, setSelectedPriority] = useState('');
-  const [startDate, setStartDate] = useState(new Date());
+
+  const [titleError, setTitleError] = useState(null);
+  const [locationError, setLocationError] = useState(null);
 
   const navigate = useNavigate();
-  const handleSubmit = async values => {
+
+  const handleSubmit = async () => {
+    const titleValidationResult = validateTitle(titleValue);
+    const locationValidationResult = validateLocation(locationValue);
+
+    if (titleValidationResult) {
+      setTitleError(titleValidationResult);
+      return;
+    }
+
+    if (locationValidationResult) {
+      setLocationError(locationValidationResult);
+      return;
+    }
     try {
       const uniqueId = nanoid();
-      const eventData = { ...values, id: uniqueId, image: '' };
+      const eventData = {
+        id: uniqueId,
+        image: defaultImage,
+        title: titleValue,
+        supportingText: descriptionValue,
+        date: dateValue ? dateValue.toISOString() : '',
+        time: timeValue,
+        location: locationValue,
+        category: selectedCategory,
+        priority: selectedPriority,
+      };
 
-      const response = await API.postEvent(eventData);
-      // setData(...response);
+      await API.postEvent(eventData);
+      console.log(eventData);
       toast.success('Event created');
       navigate('/');
     } catch (error) {
       toast.error('Something went wrong. Please try again');
     }
-  };
-
-  const handleDescriptionChange = e => {
-    setDescriptionValue(e.target.value);
-    setDescriptionTouched(true);
-  };
-
-  const handleScrubButtonClick = () => {
-    setDescriptionValue('');
   };
 
   const handleCategoryClick = async category => {
@@ -95,192 +115,172 @@ function CreateEventForm() {
     setShowPriority(false);
   };
 
+  function ErrorMessage({ error }) {
+    if (!error) {
+      return null;
+    }
+    return <Error>{error}</Error>;
+  }
+
   return (
     <EventFormWrapp>
-      <Formik
-        initialValues={{
-          title: '',
-          description: '',
-          date: '',
-          time: '',
-          location: '',
-          category: '',
-          priority: '',
-        }}
-        onSubmit={handleSubmit}
-      >
-        {({ values, errors, touched, handleChange }) => (
-          <Form>
-            <GridContainer>
-              <GridItem1>
-                <Title htmlFor="title">Title</Title>
-                <Input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={values.title}
-                  validate={validateTitle}
-                  error={touched.title && errors.title}
-                  onChange={handleChange}
-                  autoComplete="off"
-                />
-                {errors.title || touched.title ? (
-                  <ScrubInputBtn
-                    onClick={() => {
-                      handleChange('title')('');
-                    }}
+      <GridContainer>
+        <GridItem1>
+          <Title htmlFor="title">Title</Title>
+          <Input
+            type="text"
+            id="title"
+            name="title"
+            value={titleValue}
+            onChange={e => {
+              setTitleValue(e.target.value);
+              setTitleError(validateTitle(e.target.value));
+            }}
+            error={titleError}
+          />
+          {titleError && <ErrorMessage error={titleError} />}
+          {titleError && (
+            <ScrubInputBtn
+              onClick={() => {
+                setTitleValue('');
+                setTitleError(null);
+              }}
+            >
+              <ScrubIcon error={titleError} size={16} />
+            </ScrubInputBtn>
+          )}
+        </GridItem1>
+        <GridItem2>
+          <Title htmlFor="description">Description</Title>
+          <InputTextArea
+            as="textarea"
+            id="description"
+            name="description"
+            value={descriptionValue}
+            onChange={e => setDescriptionValue(e.target.value)}
+          />
+        </GridItem2>
+        <GridItem3>
+          <Title htmlFor="date">Select date</Title>
+          <Input type="text" id="date" name="date" />
+          <DataWrapp>
+            <DatePicker
+              selected={dateValue}
+              onChange={date => setDateValue(date)}
+            />
+          </DataWrapp>
+        </GridItem3>
+        <GridItem4>
+          <Title htmlFor="time">Select time</Title>
+          <Input
+            type="text"
+            id="time"
+            name="time"
+            selected={timeValue}
+            onChange={e => setTimeValue(e.target.value)}
+          />
+        </GridItem4>
+        <GridItem5>
+          <Title htmlFor="location">Location</Title>
+          <Input
+            type="text"
+            id="location"
+            name="location"
+            value={locationValue}
+            onChange={e => {
+              setLocationValue(e.target.value);
+              setLocationError(validateLocation(e.target.value));
+            }}
+            error={locationError}
+            autoComplete="off"
+          />
+          {locationError && <ErrorMessage error={locationError} />}
+          {locationError && (
+            <ScrubInputBtn
+              onClick={() => {
+                setLocationValue('');
+                setLocationError(null);
+              }}
+            >
+              <ScrubIcon error={locationError} size={16} />
+            </ScrubInputBtn>
+          )}
+        </GridItem5>
+        <GridItem6>
+          <Title htmlFor="category">Category</Title>
+          <div>
+            <InputSelect
+              type="text"
+              id="category"
+              name="category"
+              onClick={() => setShowCategory(!showCategory)}
+              value={selectedCategory}
+              onChange={() => {}}
+              autoComplete="off"
+            />
+            {showCategory && (
+              <CategoryWrapp>
+                <CategoryBtn onClick={() => setShowCategory(!showCategory)}>
+                  <CategorySelected>Select Category</CategorySelected>
+                  {showCategory && <CloseIcon size={20} />}
+                </CategoryBtn>
+                <CategoryList $showcategory={showCategory}>
+                  {categoryList.map((item, index) => (
+                    <CategoryItem
+                      key={index}
+                      onClick={() => handleCategoryClick(item)}
+                    >
+                      {item}
+                    </CategoryItem>
+                  ))}
+                </CategoryList>
+              </CategoryWrapp>
+            )}
+            <OpenIcon size={20} $showcategory={showCategory} />
+          </div>
+        </GridItem6>
+
+        <GridItem7>
+          <Title htmlFor="picture" disabled>
+            Add picture
+          </Title>
+          <Input type="text" id="picture" name="picture" disabled />
+        </GridItem7>
+
+        <GridItem8>
+          <Title htmlFor="priority">Priority</Title>
+          <InputSelect
+            type="text"
+            id="priority"
+            name="priority"
+            onClick={() => setShowPriority(!showPriority)}
+            value={selectedPriority}
+            onChange={() => {}}
+          />
+          {showPriority && (
+            <PriorityWrapp>
+              <PriorityBtn onClick={() => setShowPriority(!showPriority)}>
+                <PrioritySelected>Select Priority</PrioritySelected>
+                <CloseIcon size={20} />
+              </PriorityBtn>
+              <PriorityList $showpriority={showPriority}>
+                {priorityList.map((item, index) => (
+                  <PriorityItem
+                    key={index}
+                    onClick={() => handlePriorityClick(item)}
                   >
-                    <ScrubIcon
-                      error={touched.title && errors.title}
-                      size={16}
-                    />
-                  </ScrubInputBtn>
-                ) : null}
-                <Error name="title" component="div" />
-              </GridItem1>
-
-              <GridItem2>
-                <Title htmlFor="description">Description</Title>
-                <InputTextArea
-                  as="textarea"
-                  id="description"
-                  name="description"
-                  onBlur={() => setDescriptionTouched(true)}
-                  onChange={handleDescriptionChange}
-                  value={descriptionValue}
-                />
-                {descriptionTouched && descriptionValue && (
-                  <ScrubInputBtn onClick={handleScrubButtonClick}>
-                    <ScrubIcon size={16} />
-                  </ScrubInputBtn>
-                )}
-              </GridItem2>
-
-              <GridItem3>
-                <Title htmlFor="date">Select date</Title>
-                <Input type="text" id="date" name="date" />
-                <DatePicker
-                  selected={startDate}
-                  onChange={date => setStartDate(date)}
-                >
-                  <div>
-                    <button>Exit</button>
-                    <button>Choose date</button>
-                  </div>
-                </DatePicker>
-                <OpenIcon size={20} />
-              </GridItem3>
-
-              <GridItem4>
-                <Title htmlFor="time">Select time</Title>
-                <Input type="text" id="time" name="time" />
-                <OpenIcon size={20} />
-              </GridItem4>
-
-              <GridItem5>
-                <Title htmlFor="location">Location</Title>
-                <Input
-                  type="text"
-                  id="location"
-                  name="location"
-                  validate={validateLocation}
-                  value={values.location}
-                  error={touched.location && errors.location}
-                  onChange={handleChange}
-                  autoComplete="off"
-                />
-                {errors.location || touched.location ? (
-                  <ScrubInputBtn
-                    onClick={() => {
-                      handleChange('location')('');
-                    }}
-                  >
-                    <ScrubIcon
-                      error={touched.location && errors.location}
-                      size={16}
-                    />
-                  </ScrubInputBtn>
-                ) : null}
-                <Error name="location" component="div" />
-              </GridItem5>
-
-              <GridItem6>
-                <Title htmlFor="category">Category</Title>
-                <InputSelect
-                  type="text"
-                  id="category"
-                  name="category"
-                  onClick={() => setShowCategory(!showCategory)}
-                  $showcategory={showCategory}
-                  value={selectedCategory}
-                />
-
-                {showCategory && (
-                  <CategoryWrapp>
-                    <CategoryBtn onClick={() => setShowCategory(!showCategory)}>
-                      <CategorySelected>Select Category</CategorySelected>
-                      {showCategory && <CloseIcon size={20} />}
-                    </CategoryBtn>
-                    <CategoryList $showcategory={showCategory}>
-                      {categoryList.map((item, index) => (
-                        <CategoryItem
-                          key={index}
-                          onClick={() => handleCategoryClick(item)}
-                        >
-                          {item}
-                        </CategoryItem>
-                      ))}
-                    </CategoryList>
-                  </CategoryWrapp>
-                )}
-                <OpenIcon size={20} $showcategory={showCategory} />
-              </GridItem6>
-
-              <GridItem7>
-                <Title htmlFor="picture" disabled>
-                  Add picture
-                </Title>
-                <Input type="text" id="picture" name="picture" disabled />
-                <OpenIcon size={20} disabled />
-              </GridItem7>
-
-              <GridItem8>
-                <Title htmlFor="priority">Priority</Title>
-                <InputSelect
-                  type="text"
-                  id="priority"
-                  name="priority"
-                  onClick={() => setShowPriority(!showPriority)}
-                  $showpriority={showPriority}
-                  value={selectedPriority}
-                />
-                {showPriority && (
-                  <PriorityWrapp>
-                    <PriorityBtn onClick={() => setShowPriority(!showPriority)}>
-                      <PrioritySelected>Select Priority</PrioritySelected>
-                      <CloseIcon size={20} />
-                    </PriorityBtn>
-                    <PriorityList $showpriority={showPriority}>
-                      {priorityList.map((item, index) => (
-                        <PriorityItem
-                          key={index}
-                          onClick={() => handlePriorityClick(item)}
-                        >
-                          {item}
-                        </PriorityItem>
-                      ))}
-                    </PriorityList>
-                  </PriorityWrapp>
-                )}
-                <OpenIcon size={20} $showpriority={showPriority} />
-              </GridItem8>
-            </GridContainer>
-            <BtnWrapp>
-              <BtnPrimary text="Add event" to="/" icon={false} />
-            </BtnWrapp>
-          </Form>
-        )}
-      </Formik>
+                    {item}
+                  </PriorityItem>
+                ))}
+              </PriorityList>
+            </PriorityWrapp>
+          )}
+          <OpenIcon size={20} $showpriority={showPriority} />
+        </GridItem8>
+      </GridContainer>
+      <BtnWrapp onClick={handleSubmit}>
+        <BtnPrimary text="Add event" icon={false} />
+      </BtnWrapp>
     </EventFormWrapp>
   );
 }

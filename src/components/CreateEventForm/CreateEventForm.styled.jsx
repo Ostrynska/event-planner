@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Field, ErrorMessage } from 'formik';
+// import { Field, ErrorMessage } from 'formik';
 
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
@@ -200,7 +200,7 @@ export const Title = styled.label`
   `}
 `;
 
-export const Input = styled(Field)`
+export const Input = styled.input`
   padding: 16px 12px;
   border-radius: 8px;
   border: 1px solid ${p => (p.error ? p.theme.colors.error : '#aca7c3')};
@@ -213,7 +213,7 @@ export const Input = styled(Field)`
 
   &:hover,
   &:focus {
-    border: 1px solid #7b61ff;
+    border: 1px solid ${p => (p.error ? p.theme.colors.error : '#7b61ff')};
   }
 
   &:disabled {
@@ -249,7 +249,7 @@ export const InputTextArea = styled(Input)`
     border: 1px solid #7b61ff;
   }
 `;
-export const Error = styled(ErrorMessage)`
+export const Error = styled.div`
   margin-top: 4px;
   padding-right: 19px;
 
@@ -283,8 +283,7 @@ export const ScrubInputBtn = styled.div`
     top: 44px;
   }
   @media screen and (min-width: ${p => p.theme.screens.desktop}) {
-    top: 39px;
-    right: 13px;
+    top: 45px;
   }
 `;
 
@@ -553,4 +552,11 @@ export const BtnWrapp = styled.div`
   @media screen and (min-width: ${p => p.theme.screens.desktop}) {
     margin-top: 60px;
   }
+`;
+
+export const DataWrapp = styled.div`
+  position: absolute;
+  z-index: 100;
+  top: -24px;
+  width: 372px;
 `;
