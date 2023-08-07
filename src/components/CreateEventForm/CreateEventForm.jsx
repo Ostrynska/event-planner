@@ -87,9 +87,10 @@ function CreateEventForm() {
     }
     try {
       const uniqueId = nanoid();
+      const imageUrl = `https://picsum.photos/seed/${uniqueId}/600/800`;
       const eventData = {
         id: uniqueId,
-        image: defaultImage,
+        image: imageUrl,
         title: titleValue || 'Event Title',
         supportingText: descriptionValue || 'Event Description',
         date: dateValue ? dateValue.toISOString() : '01.01.',

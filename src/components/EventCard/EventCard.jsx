@@ -25,7 +25,6 @@ function EventCard({ item }) {
   const {
     id,
     image,
-    imageRetina,
     category,
     priority,
     date,
@@ -38,7 +37,7 @@ function EventCard({ item }) {
   return (
     <Card>
       <EventImageWrapp>
-        <EventImage src={isRetina ? imageRetina : image} alt={category} />
+        <EventImage src={image} alt={category} />
         <EventCategoryWrapp>
           <EventCategoryList>
             <EventCategoryItem>
