@@ -1,4 +1,9 @@
-import { ButtonPrimary, ButtonPrimaryText, IconAdd } from './Buttons.styled';
+import {
+  ButtonPrimary,
+  ButtonPrimaryFull,
+  ButtonPrimaryText,
+  IconAdd,
+} from './Buttons.styled';
 
 export const BtnPrimary = ({ text, icon = false, to = '' }) => {
   return icon === true ? (
@@ -7,8 +12,8 @@ export const BtnPrimary = ({ text, icon = false, to = '' }) => {
       <p>{text}</p>
     </ButtonPrimary>
   ) : (
-    <ButtonPrimary type="submit">
+    <ButtonPrimaryFull type="submit">
       <ButtonPrimaryText>{text}</ButtonPrimaryText>
-    </ButtonPrimary>
+    </ButtonPrimaryFull>
   );
 };

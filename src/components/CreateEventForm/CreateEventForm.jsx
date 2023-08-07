@@ -19,6 +19,7 @@ import categoryList from '../../data/categories';
 import priorityList from '../../data/priorityList';
 
 import {
+  BtnWrapp,
   InputSelect,
   EventFormWrapp,
   GridContainer,
@@ -138,7 +139,24 @@ function CreateEventForm() {
                 <Error name="title" component="div" />
               </GridItem1>
 
-              <GridItem2 style={{ height: '80px' }}>
+              <GridItem2>
+                <Title htmlFor="description">Description</Title>
+                <InputTextArea
+                  as="textarea"
+                  id="description"
+                  name="description"
+                  onBlur={() => setDescriptionTouched(true)}
+                  onChange={handleDescriptionChange}
+                  value={descriptionValue}
+                />
+                {descriptionTouched && descriptionValue && (
+                  <ScrubInputBtn onClick={handleScrubButtonClick}>
+                    <ScrubIcon size={16} />
+                  </ScrubInputBtn>
+                )}
+              </GridItem2>
+
+              <GridItem3>
                 <Title htmlFor="date">Select date</Title>
                 <Input type="text" id="date" name="date" />
                 <DatePicker
@@ -151,9 +169,42 @@ function CreateEventForm() {
                   </div>
                 </DatePicker>
                 <OpenIcon size={20} />
-              </GridItem2>
+              </GridItem3>
 
-              <GridItem3>
+              <GridItem4>
+                <Title htmlFor="time">Select time</Title>
+                <Input type="text" id="time" name="time" />
+                <OpenIcon size={20} />
+              </GridItem4>
+
+              <GridItem5>
+                <Title htmlFor="location">Location</Title>
+                <Input
+                  type="text"
+                  id="location"
+                  name="location"
+                  validate={validateLocation}
+                  value={values.location}
+                  error={touched.location && errors.location}
+                  onChange={handleChange}
+                  autoComplete="off"
+                />
+                {errors.location || touched.location ? (
+                  <ScrubInputBtn
+                    onClick={() => {
+                      handleChange('location')('');
+                    }}
+                  >
+                    <ScrubIcon
+                      error={touched.location && errors.location}
+                      size={16}
+                    />
+                  </ScrubInputBtn>
+                ) : null}
+                <Error name="location" component="div" />
+              </GridItem5>
+
+              <GridItem6>
                 <Title htmlFor="category">Category</Title>
                 <InputSelect
                   type="text"
@@ -183,64 +234,14 @@ function CreateEventForm() {
                   </CategoryWrapp>
                 )}
                 <OpenIcon size={20} $showcategory={showCategory} />
-              </GridItem3>
+              </GridItem6>
 
-              <GridItem4>
-                <Title htmlFor="description">Description</Title>
-                <InputTextArea
-                  as="textarea"
-                  id="description"
-                  name="description"
-                  onBlur={() => setDescriptionTouched(true)}
-                  onChange={handleDescriptionChange}
-                  value={descriptionValue}
-                />
-                {descriptionTouched && descriptionValue && (
-                  <ScrubInputBtn onClick={handleScrubButtonClick}>
-                    <ScrubIcon size={16} />
-                  </ScrubInputBtn>
-                )}
-              </GridItem4>
-
-              <GridItem5>
-                <Title htmlFor="time">Select time</Title>
-                <Input type="text" id="time" name="time" />
-                <OpenIcon size={20} />
-              </GridItem5>
-
-              <GridItem6>
+              <GridItem7>
                 <Title htmlFor="picture" disabled>
                   Add picture
                 </Title>
                 <Input type="text" id="picture" name="picture" disabled />
                 <OpenIcon size={20} disabled />
-              </GridItem6>
-
-              <GridItem7>
-                <Title htmlFor="location">Location</Title>
-                <Input
-                  type="text"
-                  id="location"
-                  name="location"
-                  validate={validateLocation}
-                  value={values.location}
-                  error={touched.location && errors.location}
-                  onChange={handleChange}
-                  autoComplete="off"
-                />
-                {errors.location || touched.location ? (
-                  <ScrubInputBtn
-                    onClick={() => {
-                      handleChange('location')('');
-                    }}
-                  >
-                    <ScrubIcon
-                      error={touched.location && errors.location}
-                      size={16}
-                    />
-                  </ScrubInputBtn>
-                ) : null}
-                <Error name="location" component="div" />
               </GridItem7>
 
               <GridItem8>
@@ -274,15 +275,9 @@ function CreateEventForm() {
                 <OpenIcon size={20} $showpriority={showPriority} />
               </GridItem8>
             </GridContainer>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                marginTop: '60px',
-              }}
-            >
+            <BtnWrapp>
               <BtnPrimary text="Add event" to="/" icon={false} />
-            </div>
+            </BtnWrapp>
           </Form>
         )}
       </Formik>

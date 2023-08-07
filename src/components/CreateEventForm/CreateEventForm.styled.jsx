@@ -5,91 +5,183 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
 
 export const EventFormWrapp = styled.div`
-  width: 1280px;
-  height: 490px;
   border-radius: 8px;
   background-color: ${p => p.theme.colors.white};
   box-shadow: 2px 4px 9px 0px ${p => p.theme.colors.shadow};
-  padding: 40px 40px 54px;
+  width: 272px;
+  height: 1056px;
+  padding: 40px 16px;
+
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 688px;
+    height: 656px;
+    padding: 40px 24px;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    width: 1280px;
+    height: 490px;
+    padding: 40px 40px 54px;
+  }
 `;
 
 export const GridContainer = styled.ul`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 42px;
+  grid-template-columns: 1fr;
   grid-row-gap: 20px;
+
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 24px;
+    grid-row-gap: 20px;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 42px;
+    grid-row-gap: 20px;
+  }
 `;
 
 export const GridItem1 = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 372px;
-  height: 80px;
   grid-area: 1 / 1 / 2 / 2;
+  width: 240px;
+  height: 80px;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 308px;
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    width: 372px;
+    grid-area: 1 / 1 / 2 / 2;
+  }
 `;
 
 export const GridItem2 = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 372px;
-  grid-area: 1 / 2 / 2 / 3;
+  grid-area: 2 / 1 / 3 / 2;
+  width: 240px;
+
+  height: 180px;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 308px;
+    grid-area: 2 / 1 / 4 / 2;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    width: 372px;
+    grid-area: 2 / 1 / 4 / 2;
+  }
 `;
 
 export const GridItem3 = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 372px;
+  grid-area: 3 / 1 / 4 / 2;
+
   height: 80px;
-  grid-area: 1 / 3 / 2 / 4;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 308px;
+    grid-area: 4 / 1 / 5 / 2;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    width: 372px;
+    grid-area: 1 / 2 / 2 / 3;
+  }
 `;
 
 export const GridItem4 = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 180px;
-  grid-area: 2 / 1 / 4 / 2;
+  grid-area: 4 / 1 / 5 / 2;
+  width: 240px;
+  height: 80px;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 308px;
+    grid-area: 5 / 1 / 6 / 2;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    grid-area: 2 / 2 / 3 / 3;
+    width: 372px;
+  }
 `;
 
 export const GridItem5 = styled.li`
   position: relative;
-  height: 80px;
   display: flex;
   flex-direction: column;
-  width: 372px;
-  grid-area: 2 / 2 / 3 / 3;
+  grid-area: 5 / 1 / 6 / 2;
+  width: 240px;
+  height: 80px;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 308px;
+    grid-area: 1 / 2 / 2 / 3;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    width: 372px;
+    grid-area: 3 / 2 / 4 / 3;
+  }
 `;
 
 export const GridItem6 = styled.li`
   position: relative;
-  height: 80px;
   display: flex;
   flex-direction: column;
-  width: 372px;
-  grid-area: 2 / 3 / 3 / 4;
+  grid-area: 6 / 1 / 7 / 2;
+  width: 240px;
+  height: 80px;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 308px;
+    grid-area: 2 / 2 / 3 / 3;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    grid-area: 1 / 3 / 2 / 4;
+    width: 372px;
+  }
 `;
 
 export const GridItem7 = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 372px;
+  grid-area: 7 / 1 / 8 / 2;
+  width: 240px;
   height: 80px;
-  grid-area: 3 / 2 / 4 / 3;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 308px;
+    grid-area: 3 / 2 / 4 / 3;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    width: 372px;
+    grid-area: 2 / 3 / 3 / 4;
+  }
 `;
 
 export const GridItem8 = styled.li`
   position: relative;
-  height: 80px;
   display: flex;
   flex-direction: column;
-  width: 372px;
-  grid-area: 3 / 3 / 4 / 4;
+  grid-area: 8 / 1 / 9 / 2;
+  width: 240px;
+  height: 80px;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 308px;
+    grid-area: 4 / 2 / 5 / 3;
+  }
+
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    width: 372px;
+    grid-area: 3 / 3 / 4 / 4;
+  }
 `;
 
 export const Title = styled.label`
@@ -130,6 +222,11 @@ export const Input = styled(Field)`
     pointer-events: none;
     color: #aca7c3;
   }
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+  }
+
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+  }
 `;
 
 export const InputSelect = styled(Input)`
@@ -139,7 +236,7 @@ export const InputSelect = styled(Input)`
 
 export const InputTextArea = styled(Input)`
   resize: none;
-  width: 372px;
+
   height: 180px;
   &::placeholder {
     color: #3f3f3f;
@@ -174,9 +271,8 @@ export const ScrubIcon = styled(RxCross2)`
 
 export const ScrubInputBtn = styled.div`
   position: absolute;
-  top: 39px;
-
-  right: 13px;
+  top: 46px;
+  right: 15px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   &:hover,
@@ -185,6 +281,10 @@ export const ScrubInputBtn = styled.div`
   }
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     top: 44px;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    top: 39px;
+    right: 13px;
   }
 `;
 
@@ -201,7 +301,7 @@ export const CloseIcon = styled(IoIosArrowUp)`
 
 export const OpenIcon = styled(IoIosArrowDown)`
   position: absolute;
-  left: 336px;
+  left: 206px;
   top: 44px;
   color: #7b61ff;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -209,6 +309,12 @@ export const OpenIcon = styled(IoIosArrowDown)`
   &:hover,
   &:focus {
     color: #6243ff;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    left: 273px;
+  }
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    left: 336px;
   }
   ${p =>
     p.disabled &&
@@ -437,5 +543,14 @@ export const PriorityItem = styled.li`
   &:focus {
     color: ${p => p.theme.colors.primary};
     border-bottom-color: ${p => p.theme.colors.primary};
+  }
+`;
+
+export const BtnWrapp = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+  @media screen and (min-width: ${p => p.theme.screens.desktop}) {
+    margin-top: 60px;
   }
 `;

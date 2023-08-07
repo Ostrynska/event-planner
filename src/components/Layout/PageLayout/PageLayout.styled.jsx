@@ -10,7 +10,7 @@ export const Section = styled.section`
   background-size: cover;
   background-position: center center;
   position: relative;
-  height: 100%;
+  min-height: 100vh;
   ${p =>
     p.$show &&
     `

@@ -36,6 +36,24 @@ export const ButtonPrimary = styled(Link)`
   }
 `;
 
+export const ButtonPrimaryFull = styled(Link)`
+  width: 240px;
+  padding: 16px 12px;
+  border-radius: 8px;
+  background-color: ${p => p.theme.button.default.backgroundColor};
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  @media screen and (min-width: ${p => p.theme.screens.tablet}) {
+    width: 193px;
+  }
+  &:hover,
+  &:focus {
+    background-color: #6243ff;
+  }
+`;
+
 export const ButtonPrimaryText = styled.p`
   display: flex;
   color: ${p => p.theme.button.default.color};
