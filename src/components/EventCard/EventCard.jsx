@@ -34,7 +34,11 @@ function EventCard({ item }) {
     supportingText,
   } = item;
 
-  const formattedTime = time.slice(0, -2);
+  let formattedTime = '';
+
+  if (time) {
+    formattedTime = time.slice(0, -2);
+  }
 
   return (
     <Card>
