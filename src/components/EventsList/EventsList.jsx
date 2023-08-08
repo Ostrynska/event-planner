@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import * as API from '../../services/api';
 import EventCard from '../EventCard/EventCard';
@@ -9,6 +10,7 @@ import { useEventData } from '../../hooks/useEventData';
 import { EventsListWrapp } from './EventsList.styled';
 
 function EventsList() {
+  const { t } = useTranslation();
   const { data, setData } = useEventData();
 
   useEffect(() => {
@@ -17,7 +19,7 @@ function EventsList() {
         const results = await API.getEvents();
         setData(results);
       } catch (error) {
-        toast.error('Something went wrong. Please try again');
+        toast.error(t('error'));
       }
     };
     loadEventData();

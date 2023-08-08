@@ -2,7 +2,8 @@
   "main-title": "Мої події",
   "main-add-event-btn": "Додати подію",
 
-
+  "btn-edit": "Редагувати",
+"btn-delete": "Видалити",
   "btn-back": "Назад",
   "btn-form": "Додати подію",
   "form-main-title": "Створіть нову подію",
@@ -15,5 +16,10 @@
   "form-select-categ": "Оберіть категорію",
   "form-pic": "Додати зображення",
   "form-priority": "Пріоритет",
-"form-select-prior": "Оберіть пріоритет"
+"form-select-prior": "Оберіть пріоритет",
+
+
+ "category": "Категорія",
+
+"error": "Щось пішло не так. Будь ласка, спробуйте ще раз"
 }

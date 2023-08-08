@@ -4,9 +4,9 @@ import { nanoid } from 'nanoid';
 import * as API from '../../services/api';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
+import format from 'date-fns/format';
 import { BtnPrimary } from '../Buttons/index';
 
 import {
@@ -51,6 +51,8 @@ import {
   validateTitle,
   validateLocation,
 } from '../../validation/inputFormValidation';
+
+import DatePicker from '../Calendar/Calendar';
 
 function CreateEventForm() {
   const [titleValue, setTitleValue] = useState('');
@@ -119,10 +121,10 @@ function CreateEventForm() {
     setShowPriority(false);
   };
 
-  // const handleDateClick = async date => {
-  //   // setSelectedPriority(priority);
-  //   setShowDate(false);
-  // };
+  const handleDateClick = async date => {
+    // setSelectedDate(date);
+    setShowDate(false);
+  };
 
   // const handleTimeClick = async time => {
   //   // setSelectedPriority(priority);
@@ -187,15 +189,12 @@ function CreateEventForm() {
             type="text"
             id="date"
             name="date"
+            value={dateValue && format(dateValue, 'dd MMM')}
             onClick={() => setShowDate(!showDate)}
+            readOnly
           />
           {showDate ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
-          <DataWrapp>
-            <DatePicker
-              selected={dateValue}
-              onChange={date => setDateValue(date)}
-            />
-          </DataWrapp>
+          {showDate ? <DatePicker onDateSelect={setDateValue} /> : null}
         </GridItem3>
 
         <GridItem4>

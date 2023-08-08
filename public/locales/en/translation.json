@@ -2,8 +2,8 @@
   "main-title": "My events",
   "main-add-event-btn": "Add new event",
 
-
-
+"btn-edit": "Edit",
+"btn-delete": "Delete event",
 "btn-back": "Back",
 "btn-form": "Add event",
 "form-main-title": "Create new event",
@@ -16,5 +16,10 @@
   "form-select-categ": "Select Category",
   "form-pic": "Add picture",
   "form-priority": "Priority",
-  "form-select-prior":"Select Priority"
+  "form-select-prior":"Select Priority",
+
+
+ "category": "Category",
+
+  "error": "Something went wrong. Please try again"
 }

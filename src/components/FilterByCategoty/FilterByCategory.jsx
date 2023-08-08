@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import * as API from '../../services/api';
 import { useEventData } from '../../hooks/useEventData';
@@ -18,8 +19,9 @@ import {
 
 function FilterByCaregory() {
   const { setData } = useEventData();
+  const { t } = useTranslation();
   const [showCategory, setShowCategory] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('Category');
+  const [selectedCategory, setSelectedCategory] = useState(t('category'));
   // eslint-disable-next-line
   const [filterValue, setFilterValue] = useState('');
 
@@ -32,7 +34,7 @@ function FilterByCaregory() {
       let sortedData = [...results];
       setData(sortedData);
     } catch (err) {
-      toast.error('Something went wrong. Please try again');
+      toast.error(t('error'));
     }
   };
 
@@ -45,7 +47,7 @@ function FilterByCaregory() {
         <CategorySelected>{selectedCategory}</CategorySelected>
         <CategoryIcon size={24} />
         <CategoryOptions $showcategory={showCategory}>
-          <CategorySelectedMob>Category</CategorySelectedMob>
+          <CategorySelectedMob>{t('category')}</CategorySelectedMob>
         </CategoryOptions>
       </CategoryBtn>
       <CategoryList $showcategory={showCategory} value={filterValue}>

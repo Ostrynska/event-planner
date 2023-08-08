@@ -1,5 +1,6 @@
-import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import * as API from '../../services/api';
@@ -25,6 +26,7 @@ import { BtnCardDetails, BtnCardDetailsBorder } from '../Buttons/index';
 
 function EventDetails() {
   const { id } = useParams();
+  const { t } = useTranslation();
   const [event, setEvent] = useState('');
   const navigate = useNavigate();
 
@@ -34,7 +36,7 @@ function EventDetails() {
         const response = await API.getDetails(id);
         setEvent(response);
       } catch (error) {
-        toast.error('Something went wrong. Please try again');
+        toast.error(t('error'));
       }
     };
     loadEvent();
@@ -45,7 +47,7 @@ function EventDetails() {
       await API.deleteEvent(id);
       navigate('/');
     } catch (error) {
-      toast.error('Something went wrong. Please try again');
+      toast.error(t('error'));
     }
   };
 
@@ -62,36 +64,36 @@ function EventDetails() {
 
   return (
     <CardDetailsWrapp>
-      <Title>{title}</Title>
+      <Title>{t(title)}</Title>
       <CardDetailsContent>
         <CardDetailsImage>
           <img src={image} alt={title} />
         </CardDetailsImage>
         <CardDetailsInf>
-          <CardDetailsText>{supportingText}</CardDetailsText>
+          <CardDetailsText>{t(supportingText)}</CardDetailsText>
           <EventCategoryList>
             <EventCategoryItem>
-              <EventItemText>{category}</EventItemText>
+              <EventItemText>{t(category)}</EventItemText>
             </EventCategoryItem>
             <EventCategoryItem>
-              <EventPriority priority={priority}>{priority}</EventPriority>
+              <EventPriority priority={priority}>{t(priority)}</EventPriority>
             </EventCategoryItem>
             <EventCategoryItem>
-              <EventItemText>{location}</EventItemText>
+              <EventItemText>{t(location)}</EventItemText>
             </EventCategoryItem>
             <EventCategoryItem>
               <EventItemText>
-                {date} at {time}
+                {date} at {t(time)}
               </EventItemText>
             </EventCategoryItem>
           </EventCategoryList>
 
           <CardDetailsBtnsList>
             <li>
-              <BtnCardDetailsBorder text="Edit" to={`/edit/${id}`} />
+              <BtnCardDetailsBorder text={t('btn-edit')} to={`/edit/${id}`} />
             </li>
             <li onClick={() => handleDeleteEvent(id)}>
-              <BtnCardDetails text="Delete event" />
+              <BtnCardDetails text={t('btn-delete')} />
             </li>
           </CardDetailsBtnsList>
         </CardDetailsInf>

@@ -156,6 +156,7 @@ export const ButtonCardDetailsBorder = styled.div`
   }
 
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
-    width: 55px;
+    display: block;
+    width: 100%;
   }
 `;
