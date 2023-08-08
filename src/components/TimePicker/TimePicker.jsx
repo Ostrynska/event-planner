@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { TimePicker } from 'react-ios-time-picker';
 
 import './TimePicker.css';

@@ -1,7 +1,18 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { RxCross2 } from 'react-icons/rx';
+
+const animation = keyframes`
+  from {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+`;
 
 export const EventFormWrapp = styled.div`
   border-radius: 8px;
@@ -342,7 +353,8 @@ export const CategoryWrapp = styled.div`
 `;
 
 export const CategoryBtn = styled.button`
-  top: 3px;
+  animation: ${animation} 0.3s ease-in-out;
+  top: -26px;
   width: 240px;
   position: absolute;
   display: flex;
@@ -355,9 +367,7 @@ export const CategoryBtn = styled.button`
   background: ${p => p.theme.colors.white};
   height: 56px;
   opacity: ${p => (p.$showcategory ? 0 : 1)};
-  transform: translateY(-26px);
-  transition: all 0.5s linear, opacity 0.5s ease-in-out;
-  z-index: 20;
+  z-index: 40;
 
   svg {
     color: ${p => p.$showcategory && p.theme.colors.primary};
@@ -375,7 +385,6 @@ export const CategoryBtn = styled.button`
   }
 
   @media (min-width: ${p => p.theme.screens.tablet}) {
-    top: 0px;
     width: 308px;
   }
 
@@ -396,6 +405,7 @@ export const CategorySelected = styled.p`
 `;
 
 export const CategoryList = styled.ul`
+  animation: ${animation} 0.3s ease-in-out;
   position: absolute;
   width: 240px;
   top: 40px;
@@ -407,10 +417,8 @@ export const CategoryList = styled.ul`
   background-color: ${p => p.theme.colors.white};
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
-  z-index: 10;
+  z-index: 50;
   opacity: ${p => (p.$showcategory ? 1 : 0)};
-  transform: translateY(${p => (p.$showcategory ? '0' : '20px')});
-  transition: opacity 0.2s linear, transform 0.5s linear;
 
   @media (min-width: ${p => p.theme.screens.tablet}) {
     width: 308px;
@@ -451,7 +459,8 @@ export const PriorityWrapp = styled.div`
 `;
 
 export const PriorityBtn = styled.button`
-  top: 3px;
+  animation: ${animation} 0.3s ease-in-out;
+  top: -26px;
   width: 240px;
   position: absolute;
   display: flex;
@@ -464,8 +473,6 @@ export const PriorityBtn = styled.button`
   background: ${p => p.theme.colors.white};
   height: 56px;
   opacity: ${p => (p.$showpriority ? 0 : 1)};
-  transform: translateY(-33px);
-  transition: all 0.5s linear, opacity 0.5s ease-in-out;
   z-index: 20;
 
   svg {
@@ -503,9 +510,10 @@ export const PrioritySelected = styled.p`
 `;
 
 export const PriorityList = styled.ul`
+  animation: ${animation} 0.3s ease-in-out;
   position: absolute;
   width: 240px;
-  top: 26px;
+  top: 30px;
   left: 0;
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
@@ -516,9 +524,6 @@ export const PriorityList = styled.ul`
 
   z-index: 10;
   opacity: ${p => (p.$showpriority ? 1 : 0)};
-  transform: translateY(${p => (p.$showpriority ? '0' : '20px')});
-  transition: opacity 0.2s linear, transform 0.5s linear;
-
   @media (min-width: ${p => p.theme.screens.tablet}) {
     width: 308px;
   }

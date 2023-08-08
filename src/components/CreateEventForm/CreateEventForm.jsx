@@ -118,16 +118,6 @@ function CreateEventForm() {
     setShowPriority(false);
   };
 
-  const handleDateClick = async date => {
-    // setSelectedDate(date);
-    setShowDate(false);
-  };
-
-  // const handleTimeClick = async time => {
-  //   // setSelectedPriority(priority);
-  //   setShowTime(false);
-  // };
-
   function ErrorMessage({ error }) {
     if (!error) {
       return null;
@@ -172,6 +162,7 @@ function CreateEventForm() {
             name="description"
             value={descriptionValue}
             onChange={e => setDescriptionValue(e.target.value)}
+            required
           />
           {descriptionValue && (
             <ScrubInputBtn onClick={() => setDescriptionValue('')}>
@@ -196,7 +187,11 @@ function CreateEventForm() {
 
         <GridItem4>
           <Title htmlFor="time">{t('form-time')}</Title>
-          <TimeInput onTimeSelect={setTimeValue} />
+          <TimeInput
+            onTimeSelect={setTimeValue}
+            onClick={() => setShowTime(!showTime)}
+            isOpen={showTime}
+          />
           {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
         </GridItem4>
 

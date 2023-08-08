@@ -72,7 +72,6 @@ export const getFilterEvents = async (filterValue, category) => {
     const { data } = await axios.get(
       `/?filter=${filterValue}&category=${category}`
     );
-    console.log(data);
     return data;
   } catch (error) {
     toast.error('Something went wrong. Please try again');
