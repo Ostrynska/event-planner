@@ -187,12 +187,10 @@ function CreateEventForm() {
 
         <GridItem4>
           <Title htmlFor="time">{t('form-time')}</Title>
-          <TimeInput
-            onTimeSelect={setTimeValue}
-            onClick={() => setShowTime(!showTime)}
-            isOpen={showTime}
-          />
-          {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
+          <div onClick={() => setShowTime(!showTime)}>
+            <TimeInput onTimeSelect={setTimeValue} isOpen={showTime} />
+            {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
+          </div>
         </GridItem4>
 
         <GridItem5>
@@ -260,6 +258,7 @@ function CreateEventForm() {
             {t('form-pic')}
           </Title>
           <Input type="text" id="picture" name="picture" disabled />
+          <OpenIcon size={20} disabled />
         </GridItem7>
 
         <GridItem8>

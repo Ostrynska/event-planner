@@ -344,7 +344,13 @@ export const OpenIcon = styled(IoIosArrowDown)`
     `
     cursor: not-allowed;
     pointer-events: none;
-    color: ${p => p.theme.colors.grey};
+    color: #ACA7C3;
+  `}
+
+  ${p =>
+    p.$showtime &&
+    `
+    display: none;
   `}
 `;
 
