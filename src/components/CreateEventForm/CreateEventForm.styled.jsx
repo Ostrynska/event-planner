@@ -206,7 +206,7 @@ export const Title = styled.label`
     `
     cursor: not-allowed;
     pointer-events: none;
-    color: ${p => p.theme.colors.grey};
+    color: #ACA7C3;
   `}
 `;
 
