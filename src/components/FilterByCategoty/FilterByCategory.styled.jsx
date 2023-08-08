@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { BiFilterAlt } from 'react-icons/bi';
 
 export const CategoryIcon = styled(BiFilterAlt)`
-  color: #3f3f3f;
+  color: ${p => p.theme.colors.dark};
 `;
 
 export const CategoryWrapp = styled.div`
@@ -21,11 +21,12 @@ export const CategoryBtn = styled.button`
   border: none;
   box-shadow: 2px 4px 9px 0px ${p => p.theme.colors.shadow};
 
-  color: #3f3f3f;
+  color: ${p => p.theme.colors.dark};
   background-color: white;
 
   svg {
-    color: ${p => (p.$showcategory ? p.theme.colors.primary : '#3f3f3f')};
+    color: ${p =>
+      p.$showcategory ? p.theme.colors.primary : p.theme.colors.dark};
     transform: ${p => (p.$showcategory ? 'translateX(99px)' : 'translateX(0)')};
     transition: all 0.5s linear;
     z-index: 11;
@@ -65,12 +66,13 @@ export const CategoryOptions = styled.p`
   display: block;
   text-align: start;
 
-  padding: ${p => p.theme.space[8]}px 21px;
-  color: ${p => (p.$showcategory ? p.theme.colors.primary : '#3f3f3f')};
+  padding: 16px 21px;
+  color: ${p =>
+    p.$showcategory ? p.theme.colors.primary : p.theme.colors.dark};
   background-color: ${p => p.theme.colors.white};
-  border-bottom: 1px solid ${p => p.theme.colors.sortListItemColor};
-  border-top-left-radius: ${p => p.theme.radii.button};
-  border-top-right-radius: ${p => p.theme.radii.button};
+  border-bottom: 1px solid ${p => p.theme.colors.priamry};
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   box-shadow: ${p => p.theme.shadows.button};
 
   opacity: ${p => (p.$showcategory ? 1 : 0)};
@@ -108,9 +110,9 @@ export const CategorySelected = styled.p`
 
 export const CategorySelectedMob = styled.span`
   color: ${p => p.theme.colors.priamry};
-  font-size: ${p => p.theme.fontSizes[4]}px;
-  font-weight: ${p => p.theme.fontWeights.medium};
-  line-height: ${p => p.theme.lineHeights.normal};
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
 
   @media (min-width: ${p => p.theme.screens.tablet}) {
     display: none;
@@ -139,10 +141,8 @@ export const CategoryList = styled.ul`
     width: 143px;
     top: 56px;
     left: 0;
-
     transform: translate(0);
   }
-
   @media (min-width: ${p => p.theme.screens.desktop}) {
     width: 148px;
   }
@@ -155,8 +155,8 @@ export const CategoryItem = styled.li`
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
-  color: #aca7c3;
-  border-top: 1px solid #aca7c3;
+  color: ${p => p.theme.colors.grey};
+  border-top: 1px solid ${p => p.theme.colors.grey};
 
   transition: color 250ms ease-in-out;
   padding: 8px 24px;

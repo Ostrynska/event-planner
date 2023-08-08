@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Formik } from 'formik';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import * as API from '../../services/api';
-import { Formik } from 'formik';
-
 import { useEventData } from '../../hooks/useEventData';
 
 import {
@@ -16,6 +16,7 @@ import {
 
 function SearchInput() {
   const { setData } = useEventData();
+  const { t } = useTranslation();
   const [value, setValue] = useState('');
   const [originalData, setOriginalData] = useState([]);
 
@@ -26,10 +27,11 @@ function SearchInput() {
         setData(results);
         setOriginalData(results);
       } catch (err) {
-        toast.error('Something went wrong. Please try again');
+        toast.error(t('error'));
       }
     };
     loadEventData();
+    // eslint-disable-next-line
   }, [setData, setOriginalData]);
 
   const handleReset = () => {
@@ -49,7 +51,7 @@ function SearchInput() {
           e.supportingText.toLowerCase().includes(searchValue)
       );
       if (filteredData.length === 0 && searchValue.length > 2) {
-        toast.warning('No results for your request. Please try again');
+        toast.warning(t('search-warning'));
         setData(originalData);
       } else {
         setData(filteredData);
@@ -63,7 +65,7 @@ function SearchInput() {
         <label name="search">
           <Input
             type="text"
-            placeholder="Enter your search"
+            placeholder={t('search')}
             name="search"
             value={value}
             onChange={handleSearch}

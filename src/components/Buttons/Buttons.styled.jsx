@@ -32,7 +32,7 @@ export const ButtonPrimary = styled(Link)`
   }
   &:hover,
   &:focus {
-    background-color: #6243ff;
+    background-color: ${p => p.theme.colors.hover};
   }
 `;
 
@@ -50,7 +50,7 @@ export const ButtonPrimaryFull = styled.button`
   }
   &:hover,
   &:focus {
-    background-color: #6243ff;
+    background-color: ${p => p.theme.colors.hover};
   }
 `;
 
@@ -75,7 +75,7 @@ export const ButtonBack = styled.button`
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    color: #6243ff;
+    color: ${p => p.theme.colors.hover};
     svg {
       transform: translateX(-20%);
     }
@@ -83,7 +83,7 @@ export const ButtonBack = styled.button`
 
   svg {
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    color: #6243ff;
+    color: ${p => p.theme.colors.hover};
   }
 `;
 
@@ -128,7 +128,7 @@ export const ButtonCardDetails = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #6243ff;
+    background-color: ${p => p.theme.colors.hover};
   }
 `;
 
@@ -150,10 +150,10 @@ export const ButtonCardDetailsBorder = styled.div`
 
   &:hover,
   &:focus {
-    color: #6243ff;
+    color: ${p => p.theme.colors.hover};
     font-weight: 600;
     background-color: transparent;
-    border-color: #6243ff;
+    border-color: ${p => p.theme.colors.hover};
   }
 
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {

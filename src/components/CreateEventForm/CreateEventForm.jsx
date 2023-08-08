@@ -209,7 +209,7 @@ function CreateEventForm() {
             onClick={() => setShowTime(!showTime)}
           />
           {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
-          {showTime && <Time onTimeSelect={setTimeValue} />}
+          {/* {showTime && <Time onTimeSelect={setTimeValue} />} */}
         </GridItem4>
 
         <GridItem5>

@@ -14,6 +14,7 @@ const theme = {
     titleText: '#1C1B1F',
     captionText: '#49454F',
     shadow: '#a68dae47',
+    hover: '#6243ff',
 
     headerBg: '#fefcff',
   },
@@ -32,12 +33,6 @@ const theme = {
     secondary: 'Alata, sans-serif',
   },
 
-  fontWeights: {
-    light: 300,
-    regular: 400,
-    medium: 500,
-    bold: 700,
-  },
   lineHeights: {
     normal: 'normal',
     max: '100%',

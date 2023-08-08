@@ -34,12 +34,11 @@ export const HeaderLink = styled.a`
   &:hover,
   &:focus {
     transform: scale(1.06);
-    color: #6243ff;
+    color: ${p => p.theme.colors.hover};
   }
 `;
 
 export const HeaderFormEl = styled.div`
-  display: flex; 
+  display: flex;
   gap: 24px;
-   /* max-height: 48px;
 `;

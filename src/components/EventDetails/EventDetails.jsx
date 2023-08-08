@@ -40,6 +40,7 @@ function EventDetails() {
       }
     };
     loadEvent();
+    // eslint-disable-next-line
   }, [id]);
 
   const handleDeleteEvent = async () => {
@@ -83,7 +84,7 @@ function EventDetails() {
             </EventCategoryItem>
             <EventCategoryItem>
               <EventItemText>
-                {date} at {t(time)}
+                {date} {t('time')} {time}
               </EventItemText>
             </EventCategoryItem>
           </EventCategoryList>

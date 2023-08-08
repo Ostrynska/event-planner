@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TimePicker } from 'react-ios-time-picker';
+// import { TimePicker } from 'react-ios-time-picker';
 
 import './TimePicker.css';
 
@@ -12,7 +12,7 @@ const Time = ({ onTimeSelect }) => {
 
   return (
     <div>
-      <TimePicker onChange={onChange} value={value} use12Hours />
+      {/* <TimePicker onChange={onChange} value={value} use12Hours /> */}
     </div>
   );
 };

@@ -19,6 +19,7 @@
   "form-pic": "Add picture",
   "form-priority": "Priority",
   "form-select-prior":"Select Priority",
+  "time": "at",
 
 
   "category": "Category",
@@ -33,6 +34,8 @@
   "sort-by": "Sort by",
 
    "under-construction": "This page is currently Under Construction. Please check back soon.",
+   "search": "Enter your search",
+   "search-warning": "No results for your request. Please try again",
 
 "error": "Something went wrong. Please try again"
 }

@@ -4,15 +4,15 @@ import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 import { HiArrowSmallUp, HiArrowDown } from 'react-icons/hi2';
 
 export const IconUp = styled(HiArrowSmallUp)`
-  color: #aca7c3;
+  color: ${p => p.theme.colors.grey};
 `;
 
 export const IconDown = styled(HiArrowDown)`
-  color: #aca7c3;
+  color: ${p => p.theme.colors.grey};
 `;
 
 export const SortIcon = styled(TbAdjustmentsHorizontal)`
-  color: #3f3f3f;
+  color: ${p => p.theme.colors.dark};
 `;
 
 export const SortWrapp = styled.div`
@@ -30,12 +30,13 @@ export const SortBtn = styled.button`
   border: none;
   box-shadow: 2px 4px 9px 0px ${p => p.theme.colors.shadow};
 
-  color: #3f3f3f;
+  color: ${p => p.theme.colors.dark};
   background-color: white;
   z-index: 1;
 
   svg {
-    color: ${p => (p.$showsortoptions ? p.theme.colors.primary : '#3f3f3f')};
+    color: ${p =>
+      p.$showsortoptions ? p.theme.colors.primary : p.theme.colors.dark};
     transform: ${p =>
       p.$showsortoptions ? 'translateX(99px)' : 'translateX(0)'};
     transition: all 0.5s linear;
@@ -73,8 +74,8 @@ export const SortList = styled.ul`
   top: 56px;
   left: 0;
 
-  border-bottom-left-radius: ${p => p.theme.radii.button};
-  border-bottom-right-radius: ${p => p.theme.radii.button};
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 
   background-color: ${p => p.theme.colors.white};
   box-shadow: ${p => p.theme.shadows.button};
@@ -107,8 +108,8 @@ export const SortItem = styled.li`
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
-  color: #aca7c3;
-  border-top: 1px solid #aca7c3;
+  color: ${p => p.theme.colors.grey};
+  border-top: 1px solid ${p => p.theme.colors.grey};
 
   transition: color 250ms ease-in-out;
   padding: 8px 24px;
@@ -131,13 +132,14 @@ export const SortOptions = styled.p`
   display: block;
   text-align: start;
 
-  padding: ${p => p.theme.space[8]}px 21px;
-  color: ${p => (p.$showsortoptions ? p.theme.colors.primary : '#3f3f3f')};
+  padding: 16px 21px;
+  color: ${p =>
+    p.$showsortoptions ? p.theme.colors.primary : p.theme.colors.dark};
   background-color: ${p => p.theme.colors.white};
-  border-bottom: 1px solid ${p => p.theme.colors.sortListItemColor};
-  border-top-left-radius: ${p => p.theme.radii.button};
-  border-top-right-radius: ${p => p.theme.radii.button};
-  box-shadow: ${p => p.theme.shadows.button};
+  border-bottom: 1px solid ${p => p.theme.colors.priamry};
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
   opacity: ${p => (p.$showsortoptions ? 1 : 0)};
   transform: ${p =>
@@ -161,9 +163,9 @@ export const SortOptions = styled.p`
 
 export const OptionSelectedMob = styled.span`
   color: ${p => p.theme.colors.priamry};
-  font-size: ${p => p.theme.fontSizes[4]}px;
-  font-weight: ${p => p.theme.fontWeights.medium};
-  line-height: ${p => p.theme.lineHeights.normal};
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
 
   @media (min-width: ${p => p.theme.screens.tablet}) {
     display: none;

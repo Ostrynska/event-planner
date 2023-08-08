@@ -39,8 +39,7 @@ export const Input = styled(Field)`
     width: 410px;
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     border: 0.1px solid #888888aa;
   }
 `;
@@ -56,7 +55,7 @@ export const SearchIcon = styled(CiSearch)`
   color: ${p => p.theme.colors.primary};
   &:hover,
   &:focus {
-    color: #6243ff;
+    color: ${p => p.theme.colors.hover};
   }
 `;
 
@@ -65,7 +64,7 @@ export const ScrubIcon = styled(RxCross2)`
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    color: #6243ff;
+    color: ${p => p.theme.colors.hover};
   }
 `;
 
@@ -77,7 +76,7 @@ export const SearchBtn = styled.div`
   cursor: pointer;
   &:hover,
   &:focus {
-    color: #6243ff;
+    color: ${p => p.theme.colors.hover};
   }
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     top: 13px;
@@ -93,7 +92,7 @@ export const ScrubSearchBtn = styled.div`
   cursor: pointer;
   &:hover,
   &:focus {
-    color: #6243ff;
+    color: ${p => p.theme.colors.hover};
   }
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     top: 17px;

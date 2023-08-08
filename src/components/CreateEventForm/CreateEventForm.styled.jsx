@@ -373,6 +373,7 @@ export const CategoryBtn = styled.button`
   }
 
   @media (min-width: ${p => p.theme.screens.tablet}) {
+    top: 0px;
     width: 308px;
   }
 

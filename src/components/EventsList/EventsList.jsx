@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 
 import * as API from '../../services/api';
 import EventCard from '../EventCard/EventCard';
-
 import { useEventData } from '../../hooks/useEventData';
 
 import { EventsListWrapp } from './EventsList.styled';
@@ -23,6 +22,7 @@ function EventsList() {
       }
     };
     loadEventData();
+    // eslint-disable-next-line
   }, [setData]);
 
   return (

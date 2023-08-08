@@ -17,7 +17,7 @@ export const CardDetailsContent = styled.div`
   width: 272px;
   height: 464px;
   border-radius: 8px;
-  background: #fff;
+  background: ${p => p.theme.colors.white};
   box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
   display: flex;
@@ -64,7 +64,7 @@ export const CardDetailsInf = styled.div`
 export const Title = styled.h2`
   text-again: start;
   margin-bottom: 14px;
-  color: #3f3f3f;
+  color: ${p => p.theme.colors.dark};
   font-size: 24px;
   font-weight: 600;
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {

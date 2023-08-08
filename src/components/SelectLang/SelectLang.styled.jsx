@@ -35,17 +35,17 @@ export const Select = styled.button`
   &:disabled {
     cursor: not-allowed;
     pointer-events: none;
-    color: #aca7c3;
+    color: ${p => p.theme.colors.grey};
   }
 `;
 
 export const LanguageIcon = styled(IoIosArrowDown)`
-  color: #3f3f3f;
+  color: ${p => p.theme.colors.dark};
   margin-left: 4px;
   z-index: 9;
 `;
 export const LanguageIconUp = styled(IoIosArrowUp)`
-  color: #3f3f3f;
+  color: ${p => p.theme.colors.dark};
   margin-left: 4px;
   z-index: 9;
 `;
@@ -80,12 +80,12 @@ export const LanguageList = styled.ul`
 export const LanguageItem = styled.li`
   width: 100%;
   text-align: start;
-  color: #aca7c3;
+  color: ${p => p.theme.colors.grey};
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
   padding-bottom: 4px;
-  border-bottom: 1px solid #aca7c3;
+  border-bottom: 1px solid ${p => p.theme.colors.grey};
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
