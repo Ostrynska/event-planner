@@ -96,7 +96,7 @@ function CreateEventForm() {
         image: imageUrl,
         title: titleValue || 'Event Title',
         supportingText: descriptionValue || 'Event Description',
-        date: dateValue ? dateValue.toISOString() : '01.01.',
+        date: dateValue && dateValue.toString(),
         time: timeValue || '00:00 am',
         location: locationValue || 'Kyiv',
         category: selectedCategory || 'Work',
@@ -160,7 +160,7 @@ function CreateEventForm() {
             <ScrubInputBtn
               onClick={() => {
                 setTitleValue('');
-                setTitleError(null);
+                setTitleError('');
               }}
             >
               <ScrubIcon error={titleError} size={16} />
@@ -190,7 +190,7 @@ function CreateEventForm() {
             type="text"
             id="date"
             name="date"
-            value={dateValue && format(dateValue, 'dd MMM')}
+            value={dateValue}
             onClick={() => setShowDate(!showDate)}
             readOnly
           />
@@ -209,7 +209,7 @@ function CreateEventForm() {
             onClick={() => setShowTime(!showTime)}
           />
           {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
-          {/* {showTime && <Time onTimeSelect={setTimeValue} />} */}
+          {showTime && <Time onTimeSelect={setTimeValue} />}
         </GridItem4>
 
         <GridItem5>

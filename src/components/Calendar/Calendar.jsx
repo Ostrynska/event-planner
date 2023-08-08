@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import { format, parseISO } from 'date-fns';
 
 import './Calendar.css';
 
@@ -10,15 +9,25 @@ export default function DatePicker({ onDateSelect }) {
 
   const handleDateSelect = date => {
     onChange(date);
+    const formattedDate = formatDate(date);
+    onDateSelect(formattedDate);
+    console.log(formattedDate);
   };
 
   const handleConfirmDate = () => {
     setShowCalendar(false);
-    onDateSelect(value);
+    const formattedValue = formatDate(value);
+    onDateSelect(formattedValue);
   };
 
   const handleCloseCalendar = () => {
     setShowCalendar(false);
+  };
+
+  const formatDate = date => {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    return `${day}.${month}`;
   };
 
   return (
@@ -31,10 +40,6 @@ export default function DatePicker({ onDateSelect }) {
             calendarType={'gregory'}
             next2Label={''}
             prev2Label={''}
-            formatDate={date => {
-              const parsedDate = parseISO(date);
-              return format(parsedDate, 'dd.MM');
-            }}
           />
           <div className="calendar-buttons">
             <button

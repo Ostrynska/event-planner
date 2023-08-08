@@ -33,6 +33,9 @@ function EventCard({ item }) {
     title,
     supportingText,
   } = item;
+
+  const formattedTime = time.slice(0, -2);
+
   return (
     <Card>
       <EventImageWrapp>
@@ -52,7 +55,7 @@ function EventCard({ item }) {
       <EventInf>
         <EventDes>
           <EventDate>
-            {t(date)} at {t(time)}
+            {t(date)} at {formattedTime}
           </EventDate>
           <EventLocation>{t(location)}</EventLocation>
         </EventDes>
