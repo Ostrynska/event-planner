@@ -53,6 +53,7 @@ import {
 } from '../../validation/inputFormValidation';
 
 import DatePicker from '../Calendar/Calendar';
+import Time from '../TimePicker/TimePicker';
 
 function CreateEventForm() {
   const [titleValue, setTitleValue] = useState('');
@@ -208,6 +209,7 @@ function CreateEventForm() {
             onClick={() => setShowTime(!showTime)}
           />
           {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
+          {showTime ? <Time onTimeSelect={setTimeValue} /> : null}
         </GridItem4>
 
         <GridItem5>
