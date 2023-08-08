@@ -103,6 +103,7 @@ export const ButtonCard = styled(ButtonPrimary)`
   margin-left: auto;
   display: block;
   padding: 10px 24px;
+  text-align: center;
 
   font-size: 14px;
   line-height: 1.4;

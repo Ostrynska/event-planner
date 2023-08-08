@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import * as API from '../../services/api';
 import { useEventData } from '../../hooks/useEventData';
@@ -20,6 +21,7 @@ import {
 
 const SortByOptions = () => {
   const { setData } = useEventData();
+  const { t } = useTranslation();
   const [showOptions, setShowOptions] = useState(false);
   // eslint-disable-next-line
   const [sortField, setSortField] = useState('');
@@ -68,7 +70,7 @@ const SortByOptions = () => {
 
       setData(sortedData);
     } catch (err) {
-      toast.error('Something went wrong. Please try again');
+      toast.error(t('error'));
     }
   };
 
@@ -78,10 +80,10 @@ const SortByOptions = () => {
         onClick={() => setShowOptions(!showOptions)}
         $showsortoptions={showOptions}
       >
-        <SortTitle>Sort by</SortTitle>
+        <SortTitle>{t('sort-by')}</SortTitle>
         <SortIcon size={24} />
         <SortOptions $showsortoptions={showOptions}>
-          <OptionSelectedMob>Sort by</OptionSelectedMob>
+          <OptionSelectedMob>{t('sort-by')}</OptionSelectedMob>
         </SortOptions>
       </SortBtn>
       <SortList $showsortoptions={showOptions}>

@@ -1,13 +1,15 @@
 {
   "main-title": "Мої події",
+  "edit-title": "Редагувати подію",
   "main-add-event-btn": "Додати подію",
 
+  "btn-more": "Детальніше",
   "btn-edit": "Редагувати",
-"btn-delete": "Видалити",
+  "btn-delete": "Видалити",
   "btn-back": "Назад",
   "btn-form": "Додати подію",
   "form-main-title": "Створіть нову подію",
-"form-title": " Заголовок",
+  "form-title": " Заголовок",
   "form-des": "Опис",
   "form-date": "Виберіть дату",
   "form-time": "Виберіть час",
@@ -20,6 +22,16 @@
 
 
  "category": "Категорія",
+  "category-art": "Мистецтво",
+  "category-music": "Музика",
+  "category-business": "Бізнес",
+  "category-conference": "Конференція",
+  "category-workshop": "Майстер-клас",
+  "category-party": "Вечірка",
+  "category-sport": "Спорт",
 
+  "sort-by": "Сортувати",
+  
+  "under-construction": "Ця сторінка знаходиться у стадії розробки. Перегляньте, будь ласка, найближчим часом.",
 "error": "Щось пішло не так. Будь ласка, спробуйте ще раз"
 }

@@ -1,7 +1,9 @@
 {
   "main-title": "My events",
+  "edit-title": "Edit event",
   "main-add-event-btn": "Add new event",
 
+  "btn-more": "More info",
 "btn-edit": "Edit",
 "btn-delete": "Delete event",
 "btn-back": "Back",
@@ -19,7 +21,18 @@
   "form-select-prior":"Select Priority",
 
 
- "category": "Category",
+  "category": "Category",
+  "category-art": "Art",
+  "category-music": "Music",
+  "category-business": "Business",
+  "category-conference": "Conference",
+  "category-workshop": "Workshop",
+  "category-party": "Party",
+  "category-sport": "Sport",
 
-  "error": "Something went wrong. Please try again"
+  "sort-by": "Sort by",
+
+   "under-construction": "This page is currently Under Construction. Please check back soon.",
+
+"error": "Something went wrong. Please try again"
 }

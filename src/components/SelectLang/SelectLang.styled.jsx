@@ -31,7 +31,13 @@ export const LanguageWrapp = styled.div`
   }
 `;
 
-export const Select = styled.button``;
+export const Select = styled.button`
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #aca7c3;
+  }
+`;
 
 export const LanguageIcon = styled(IoIosArrowDown)`
   color: #3f3f3f;

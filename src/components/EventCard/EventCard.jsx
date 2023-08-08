@@ -33,12 +33,6 @@ function EventCard({ item }) {
     title,
     supportingText,
   } = item;
-  const translatedCategory = t(category);
-  const translatedPriority = t(priority);
-  const translatedDate = t(date);
-  const translatedTime = t(time);
-  const translatedTitle = t(title);
-  const translatedSupportingText = t(supportingText);
   return (
     <Card>
       <EventImageWrapp>
@@ -46,12 +40,10 @@ function EventCard({ item }) {
         <EventCategoryWrapp>
           <EventCategoryList>
             <EventCategoryItem>
-              <EventItemText>{translatedCategory}</EventItemText>
+              <EventItemText>{t(category)}</EventItemText>
             </EventCategoryItem>
             <EventCategoryItem>
-              <EventPriority priority={priority}>
-                {translatedPriority}
-              </EventPriority>
+              <EventPriority priority={priority}>{t(priority)}</EventPriority>
             </EventCategoryItem>
           </EventCategoryList>
         </EventCategoryWrapp>
@@ -60,16 +52,16 @@ function EventCard({ item }) {
       <EventInf>
         <EventDes>
           <EventDate>
-            {translatedDate} at {translatedTime}
+            {t(date)} at {t(time)}
           </EventDate>
-          <EventLocation>{location}</EventLocation>
+          <EventLocation>{t(location)}</EventLocation>
         </EventDes>
 
         <EventText>
-          <EventTitle>{translatedTitle}</EventTitle>
-          <EventSupText>{translatedSupportingText}</EventSupText>
+          <EventTitle>{t(title)}</EventTitle>
+          <EventSupText>{t(supportingText)}</EventSupText>
           <CardBtnWrapp>
-            <BtnCard to={`/event/${id}`} text="More info" />
+            <BtnCard to={`/event/${id}`} text={t('btn-more')} />
           </CardBtnWrapp>
         </EventText>
       </EventInf>

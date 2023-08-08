@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import {
   LanguageWrapp,
@@ -27,6 +28,9 @@ function SelectLang() {
         onClick={e => {
           e.stopPropagation();
           setLanguage(prevState => (prevState === 0 ? 1 : 0));
+          toast.warning(
+            'Sorry... This function temporary is under construction and working in a demo version which has some bugs.'
+          );
         }}
       >
         {selectedLanguage.toUpperCase()}

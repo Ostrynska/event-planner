@@ -1,34 +1,20 @@
 import React, { useState } from 'react';
-import TimePicker from 'rc-time-picker';
-import ReactDOM from 'react-dom';
-import moment from 'moment';
-import 'rc-time-picker/assets/index.css';
+import { TimePicker } from 'react-ios-time-picker';
 
-// import './TimePicker.css';
+import './TimePicker.css';
 
-const showSecond = false;
-const str = showSecond ? 'HH:mm' : 'HH:mm:ss';
+const Time = ({ onTimeSelect }) => {
+  const [value, setValue] = useState('10:00 AM');
 
-export default function Time({ onTimeSelect }) {
-  const [value, setValue] = useState(new Date());
-  const [showTime, setShowTime] = useState(true);
-
-  const handleTimeSelect = time => {
-    setValue(time);
-    onTimeSelect(time);
+  const onChange = timeValue => {
+    setValue(timeValue);
   };
 
   return (
-    <>
-      <TimePicker
-        style={{ width: 100 }}
-        showSecond={showSecond}
-        defaultValue={moment()}
-        className="xxx"
-        onChange={handleTimeSelect}
-        value={value}
-        name="timeField"
-      />
-    </>
+    <div>
+      <TimePicker onChange={onChange} value={value} use12Hours />
+    </div>
   );
-}
+};
+
+export default Time;

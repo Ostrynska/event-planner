@@ -58,7 +58,7 @@ import Time from '../TimePicker/TimePicker';
 function CreateEventForm() {
   const [titleValue, setTitleValue] = useState('');
   const [descriptionValue, setDescriptionValue] = useState('');
-  const [dateValue, setDateValue] = useState(null);
+  const [dateValue, setDateValue] = useState('');
   const [timeValue, setTimeValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
 
@@ -195,7 +195,7 @@ function CreateEventForm() {
             readOnly
           />
           {showDate ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
-          {showDate ? <DatePicker onDateSelect={setDateValue} /> : null}
+          {showDate && <DatePicker onDateSelect={setDateValue} />}
         </GridItem3>
 
         <GridItem4>
@@ -209,7 +209,7 @@ function CreateEventForm() {
             onClick={() => setShowTime(!showTime)}
           />
           {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
-          {showTime ? <Time onTimeSelect={setTimeValue} /> : null}
+          {showTime && <Time onTimeSelect={setTimeValue} />}
         </GridItem4>
 
         <GridItem5>

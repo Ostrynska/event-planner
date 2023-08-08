@@ -26,7 +26,7 @@ export default function DatePicker({ onDateSelect }) {
       {showCalendar && (
         <div>
           <Calendar
-            onChange={onChange}
+            onChange={handleDateSelect}
             value={value}
             calendarType={'gregory'}
             next2Label={''}
