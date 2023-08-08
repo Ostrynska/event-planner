@@ -77,3 +77,26 @@ export const getFilterEvents = async (filterValue, category) => {
     toast.error('Something went wrong. Please try again');
   }
 };
+
+export const getEventById = async id => {
+  try {
+    const { data } = await axios.get(`/${id}`);
+    return data;
+  } catch (error) {
+    toast.error('Something went wrong. Please try again');
+  }
+};
+
+export const editEvent = async (event, id) => {
+  try {
+    const { data } = await axios.put(
+      `https://64c88fa6a1fe0128fbd5e8b1.mockapi.io/events/${id}`,
+      { ...event }
+    );
+    toast.success(`Event editting`);
+    return data;
+  } catch (error) {
+    console.log('ERR', error);
+    return;
+  }
+};
