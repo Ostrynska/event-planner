@@ -51,31 +51,18 @@ import {
 import DatePicker from '../Calendar/Calendar';
 import TimeInput from '../TimePicker/TimePicker';
 
-function CreateEventForm({ event, isEditing }) {
-  const {
-    title = '',
-    supportingText = '',
-    date = '',
-    time = '',
-    location = '',
-    category = '',
-    priority = '',
-  } = event || {};
-
-  const [titleValue, setTitleValue] = useState(title || '');
-  const [descriptionValue, setDescriptionValue] = useState(
-    supportingText || ''
-  );
-  const [dateValue, setDateValue] = useState(date || '');
-  const [timeValue, setTimeValue] = useState(time || '');
-  const [locationValue, setLocationValue] = useState(location || '');
-  const [selectedCategory, setSelectedCategory] = useState(category || '');
-  const [selectedPriority, setSelectedPriority] = useState(priority || '');
-
+function CreateEventForm() {
+  const [titleValue, setTitleValue] = useState('');
+  const [descriptionValue, setDescriptionValue] = useState('');
+  const [dateValue, setDateValue] = useState('');
+  const [timeValue, setTimeValue] = useState('');
+  const [locationValue, setLocationValue] = useState('');
   const [showDate, setShowDate] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
   const [showPriority, setShowPriority] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedPriority, setSelectedPriority] = useState('');
 
   const [titleError, setTitleError] = useState(null);
   const [locationError, setLocationError] = useState(null);
@@ -115,14 +102,6 @@ function CreateEventForm({ event, isEditing }) {
       console.log(eventData);
       // toast.success('Event created');
       navigate('/');
-
-      if (isEditing) {
-        await API.editEvent(eventData, eventData.id);
-        toast.success('Event edited successfully');
-      } else {
-        await API.postEvent(eventData);
-        toast.success('Event created');
-      }
     } catch (error) {
       toast.error('Something went wrong. Please try again');
     }
@@ -207,12 +186,10 @@ function CreateEventForm({ event, isEditing }) {
 
         <GridItem4>
           <Title htmlFor="time">{t('form-time')}</Title>
-          <TimeInput
-            onTimeSelect={setTimeValue}
-            onClick={() => setShowTime(!showTime)}
-            isOpen={showTime}
-          />
-          {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
+          <div onClick={() => setShowTime(!showTime)}>
+            <TimeInput onTimeSelect={setTimeValue} isOpen={showTime} />
+            {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
+          </div>
         </GridItem4>
 
         <GridItem5>
@@ -316,11 +293,7 @@ function CreateEventForm({ event, isEditing }) {
         </GridItem8>
       </GridContainer>
       <BtnWrapp onClick={handleSubmit}>
-        {isEditing ? (
-          <BtnPrimary text={'Edit'} icon={false} />
-        ) : (
-          <BtnPrimary text={t('btn-form')} icon={false} />
-        )}
+        <BtnPrimary text={t('btn-form')} icon={false} />
       </BtnWrapp>
     </EventFormWrapp>
   );
