@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout/Layout';
 import { GlobalStyle } from './theme/theme';
@@ -13,8 +13,18 @@ const EventPage = lazy(() => import('./pages/EventPage'));
 const EditEventPage = lazy(() => import('./pages/EditEventPage'));
 
 function App() {
+  const [pageLoaded, setPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setPageLoaded(true);
+  }, []);
+
+  if (!pageLoaded) {
+    return <Loader />;
+  }
+
   return (
-    <Suspense fallback={<Loader />}>
+    <>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
@@ -31,7 +41,7 @@ function App() {
         position={'top-right'}
         theme={'light'}
       />
-    </Suspense>
+    </>
   );
 }
 
