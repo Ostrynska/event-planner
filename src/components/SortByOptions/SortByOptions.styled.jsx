@@ -78,7 +78,7 @@ export const SortList = styled.ul`
   border-bottom-right-radius: 8px;
 
   background-color: ${p => p.theme.colors.white};
-  box-shadow: ${p => p.theme.shadows.button};
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
   opacity: ${p => (p.$showsortoptions ? 1 : 0)};
   transform: ${p => (p.$showsortoptions ? 'translateY(0)' : 'translateY(5%)')};

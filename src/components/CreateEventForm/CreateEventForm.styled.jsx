@@ -185,7 +185,7 @@ export const GridItem8 = styled.li`
 
 export const Title = styled.label`
   margin-bottom: 8px;
-  color: #7b61ff;
+  color: ${p => p.theme.colors.primary};
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
@@ -195,16 +195,17 @@ export const Title = styled.label`
     `
     cursor: not-allowed;
     pointer-events: none;
-    color: #aca7c3;
+    color: ${p => p.theme.colors.grey};
   `}
 `;
 
 export const Input = styled.input`
   padding: 16px 12px;
   border-radius: 8px;
-  border: 1px solid ${p => (p.error ? p.theme.colors.error : '#aca7c3')};
+  border: 1px solid
+    ${p => (p.error ? p.theme.colors.error : p.theme.colors.grey)};
 
-  color: #3f3f3f;
+  color: ${p => p.theme.colors.dark};
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
@@ -212,14 +213,15 @@ export const Input = styled.input`
 
   &:hover,
   &:focus {
-    border: 1px solid ${p => (p.error ? p.theme.colors.error : '#7b61ff')};
+    border: 1px solid
+      ${p => (p.error ? p.theme.colors.error : p.theme.colors.primary)};
   }
 
   &:disabled {
     cursor: not-allowed;
-    border: 1px solid #aca7c3;
+    border: 1px solid ${p => p.theme.colors.grey};
     pointer-events: none;
-    color: #aca7c3;
+    color: ${p => p.theme.colors.grey};
   }
 `;
 
@@ -233,21 +235,21 @@ export const InputTextArea = styled(Input)`
 
   height: 180px;
   &::placeholder {
-    color: #3f3f3f;
+    color: ${p => p.theme.colors.dark};
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
   }
   &:hover,
   &:focus {
-    border: 1px solid #7b61ff;
+    border: 1px solid ${p => p.theme.colors.primary};
   }
 `;
 export const Error = styled.div`
   margin-top: 4px;
   padding-right: 19px;
 
-  color: #ff2b77;
+  color: ${p => p.theme.colors.secondary};
   text-align: right;
   font-size: 12px;
   font-weight: 400;
@@ -285,11 +287,11 @@ export const CloseIcon = styled(IoIosArrowUp)`
   left: 204px;
   top: 43px;
   position: absolute;
-  color: #7b61ff;
+  color: ${p => p.theme.colors.primary};
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    color: #6243ff;
+    color: ${p => p.theme.colors.hover};
   }
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     left: 271px;
@@ -313,12 +315,12 @@ export const OpenIcon = styled(IoIosArrowDown)`
   position: absolute;
   left: 209px;
   top: 44px;
-  color: #7b61ff;
+  color: ${p => p.theme.colors.primary};
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   display: ${p => (p.$showcategory ? 'none' : 'flex')};
   &:hover,
   &:focus {
-    color: #6243ff;
+    color: ${p => p.theme.colors.hover};
   }
   @media screen and (min-width: ${p => p.theme.screens.tablet}) {
     left: 273px;
@@ -331,7 +333,7 @@ export const OpenIcon = styled(IoIosArrowDown)`
     `
     cursor: not-allowed;
     pointer-events: none;
-    color: #aca7c3;
+    color: ${p => p.theme.colors.grey};
   `}
 `;
 
@@ -349,8 +351,8 @@ export const CategoryBtn = styled.button`
 
   padding: 16px 12px;
   border-radius: 8px;
-  border: 1px solid #aca7c3;
-  background: #fff;
+  border: 1px solid ${p => p.theme.colors.grey};
+  background: ${p => p.theme.colors.white};
   height: 56px;
   opacity: ${p => (p.$showcategory ? 0 : 1)};
   transform: translateY(-26px);
@@ -383,7 +385,7 @@ export const CategoryBtn = styled.button`
 `;
 
 export const CategorySelected = styled.p`
-  color: #7b61ff;
+  color: ${p => p.theme.colors.primary};
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
@@ -403,7 +405,7 @@ export const CategoryList = styled.ul`
   padding: 0px 16px;
   border-radius: 8px;
   background-color: ${p => p.theme.colors.white};
-  box-shadow: ${p => p.theme.shadows.button};
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
   z-index: 10;
   opacity: ${p => (p.$showcategory ? 1 : 0)};
@@ -424,11 +426,11 @@ export const CategoryItem = styled.li`
   width: 100%;
   padding: 16px 0px;
 
-  color: #3f3f3f;
+  color: ${p => p.theme.colors.dark};
   font-size: 16px;
   font-weight: 400;
   line-height: normal;
-  border-top: 1px solid #aca7c3;
+  border-top: 1px solid ${p => p.theme.colors.grey};
 
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -458,8 +460,8 @@ export const PriorityBtn = styled.button`
 
   padding: 16px 12px;
   border-radius: 8px;
-  border: 1px solid #aca7c3;
-  background: #fff;
+  border: 1px solid ${p => p.theme.colors.grey};
+  background: ${p => p.theme.colors.white};
   height: 56px;
   opacity: ${p => (p.$showpriority ? 0 : 1)};
   transform: translateY(-33px);
@@ -490,7 +492,7 @@ export const PriorityBtn = styled.button`
   }
 `;
 export const PrioritySelected = styled.p`
-  color: #7b61ff;
+  color: ${p => p.theme.colors.primary};
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
@@ -510,7 +512,7 @@ export const PriorityList = styled.ul`
   padding: 0px 16px;
   border-radius: 8px;
   background-color: ${p => p.theme.colors.white};
-  box-shadow: ${p => p.theme.shadows.button};
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
   z-index: 10;
   opacity: ${p => (p.$showpriority ? 1 : 0)};
@@ -530,11 +532,11 @@ export const PriorityItem = styled.li`
   width: 100%;
   padding: 16px 0px;
 
-  color: #3f3f3f;
+  color: ${p => p.theme.colors.dark};
   font-size: 16px;
   font-weight: 400;
   line-height: normal;
-  border-top: 1px solid #aca7c3;
+  border-top: 1px solid ${p => p.theme.colors.grey};
 
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;

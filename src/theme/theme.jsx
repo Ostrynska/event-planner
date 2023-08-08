@@ -23,35 +23,11 @@ const theme = {
     Medium: '#E2A300',
     Low: '#6BD475',
   },
-  space: [
-    0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38,
-    40, 42, 44, 46, 48, 64,
-  ],
-  fontSizes: [8, 10, 12, 14, 16, 20, 24, 32, 48, 64, 72],
   fontFamily: {
     primary: 'Poppins, sans-serif',
     secondary: 'Alata, sans-serif',
   },
-
-  lineHeights: {
-    normal: 'normal',
-    max: '100%',
-  },
-  radii: {
-    langButton: '8px',
-    button: '8px',
-    input: '8px',
-  },
-
-  borders: { main: '1px solid #7b61ff' },
   hasIcon: true,
-
-  shadows: {
-    langButton: '2px 4px 9px 0px rgba(166, 141, 174, 0.28)',
-    inputShadow: '2px 4px 9px 0px rgba(166, 141, 174, 0.28)',
-    button: '2px 4px 9px 0px rgba(166, 141, 174, 0.28);',
-  },
-
   screens: {
     mobile: '320px',
     tablet: '768px',

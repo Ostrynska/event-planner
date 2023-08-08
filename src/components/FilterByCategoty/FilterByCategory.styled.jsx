@@ -73,7 +73,7 @@ export const CategoryOptions = styled.p`
   border-bottom: 1px solid ${p => p.theme.colors.priamry};
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  box-shadow: ${p => p.theme.shadows.button};
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
   opacity: ${p => (p.$showcategory ? 1 : 0)};
   transform: ${p => (p.$showcategory ? 'translateX(0)' : 'translateX(-72px)')};
@@ -126,11 +126,11 @@ export const CategoryList = styled.ul`
   top: 56px;
   left: 0;
 
-  border-bottom-left-radius: ${p => p.theme.radii.button};
-  border-bottom-right-radius: ${p => p.theme.radii.button};
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 
   background-color: ${p => p.theme.colors.white};
-  box-shadow: ${p => p.theme.shadows.button};
+  box-shadow: 2px 4px 9px 0px rgba(166, 141, 174, 0.28);
 
   opacity: ${p => (p.$showcategory ? 1 : 0)};
   transform: ${p => (p.$showcategory ? 'translateY(0)' : 'translateY(5%)')};
