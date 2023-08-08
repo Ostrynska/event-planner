@@ -38,6 +38,7 @@ html {
 *::after {
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 h1,

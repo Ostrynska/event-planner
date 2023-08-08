@@ -4,11 +4,8 @@ import { nanoid } from 'nanoid';
 import * as API from '../../services/api';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-// import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
-import format from 'date-fns/format';
-import { BtnPrimary } from '../Buttons/index';
 
+import { BtnPrimary } from '../Buttons/index';
 import {
   CloseIconSelect,
   BtnWrapp,
@@ -41,7 +38,6 @@ import {
   PriorityBtn,
   PrioritySelected,
   PriorityList,
-  DataWrapp,
 } from './CreateEventForm.styled';
 
 import categoryList from '../../data/categories';
@@ -53,7 +49,7 @@ import {
 } from '../../validation/inputFormValidation';
 
 import DatePicker from '../Calendar/Calendar';
-import Time from '../TimePicker/TimePicker';
+import TimeInput from '../TimePicker/TimePicker';
 
 function CreateEventForm() {
   const [titleValue, setTitleValue] = useState('');
@@ -97,7 +93,7 @@ function CreateEventForm() {
         title: titleValue || 'Event Title',
         supportingText: descriptionValue || 'Event Description',
         date: dateValue && dateValue.toString(),
-        time: timeValue || '00:00 am',
+        time: timeValue && timeValue.toString(),
         location: locationValue || 'Kyiv',
         category: selectedCategory || 'Work',
         priority: selectedPriority || 'High',
@@ -200,16 +196,8 @@ function CreateEventForm() {
 
         <GridItem4>
           <Title htmlFor="time">{t('form-time')}</Title>
-          <Input
-            type="text"
-            id="time"
-            name="time"
-            selected={timeValue}
-            onChange={e => setTimeValue(e.target.value)}
-            onClick={() => setShowTime(!showTime)}
-          />
+          <TimeInput onTimeSelect={setTimeValue} />
           {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
-          {showTime && <Time onTimeSelect={setTimeValue} />}
         </GridItem4>
 
         <GridItem5>

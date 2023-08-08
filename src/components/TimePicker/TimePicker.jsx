@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
-// import { TimePicker } from 'react-ios-time-picker';
+import { TimePicker } from 'react-ios-time-picker';
 
 import './TimePicker.css';
 
-const Time = ({ onTimeSelect }) => {
-  const [value, setValue] = useState('10:00 AM');
-
+const TimeInput = ({ onTimeSelect }) => {
   const onChange = timeValue => {
-    setValue(timeValue);
+    onTimeSelect(timeValue);
   };
 
   return (
-    <div>
-      {/* <TimePicker onChange={onChange} value={value} use12Hours /> */}
-    </div>
+    <>
+      <TimePicker onChange={onChange} use12Hours />
+    </>
   );
 };
 
-export default Time;
+export default TimeInput;
