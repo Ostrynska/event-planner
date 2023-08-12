@@ -43,7 +43,7 @@ function EventCard({ item }) {
   return (
     <Card>
       <EventImageWrapp>
-        <EventImage src={image} alt={category} />
+        <EventImage src={image} alt={category} loading="lazy" />
         <EventCategoryWrapp>
           <EventCategoryList>
             <EventCategoryItem>
