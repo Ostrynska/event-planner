@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './theme/theme';
 
-import { EventProvider } from './hooks/useEventData';
+import store from './redux/store';
 
 import './i18n';
 
@@ -15,9 +16,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <EventProvider>
+        <Provider store={store}>
           <App />
-        </EventProvider>
+        </Provider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

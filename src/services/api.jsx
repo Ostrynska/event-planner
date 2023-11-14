@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://event-mock-server.onrender.com/events';
 
+//added
 export const getEvents = async () => {
   try {
     const { data } = await axios.get(`/`);
@@ -21,6 +22,7 @@ export const getEventsPage = async (start, end) => {
   }
 };
 
+//added
 export const postEvent = async eventData => {
   try {
     const { data } = await axios.post('/', eventData);
@@ -49,6 +51,7 @@ export const searchEvents = async id => {
   }
 };
 
+//added
 export const deleteEvent = async id => {
   try {
     const { data } = await axios.delete(`/${id}`);

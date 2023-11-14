@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-import * as API from '../../services/api';
-import { useEventData } from '../../hooks/useEventData';
 import categoryList from '../../data/categories';
 
 import {
@@ -18,7 +16,6 @@ import {
 } from './FilterByCategory.styled';
 
 function FilterByCaregory() {
-  const { setData } = useEventData();
   const { t } = useTranslation();
   const [showCategory, setShowCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(t('category'));
@@ -26,16 +23,15 @@ function FilterByCaregory() {
   const [filterValue, setFilterValue] = useState('');
 
   const handleCategoryClick = async category => {
-    setSelectedCategory(category);
-    setShowCategory(false);
-
-    try {
-      const results = await API.getFilterEvents(filterValue, category);
-      let sortedData = [...results];
-      setData(sortedData);
-    } catch (err) {
-      toast.error(t('error'));
-    }
+    // setSelectedCategory(category);
+    // setShowCategory(false);
+    // try {
+    //   const results = await API.getFilterEvents(filterValue, category);
+    //   let sortedData = [...results];
+    //   setData(sortedData);
+    // } catch (err) {
+    //   toast.error(t('error'));
+    // }
   };
 
   return (
