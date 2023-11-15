@@ -14,6 +14,18 @@ export const fetchAllEvents = createAsyncThunk(
   }
 );
 
+export const fetchAllEvents = createAsyncThunk(
+  'events/fetch-all',
+  async (_, thunkAPI) => {
+    try {
+      const results = await api.getEvents();
+      return results;
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.results);
+    }
+  }
+);
+
 export const fetchAddEvent = createAsyncThunk(
   'events/add',
   async (data, { rejectWithValue }) => {

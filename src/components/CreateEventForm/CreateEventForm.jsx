@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import * as API from '../../services/api';
@@ -50,6 +51,9 @@ import {
 
 import DatePicker from '../Calendar/Calendar';
 import TimeInput from '../TimePicker/TimePicker';
+
+import { fetchAddEvent } from '../../redux/events/operations';
+import { getAllEvents } from '../../redux/events/selectors';
 
 function CreateEventForm() {
   const [titleValue, setTitleValue] = useState('');

@@ -1,4 +1,8 @@
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
+import { fetchDeleteEvent } from '../../redux/events/operations';
+import { getAllEvents, getLoading } from '../../redux/events/selectors';
 
 import { BtnCard } from '../Buttons/index';
 import {
@@ -20,7 +24,10 @@ import {
   EventCategoryWrapp,
 } from './EventCard.styled';
 
-function EventCard({ item }) {
+function EventCard() {
+  const events = useSelector(getAllEvents);
+  const isLoading = useSelector(getLoading);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const {
     id,
