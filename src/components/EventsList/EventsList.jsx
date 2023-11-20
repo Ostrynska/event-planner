@@ -12,14 +12,11 @@ import { EventsListWrapp } from './EventsList.styled';
 function EventsList() {
   // const { t } = useTranslation();
   const events = useSelector(getAllEvents);
-  const isLoading = useSelector(getLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!isLoading) {
-      dispatch(fetchAllEvents());
-    }
-  }, [dispatch, isLoading]);
+    dispatch(fetchAllEvents());
+  }, [dispatch]);
 
   return (
     <EventsListWrapp>

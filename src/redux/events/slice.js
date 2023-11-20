@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchAllEvents, fetchAddEvent, fetchDeleteEvent } from './operations';
+import {
+  fetchAllEvents,
+  fetchAddEvent,
+  fetchDeleteEvent,
+  fetchEventDetails,
+} from './operations';
 
 const initialState = {
   items: [],
+  event: null,
   loading: false,
   error: null,
 };
@@ -15,6 +21,7 @@ const eventsSlice = createSlice({
     builder
       .addCase(fetchAllEvents.pending, store => {
         store.loading = true;
+        store.event = null;
       })
       .addCase(fetchAllEvents.fulfilled, (store, { payload }) => {
         store.loading = false;
@@ -23,7 +30,21 @@ const eventsSlice = createSlice({
       .addCase(fetchAllEvents.rejected, (store, { payload }) => {
         store.loading = false;
         store.error = payload;
+        store.event = null;
       })
+
+      .addCase(fetchEventDetails.pending, store => {
+        store.loading = true;
+      })
+      .addCase(fetchEventDetails.fulfilled, (store, { payload }) => {
+        store.loading = false;
+        store.event = payload;
+      })
+      .addCase(fetchEventDetails.rejected, (store, { payload }) => {
+        store.loading = false;
+        store.error = payload;
+      })
+
       .addCase(fetchAddEvent.pending, store => {
         store.loading = true;
       })

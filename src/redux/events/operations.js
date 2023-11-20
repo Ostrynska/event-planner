@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 import * as api from '../../services/api';
 
 export const fetchAllEvents = createAsyncThunk(
-  'events/fetch-all',
+  'events/all',
   async (_, thunkAPI) => {
     try {
       const results = await api.getEvents();
@@ -14,14 +15,14 @@ export const fetchAllEvents = createAsyncThunk(
   }
 );
 
-export const fetchAllEvents = createAsyncThunk(
-  'events/fetch-all',
-  async (_, thunkAPI) => {
+export const fetchEventDetails = createAsyncThunk(
+  'events/event',
+  async (id, { rejectWithValue }) => {
     try {
-      const results = await api.getEvents();
+      const results = await api.getDetails(id);
       return results;
     } catch ({ response }) {
-      return thunkAPI.rejectWithValue(response.results);
+      return rejectWithValue(response.data);
     }
   }
 );
@@ -35,24 +36,26 @@ export const fetchAddEvent = createAsyncThunk(
     } catch ({ response }) {
       return rejectWithValue(response.data);
     }
+  },
+  {
+    condition: ({ title, location, date }, { getState }) => {
+      const { events } = getState();
+      const normalizedTitle = title.toLowerCase();
+      const normalizedLocation = location.toLowerCase();
+      const normalizedDate = date.toLowerCase();
+      const result = events.items.find(({ title, location, date }) => {
+        return (
+          title.toLowerCase() === normalizedTitle &&
+          location.toLowerCase() === normalizedLocation &&
+          date.toLowerCase() === normalizedDate
+        );
+      });
+      if (result) {
+        toast.error(`${title} in ${location} at ${date} is already exists`);
+        return false;
+      }
+    },
   }
-  //   {
-  //     condition: ({ title, author }, { getState }) => {
-  //       const { books } = getState();
-  //       const normalizedTitle = title.toLowerCase();
-  //       const normalizedAuthor = author.toLowerCase();
-  //       const result = books.items.find(({ title, author }) => {
-  //         return (
-  //           title.toLowerCase() === normalizedTitle &&
-  //           author.toLowerCase() === normalizedAuthor
-  //         );
-  //       });
-  //       if (result) {
-  //         alert(`${title}. Author: ${author} is already ixist`);
-  //         return false;
-  //       }
-  //     },
-  //   }
 );
 
 export const fetchDeleteEvent = createAsyncThunk(

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
-import * as API from '../../services/api';
+import {
+  fetchEventDetails,
+  fetchDeleteEvent,
+} from '../../redux/events/operations';
+import { getEvent } from '../../redux/events/selectors';
 
 import {
   Title,
@@ -25,32 +30,11 @@ import {
 import { BtnCardDetails, BtnCardDetailsBorder } from '../Buttons/index';
 
 function EventDetails() {
+  const event = useSelector(getEvent);
   const { id } = useParams();
   const { t } = useTranslation();
-  const [event, setEvent] = useState('');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const loadEvent = async () => {
-      try {
-        const response = await API.getDetails(id);
-        setEvent(response);
-      } catch (error) {
-        toast.error(t('error'));
-      }
-    };
-    loadEvent();
-    // eslint-disable-next-line
-  }, [id]);
-
-  const handleDeleteEvent = async () => {
-    try {
-      await API.deleteEvent(id);
-      navigate('/');
-    } catch (error) {
-      toast.error(t('error'));
-    }
-  };
+  const dispatch = useDispatch();
 
   const {
     image,
@@ -61,7 +45,16 @@ function EventDetails() {
     date,
     time,
     location,
-  } = event;
+  } = event || {};
+
+  useEffect(() => {
+    dispatch(fetchEventDetails(id));
+  }, [dispatch, id]);
+
+  const handleDeleteEvent = async id => {
+    dispatch(fetchDeleteEvent(id));
+    navigate('/');
+  };
 
   return (
     <CardDetailsWrapp>

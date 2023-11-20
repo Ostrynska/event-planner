@@ -224,6 +224,7 @@ export const Input = styled.input`
 
   &:hover,
   &:focus {
+    outline: none;
     border: 1px solid
       ${p => (p.error ? p.theme.colors.error : p.theme.colors.primary)};
   }
@@ -253,8 +254,8 @@ export const InputTextArea = styled(Input)`
   }
   &:hover,
   &:focus {
-    border: 1px solid ${p => p.theme.colors.primary};
-  }
+    border: 1px solid ${p =>
+      p.error ? p.theme.colors.error : p.theme.colors.primary}
 `;
 export const Error = styled.div`
   margin-top: 4px;

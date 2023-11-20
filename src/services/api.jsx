@@ -32,7 +32,7 @@ export const postEvent = async eventData => {
     throw error;
   }
 };
-
+//added
 export const getDetails = async id => {
   try {
     const { data } = await axios.get(`/${id}`);
