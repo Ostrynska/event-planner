@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import PageLayout from '../components/Layout/PageLayout/PageLayout';
-import CreateEventForm from '../components/CreateEventForm/CreateEventForm';
+import EventForm from '../components/EventForm/EventForm';
 
 function CreateEvent() {
   const { t } = useTranslation();
@@ -9,7 +9,7 @@ function CreateEvent() {
     <PageLayout
       title={t('form-main-title')}
       showBackButton={true}
-      content={<CreateEventForm />}
+      content={<EventForm />}
     ></PageLayout>
   );
 }

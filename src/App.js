@@ -30,7 +30,7 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path="create-event" element={<CreateEvent />} />
           <Route path="event/:id" element={<EventPage />} />
-          {/* <Route path="edit/:id" element={<EditEventPage />} /> */}
+          <Route path="edit/:id" element={<EditEventPage />} />
           <Route path="*" element={<p>Path not resolved</p>} />
         </Route>
       </Routes>

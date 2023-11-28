@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
 import { fetchAddEvent } from '../../redux/events/operations';
-import { getLoading } from '../../redux/events/selectors';
 
 import { BtnPrimary } from '../Buttons/index';
 import {
@@ -41,7 +40,7 @@ import {
   PriorityBtn,
   PrioritySelected,
   PriorityList,
-} from './CreateEventForm.styled';
+} from './EventForm.styled';
 
 import categoryList from '../../data/categories';
 import priorityList from '../../data/priorityList';
@@ -55,7 +54,7 @@ import {
 import DatePicker from '../Calendar/Calendar';
 import TimeInput from '../TimePicker/TimePicker';
 
-function CreateEventForm() {
+function EventForm({ event }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -70,33 +69,68 @@ function CreateEventForm() {
   const [category, setCategory] = useState('');
   const [priority, setPriority] = useState('');
   const [image, setImage] = useState(null);
+  const [showToggle, setShowToggle] = useState({
+    category: false,
+    priority: false,
+    date: false,
+    time: false,
+  });
 
-  const [showCategory, setShowCategory] = useState(false);
-  const [showPriority, setShowPriority] = useState(false);
-  const [showDate, setShowDate] = useState(false);
-  const [showTime, setShowTime] = useState(false);
+  const [errors, setErrors] = useState({
+    title: null,
+    description: null,
+    location: null,
+    category: null,
+    priority: null,
+    date: null,
+    time: null,
+  });
 
-  const [titleError, setTitleError] = useState(null);
-  const [descriptionError, setDescriptionError] = useState(null);
-  const [locationError, setLocationError] = useState(null);
+  useEffect(() => {
+    if (!event) {
+      return;
+    }
 
-  // useEffect(() => {
-  //   if (!event) {
-  //     return;
-  //   }
+    const {
+      name,
+      description,
+      category,
+      priority,
+      location,
+      date,
+      time,
+      image,
+    } = event;
 
-  //   const { name, description, category, priority, place, date, time, photo } =
-  //     event;
+    setTitle(name);
+    setDescription(description);
+    setDate(date);
+    setTime(time);
+    setLocation(location);
+    setCategory(category);
+    setPriority(priority);
+    setImage(image);
+  }, [event]);
 
-  //   setTitle(name);
-  //   setDescription(description);
-  //   setDate(date);
-  //   setTime(time);
-  //   setPlace(place);
-  //   setCategory(category);
-  //   setPriority(priority);
-  //   setImage(photo);
-  // }, [event]);
+  const toggleHandler = toggleName => {
+    const isValid = validateSelection(toggleName);
+    if (!isValid) {
+      setErrors(prevErrors => ({
+        ...prevErrors,
+        [toggleName]: `Please select a ${toggleName}`,
+      }));
+      return;
+    }
+    setShowToggle(prev => ({
+      ...prev,
+      [toggleName]: !prev[toggleName],
+    }));
+
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      [toggleName]: null,
+    }));
+  };
 
   const InputValidation = ({ value, error, handleInputReset, name }) => (
     <>
@@ -113,24 +147,44 @@ function CreateEventForm() {
     </>
   );
 
+  const validateSelection = toggleName => {
+    switch (toggleName) {
+      case 'category':
+        return category !== '';
+      case 'priority':
+        return priority !== '';
+      case 'date':
+        return date === '';
+      case 'time':
+        return time !== '';
+      default:
+        return true;
+    }
+  };
+
   const handleInputChange = e => {
-    switch (e.target.name) {
+    const { name, value } = e.target;
+    switch (name) {
       case 'title':
-        setTitle(e.target.value);
-        setTitleError(validateTitle(e.target.value));
+        setTitle(value);
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          title: validateTitle(value),
+        }));
         break;
       case 'description':
-        setDescription(e.target.value);
+        setDescription(value);
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          description: validateDesctiption(value),
+        }));
         break;
       case 'location':
-        setLocation(e.target.value);
-        e.target.setCustomValidity('');
-        break;
-      case 'category':
-        setCategory(e.target.value);
-        break;
-      case 'priority':
-        setPriority(e.target.value);
+        setLocation(value);
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          location: validateLocation(value),
+        }));
         break;
       default:
         return;
@@ -138,24 +192,28 @@ function CreateEventForm() {
   };
 
   const handleInputClick = e => {
-    switch (e.target.name) {
+    const { name, value } = e.target;
+    switch (name) {
       case 'title':
-        setTitle(e.target.value);
-        setTitleError(validateTitle(e.target.value));
+        setTitle(value);
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          title: validateTitle(value),
+        }));
         break;
       case 'description':
-        setDescription(e.target.value);
-        setDescriptionError(validateDesctiption(e.target.value));
+        setDescription(value);
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          description: validateDesctiption(value),
+        }));
         break;
       case 'location':
-        setLocation(e.target.value);
-        setLocationError(validateLocation(e.target.value));
-        break;
-      case 'category':
-        setCategory(e.target.value);
-        break;
-      case 'priority':
-        setPriority(e.target.value);
+        setLocation(value);
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          location: validateLocation(value),
+        }));
         break;
       default:
         return;
@@ -166,21 +224,15 @@ function CreateEventForm() {
     switch (name) {
       case 'title':
         setTitle('');
-        setTitleError('');
+        setErrors(prevErrors => ({ ...prevErrors, title: null }));
         break;
       case 'description':
         setDescription('');
-        setDescriptionError('');
+        setErrors(prevErrors => ({ ...prevErrors, description: null }));
         break;
       case 'location':
         setLocation('');
-        setLocationError('');
-        break;
-      case 'category':
-        setCategory('');
-        break;
-      case 'priority':
-        setPriority('');
+        setErrors(prevErrors => ({ ...prevErrors, location: null }));
         break;
       default:
         break;
@@ -188,16 +240,16 @@ function CreateEventForm() {
   };
 
   const handleSubmit = async () => {
-    const titleValidationResult = validateTitle(title);
-    const locationValidationResult = validateLocation(location);
-
-    if (titleValidationResult) {
-      setTitleError(titleValidationResult);
-      return;
-    }
-
-    if (locationValidationResult) {
-      setLocationError(locationValidationResult);
+    if (
+      !title ||
+      !date ||
+      !location ||
+      !description ||
+      !time ||
+      !category ||
+      !priority
+    ) {
+      toast.error('Please fill all required fields');
       return;
     }
 
@@ -238,11 +290,11 @@ function CreateEventForm() {
             value={title}
             onClick={handleInputClick}
             onChange={handleInputChange}
-            error={titleError}
+            error={errors.title}
           />
           <InputValidation
             value={title}
-            error={titleError}
+            error={errors.title}
             handleInputReset={() => handleInputReset('title')}
           />
         </GridItem1>
@@ -256,11 +308,11 @@ function CreateEventForm() {
             value={description}
             onClick={handleInputClick}
             onChange={handleInputChange}
-            error={descriptionError}
+            error={errors.description}
           />
           <InputValidation
             value={description}
-            error={descriptionError}
+            error={errors.description}
             handleInputReset={() => handleInputReset('description')}
           />
         </GridItem2>
@@ -272,22 +324,22 @@ function CreateEventForm() {
             id="date"
             name="date"
             value={date}
-            onClick={() => setShowDate(!showDate)}
+            onClick={() => toggleHandler('date')}
             readOnly
             required
           />
-          {!date && <ErrorMessage error="This field is required" />}
-          {showDate ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
-          {showDate && <DatePicker onDateSelect={setDate} />}
+          {showToggle.date ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
+          {showToggle.date && <DatePicker onDateSelect={setDate} />}
+          {errors.date || (showToggle.date && <Error>{errors.date}</Error>)}
         </GridItem3>
 
-        {/* <GridItem4>
+        <GridItem4>
           <Title htmlFor="time">{t('form-time')}</Title>
-          <div onClick={() => setShowTime(!showTime)}>
-            <TimeInput onTimeSelect={setTime} isOpen={showTime} />
-            {showTime ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
+          <div onClick={() => toggleHandler('time')}>
+            <TimeInput onTimeSelect={setTime} isOpen={showToggle.time} />
+            {showToggle.time ? <CloseIcon size={20} /> : <OpenIcon size={20} />}
           </div>
-        </GridItem4> */}
+        </GridItem4>
 
         <GridItem5>
           <Title htmlFor="location">{t('form-loc')}</Title>
@@ -296,40 +348,43 @@ function CreateEventForm() {
             id="location"
             name="location"
             value={location}
+            onClick={handleInputClick}
             onChange={handleInputClick}
-            error={locationError}
+            error={errors.location}
             autoComplete="off"
           />
           <InputValidation
             value={location}
-            error={locationError}
+            error={errors.location}
             handleInputReset={() => handleInputReset('location')}
           />
         </GridItem5>
 
-        {/* <GridItem6>
+        <GridItem6>
           <Title htmlFor="category">{t('form-categ')}</Title>
           <InputSelect
             type="text"
             id="category"
             name="category"
-            onClick={() => toggleCategory('category')}
-            value={showCategory}
-            $showcategory={showCategory.category}
-            onChange={() => {}}
+            onClick={() => toggleHandler('category')}
+            value={category}
+            $showcategory={showToggle.category}
             autoComplete="off"
           />
-          {showCategory.category && (
+          {showToggle.category && (
             <CategoryWrapp>
-              <CategoryBtn onClick={() => toggleCategory('category')}>
+              <CategoryBtn onClick={() => toggleHandler('category')}>
                 <CategorySelected>{t('form-select-categ')}</CategorySelected>
-                {showCategory.category && <CloseIconSelect size={ICON_SIZE} />}
+                {showToggle.category && <CloseIconSelect size={ICON_SIZE} />}
               </CategoryBtn>
-              <CategoryList $showcategory={showCategory.category}>
+              <CategoryList $showcategory={showToggle.category}>
                 {categoryList.map((item, index) => (
                   <CategoryItem
                     key={index}
-                    onClick={() => handleCategoryClick(item)}
+                    onClick={() => {
+                      setCategory(item);
+                      toggleHandler('category');
+                    }}
                   >
                     {item}
                   </CategoryItem>
@@ -337,38 +392,41 @@ function CreateEventForm() {
               </CategoryList>
             </CategoryWrapp>
           )}
-          <OpenIcon size={ICON_SIZE} $showcategory={showCategories.category} />
-        </GridItem6> */}
+          <OpenIcon size={ICON_SIZE} $showcategory={showToggle.category} />
+        </GridItem6>
 
-        {/* <GridItem7>
+        <GridItem7>
           <Title htmlFor="picture" disabled>
             {t('form-pic')}
           </Title>
           <Input type="text" id="picture" name="picture" disabled />
           <OpenIcon size={20} disabled />
-        </GridItem7> */}
+        </GridItem7>
 
-        {/* <GridItem8>
+        <GridItem8>
           <Title htmlFor="priority">{t('form-priority')}</Title>
           <InputSelect
             type="text"
             id="priority"
             name="priority"
-            onClick={() => toggleCategory('priority')}
-            value={selectedPriority}
-            $showpriority={showCategories.priority}
+            onClick={() => toggleHandler('priority')}
+            value={priority}
+            $showpriority={showToggle.priority}
           />
-          {showCategories.priority && (
+          {showToggle.priority && (
             <PriorityWrapp>
-              <PriorityBtn onClick={() => toggleCategory('priority')}>
+              <PriorityBtn onClick={() => toggleHandler('priority')}>
                 <PrioritySelected>{t('form-select-prior')}</PrioritySelected>
                 <CloseIconSelect size={ICON_SIZE} />
               </PriorityBtn>
-              <PriorityList $showpriority={showCategories.priority}>
+              <PriorityList $showpriority={showToggle.priority}>
                 {priorityList.map((item, index) => (
                   <PriorityItem
                     key={index}
-                    onClick={() => handlePriorityClick(item)}
+                    onClick={() => {
+                      setPriority(item);
+                      toggleHandler('priority');
+                    }}
                   >
                     {item}
                   </PriorityItem>
@@ -376,8 +434,8 @@ function CreateEventForm() {
               </PriorityList>
             </PriorityWrapp>
           )}
-          <OpenIcon size={ICON_SIZE} $showpriority={showCategories.priority} />
-        </GridItem8> */}
+          <OpenIcon size={ICON_SIZE} $showpriority={showToggle.priority} />
+        </GridItem8>
       </GridContainer>
       <BtnWrapp onClick={handleSubmit}>
         <BtnPrimary text={t('btn-form')} icon={false} />
@@ -386,4 +444,4 @@ function CreateEventForm() {
   );
 }
 
-export default CreateEventForm;
+export default EventForm;

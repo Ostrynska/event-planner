@@ -8,7 +8,7 @@ import {
   fetchEventDetails,
   fetchDeleteEvent,
 } from '../../redux/events/operations';
-import { getEvent } from '../../redux/events/selectors';
+import { getEvent, getLoading } from '../../redux/events/selectors';
 
 import {
   Title,
@@ -58,40 +58,49 @@ function EventDetails() {
 
   return (
     <CardDetailsWrapp>
-      <Title>{t(title)}</Title>
-      <CardDetailsContent>
-        <CardDetailsImage>
-          <img src={image} alt={title} />
-        </CardDetailsImage>
-        <CardDetailsInf>
-          <CardDetailsText>{t(supportingText)}</CardDetailsText>
-          <EventCategoryList>
-            <EventCategoryItem>
-              <EventItemText>{t(category)}</EventItemText>
-            </EventCategoryItem>
-            <EventCategoryItem>
-              <EventPriority priority={priority}>{t(priority)}</EventPriority>
-            </EventCategoryItem>
-            <EventCategoryItem>
-              <EventItemText>{t(location)}</EventItemText>
-            </EventCategoryItem>
-            <EventCategoryItem>
-              <EventItemText>
-                {date} {t('time')} {time}
-              </EventItemText>
-            </EventCategoryItem>
-          </EventCategoryList>
+      {getLoading ? (
+        <>
+          <Title>{t(title)}</Title>
+          <CardDetailsContent>
+            <CardDetailsImage>
+              <img src={image} alt={title} />
+            </CardDetailsImage>
+            <CardDetailsInf>
+              <CardDetailsText>{t(supportingText)}</CardDetailsText>
+              <EventCategoryList>
+                <EventCategoryItem>
+                  <EventItemText>{t(category)}</EventItemText>
+                </EventCategoryItem>
+                <EventCategoryItem>
+                  <EventPriority priority={priority}>
+                    {t(priority)}
+                  </EventPriority>
+                </EventCategoryItem>
+                <EventCategoryItem>
+                  <EventItemText>{t(location)}</EventItemText>
+                </EventCategoryItem>
+                <EventCategoryItem>
+                  <EventItemText>
+                    {date} {t('time')} {time}
+                  </EventItemText>
+                </EventCategoryItem>
+              </EventCategoryList>
 
-          <CardDetailsBtnsList>
-            <li>
-              <BtnCardDetailsBorder text={t('btn-edit')} to={`/edit/${id}`} />
-            </li>
-            <li onClick={() => handleDeleteEvent(id)}>
-              <BtnCardDetails text={t('btn-delete')} />
-            </li>
-          </CardDetailsBtnsList>
-        </CardDetailsInf>
-      </CardDetailsContent>
+              <CardDetailsBtnsList>
+                <li>
+                  <BtnCardDetailsBorder
+                    text={t('btn-edit')}
+                    to={`/edit/${id}`}
+                  />
+                </li>
+                <li onClick={() => handleDeleteEvent(id)}>
+                  <BtnCardDetails text={t('btn-delete')} />
+                </li>
+              </CardDetailsBtnsList>
+            </CardDetailsInf>
+          </CardDetailsContent>
+        </>
+      ) : null}
     </CardDetailsWrapp>
   );
 }

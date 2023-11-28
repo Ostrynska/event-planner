@@ -58,6 +58,37 @@ export const fetchAddEvent = createAsyncThunk(
   }
 );
 
+export const fetchEditEvent = createAsyncThunk(
+  'events/edit',
+  async ({ id, data }, { rejectWithValue }) => {
+    try {
+      const result = await api.editEvent({ id, data });
+      return result;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
+    }
+  },
+  {
+    condition: ({ title, location, date }, { getState }) => {
+      const { events } = getState();
+      const normalizedTitle = title.toLowerCase();
+      const normalizedLocation = location.toLowerCase();
+      const normalizedDate = date.toLowerCase();
+      const result = events.items.find(({ title, location, date }) => {
+        return (
+          title.toLowerCase() === normalizedTitle &&
+          location.toLowerCase() === normalizedLocation &&
+          date.toLowerCase() === normalizedDate
+        );
+      });
+      if (result) {
+        toast.error(`${title} in ${location} at ${date} is already exists`);
+        return false;
+      }
+    },
+  }
+);
+
 export const fetchDeleteEvent = createAsyncThunk(
   'events/delete',
   async (id, { rejectWithValue }) => {

@@ -5,6 +5,7 @@ import {
   fetchAddEvent,
   fetchDeleteEvent,
   fetchEventDetails,
+  fetchEditEvent,
 } from './operations';
 
 const initialState = {
@@ -53,6 +54,22 @@ const eventsSlice = createSlice({
         store.items.push(payload);
       })
       .addCase(fetchAddEvent.rejected, (store, { payload }) => {
+        store.loading = false;
+        store.error = payload;
+      })
+      .addCase(fetchEditEvent.pending, store => {
+        store.loading = true;
+      })
+      .addCase(fetchEditEvent.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        const existingIndex = state.items.findIndex(
+          item => item.id === payload.id
+        );
+        if (existingIndex !== -1) {
+          state.items[existingIndex] = payload;
+        }
+      })
+      .addCase(fetchEditEvent.rejected, (store, { payload }) => {
         store.loading = false;
         store.error = payload;
       })

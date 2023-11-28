@@ -4,10 +4,11 @@ import App from './App';
 
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './theme/theme';
 
-import store from './redux/store';
+import { store, persistor } from './redux/store';
 
 import './i18n';
 
@@ -17,7 +18,9 @@ root.render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          <App />
+          <PersistGate loading={null} persistor={persistor}>
+            <App />
+          </PersistGate>
         </Provider>
       </ThemeProvider>
     </BrowserRouter>

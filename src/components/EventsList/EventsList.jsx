@@ -20,12 +20,14 @@ function EventsList() {
 
   return (
     <EventsListWrapp>
-      {events &&
-        events.map(item => (
-          <li key={item.id}>
-            <EventCard item={item} />
-          </li>
-        ))}
+      {getLoading
+        ? events &&
+          [...events].reverse().map(item => (
+            <li key={item.id}>
+              <EventCard item={item} />
+            </li>
+          ))
+        : null}
     </EventsListWrapp>
   );
 }
